@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@stylexjs/stylex": "^0.4.1",
+    "mongoose": "^8.1.1",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18"
