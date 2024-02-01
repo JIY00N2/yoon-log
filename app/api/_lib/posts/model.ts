@@ -2,10 +2,6 @@ import { InferSchemaType, Schema, model, models } from "mongoose";
 
 const postSchema = new Schema(
   {
-    id: {
-      type: Schema.Types.ObjectId,
-      required: true,
-    },
     title: {
       type: String,
       required: true,
