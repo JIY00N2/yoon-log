@@ -1,13 +1,13 @@
 // 몽고 db를 조작하는 코드 (get, post등)
 // crud, 서버코드라서 바로 가져오면댐 fetch 불필요
-import { CreatedPostType, UpdatedPostType } from "./serviceType";
 import Post from "./model";
 import connectDB from "../utils/connect-db";
+import { PostType } from "./serviceType";
 
 export class PostsService {
-  static async createdPost({ title, content, tags }: CreatedPostType) {
+  static async createdPost({ title, content }: PostType) {
     await connectDB();
-    const post = await Post.create({ title, content, tags });
+    const post = await Post.create({ title, content });
     return post;
   }
   static async getPosts() {
@@ -20,15 +20,11 @@ export class PostsService {
     const post = await Post.findById(id).lean().exec();
     return post;
   }
-  static async updatedPost(
-    id: string,
-    { title, content, tags }: Partial<UpdatedPostType>,
-  ) {
+  static async updatedPost(id: string, { title, content }: Partial<PostType>) {
     await connectDB();
     const post = await Post.findByIdAndUpdate(id, {
       title,
       content,
-      tags,
     })
       .lean()
       .exec();

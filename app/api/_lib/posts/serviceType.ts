@@ -1,11 +1,4 @@
-export type CreatedPostType = {
+export type PostType = {
   title: string;
   content: string;
-  tags?: string[];
-};
-
-export type UpdatedPostType = {
-  title: string;
-  content: string;
-  tags: string[];
 };
