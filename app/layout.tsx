@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import "./globals.css";
+import LoginButton from "./_components/LoginButton";
 
 export const metadata: Metadata = {
   title: "Yoon's log",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>
+        <LoginButton />
+        {children}
+      </body>
     </html>
   );
 }
