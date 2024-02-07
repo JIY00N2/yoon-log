@@ -2,12 +2,12 @@
 // crud, 서버코드라서 바로 가져오면댐 fetch 불필요
 import Post from "./model";
 import connectDB from "../utils/connect-db";
-import { PostType } from "./serviceType";
+import { CreatedPostType, PostType } from "./serviceType";
 
 export class PostsService {
-  static async createdPost({ title, content }: PostType) {
+  static async createdPost({ title, content, slug }: CreatedPostType) {
     await connectDB();
-    const post = await Post.create({ title, content });
+    const post = await Post.create({ title, content, slug });
     return post;
   }
   static async getPosts() {

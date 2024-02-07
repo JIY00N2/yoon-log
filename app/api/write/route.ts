@@ -6,8 +6,9 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData();
     const title = formData.get("title")?.toString();
     const content = formData.get("content")?.toString();
-    if (title && content) {
-      const post = await PostsService.createdPost({ title, content });
+    const slug = formData.get("slug")?.toString();
+    if (title && content && slug) {
+      const post = await PostsService.createdPost({ title, content, slug });
       return NextResponse.json(post);
     }
   } catch (error) {

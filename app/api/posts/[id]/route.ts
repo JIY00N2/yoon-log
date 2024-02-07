@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PostsService } from "../../_lib/posts/service";
 
-export async function GET({ params }: { params: { id: string } }) {
+export async function GET(
+  req: Request,
+  { params }: { params: { id: string } },
+) {
   try {
     const postId = params.id;
     const post = await PostsService.getPost(postId);
@@ -31,7 +34,10 @@ export async function PATCH(
   }
 }
 
-export async function DELETE({ params }: { params: { id: string } }) {
+export async function DELETE(
+  req: Request,
+  { params }: { params: { id: string } },
+) {
   try {
     const postId = params.id;
     await PostsService.deletedPost(postId);
