@@ -17,14 +17,15 @@ async function handleLoginSubmit(formData: FormData) {
         .setProtectedHeader({ alg })
         .setExpirationTime("24h")
         .sign(secret);
+      cookies().set("isLogin", "true");
       cookies().set("jwt", jwtToken, {
         httpOnly: true,
         secure: true,
         maxAge: 60 * 60 * 24,
       });
+      redirect("/");
     }
   }
-  redirect("/");
 }
 
 export default async function LoginPage() {

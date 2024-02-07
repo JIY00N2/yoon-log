@@ -20,11 +20,6 @@ export async function middleware(request: NextRequest) {
       throw new Error("There is no jwtToken!");
     }
     await jwtVerify(jwtToken, secret);
-    response.cookies.set("isLogin", "true").set("jwt", jwtToken, {
-      httpOnly: true,
-      secure: true,
-      maxAge: 60 * 60 * 24,
-    });
     return NextResponse.next(response);
   } catch (error) {
     // 로그인 안 된 상태
