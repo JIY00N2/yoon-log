@@ -3,11 +3,10 @@ import { PostsService } from "../../_lib/posts/service";
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: { slug: string } },
 ) {
   try {
-    const postId = params.id;
-    const post = await PostsService.getPost(postId);
+    const post = await PostsService.getPost(params.slug);
     return NextResponse.json(post);
   } catch (error) {
     return NextResponse.json(
@@ -19,12 +18,11 @@ export async function GET(
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: { slug: string } },
 ) {
   try {
-    const postId = params.id;
     const body = await req.json();
-    const post = await PostsService.updatedPost(postId, body);
+    const post = await PostsService.updatedPost(params.slug, body);
     return NextResponse.json(post);
   } catch (error) {
     return NextResponse.json(
@@ -36,12 +34,11 @@ export async function PATCH(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: { slug: string } },
 ) {
   try {
-    const postId = params.id;
-    await PostsService.deletedPost(postId);
-    return new NextResponse(null, { status: 204 });
+    await PostsService.deletedPost(params.slug);
+    return NextResponse.json({ message: "Post successfully deleted!" });
   } catch (error) {
     return NextResponse.json(
       { error: "Internal Server Error" },
