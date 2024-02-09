@@ -1,6 +1,5 @@
 export type PostType = {
   title: string;
   content: string;
+  slug: string;
 };
-
-export type CreatedPostType = PostType & { slug: string };
