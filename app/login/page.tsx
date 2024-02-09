@@ -23,6 +23,7 @@ async function handleLoginSubmit(formData: FormData) {
         secure: true,
         maxAge: 60 * 60 * 24,
       });
+      // TODO: redirect prev page
       redirect("/");
     }
   }
