@@ -2,10 +2,10 @@
 // crud, 서버코드라서 바로 가져오면댐 fetch 불필요
 import Post from "./model";
 import connectDB from "../utils/connect-db";
-import { CreatedPostType, PostType } from "./serviceType";
+import { PostType } from "./serviceType";
 
 export class PostsService {
-  static async createdPost({ title, content, slug }: CreatedPostType) {
+  static async createdPost({ title, content, slug }: PostType) {
     await connectDB();
     const post = await Post.create({ title, content, slug });
     return post;
@@ -15,24 +15,33 @@ export class PostsService {
     const posts = await Post.find().lean().exec();
     return posts;
   }
-  static async getPost(id: string) {
+  static async getPost(slug: string) {
     await connectDB();
-    const post = await Post.findById(id).lean().exec();
+    const post = await Post.findOne({ slug }).lean().exec();
     return post;
   }
-  static async updatedPost(id: string, { title, content }: Partial<PostType>) {
+  static async updatedPost(
+    prevSlug: string,
+    { title, content, slug }: Partial<PostType>,
+  ) {
     await connectDB();
-    const post = await Post.findByIdAndUpdate(id, {
-      title,
-      content,
+    const prevPost = await PostsService.getPost(prevSlug);
+    const filter = { slug: prevSlug };
+    const update = {
+      title: title || prevPost?.title,
+      content: content || prevPost?.content,
+      slug: slug || prevPost?.slug,
+    };
+    const newPost = await Post.findOneAndUpdate(filter, update, {
+      new: true,
     })
       .lean()
       .exec();
-    return post;
+    return newPost;
   }
-  static async deletedPost(id: string) {
+  static async deletedPost(slug: string) {
     await connectDB();
-    const post = await Post.findByIdAndDelete(id).lean().exec();
+    const post = await Post.findOneAndDelete({ slug }).lean().exec();
     return post;
   }
 }
