@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PostsService } from "../_lib/posts/service";
 import generateSlug from "@/app/_utils/generateSlug";
+import { PostsService } from "@/app/_lib/posts/service";
 
 export async function POST(req: NextRequest) {
   try {

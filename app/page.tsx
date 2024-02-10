@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { PostsService } from "./api/_lib/posts/service";
 import formattedDate from "./_utils/formattedDate";
+import { PostsService } from "./_lib/posts/service";
 
 export const revalidate = 30;
 

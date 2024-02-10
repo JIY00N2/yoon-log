@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
-import { PostsService } from "../api/_lib/posts/service";
-import generateSlug from "../_utils/generateSlug";
+import { PostsService } from "@/app/_lib/posts/service";
+import generateSlug from "@/app/_utils/generateSlug";
 
 async function handlePostSubmit(formData: FormData) {
   "use server";

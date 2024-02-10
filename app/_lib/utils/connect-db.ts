@@ -1,4 +1,3 @@
-// mongoDB 연결 파일
 import _mongoose, { connect } from "mongoose";
 
 declare global {

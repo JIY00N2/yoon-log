@@ -1,5 +1,3 @@
-// 몽고 db를 조작하는 코드 (get, post등)
-// crud, 서버코드라서 바로 가져오면댐 fetch 불필요
 import Post from "./model";
 import connectDB from "../utils/connect-db";
 import { PostType } from "./serviceType";

@@ -1,5 +1,5 @@
+import { PostsService } from "@/app/_lib/posts/service";
 import { NextResponse } from "next/server";
-import { PostsService } from "../_lib/posts/service";
 
 export async function GET() {
   try {

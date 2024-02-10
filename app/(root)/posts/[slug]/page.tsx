@@ -1,5 +1,5 @@
-import { PostsService } from "@/app/api/_lib/posts/service";
 import AdminButton from "@/app/_components/AdminButton";
+import { PostsService } from "@/app/_lib/posts/service";
 import formattedDate from "@/app/_utils/formattedDate";
 
 export default async function PostPage({

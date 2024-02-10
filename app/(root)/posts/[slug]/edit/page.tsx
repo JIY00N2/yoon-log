@@ -1,6 +1,6 @@
-import generateSlug from "@/app/_utils/generateSlug";
-import { PostsService } from "@/app/api/_lib/posts/service";
 import { redirect } from "next/navigation";
+import { PostsService } from "@/app/_lib/posts/service";
+import generateSlug from "@/app/_utils/generateSlug";
 
 export default function PostEditPage({ params }: { params: { slug: string } }) {
   async function handlePostUpdate(formData: FormData) {
