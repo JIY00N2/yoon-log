@@ -1,3 +1,3 @@
 export default function Footer() {
-  return <div>copyright: jiyoon</div>;
+  return <div>Copyright © 2024 JIYOON2</div>;
 }
