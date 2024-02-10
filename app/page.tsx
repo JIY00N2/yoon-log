@@ -17,7 +17,6 @@ export default async function HomePage() {
             >
               <div>title: {post.title}</div>
               <div>content: {post.content}</div>
-              <div>slug: {post.slug}</div>
               <div>createdAt: {post.createdAt.toLocaleString()}</div>
               <div>updatedAt: {post.updatedAt.toLocaleString()}</div>
             </Link>
