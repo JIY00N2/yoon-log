@@ -29,7 +29,7 @@ export default function LoginButton() {
           <button onClick={handleClickLogout}>로그아웃</button>
         </>
       ) : (
-        <Link href="/login">로그인</Link>
+        <Link href={`/login?redirect=${pathname}`}>로그인</Link>
       )}
     </ClientBoundary>
   );

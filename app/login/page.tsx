@@ -3,33 +3,37 @@ import { SignJWT } from "jose";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-async function handleLoginSubmit(formData: FormData) {
-  "use server";
-  const inputPW = formData.get("password")?.toString();
-  const saltRounds = parseInt(process.env.SALT_ROUNDS!);
-  const hashedPW = await hash(process.env.PASSWORD!, saltRounds);
-  if (inputPW) {
-    const isAdmin = await compare(inputPW, hashedPW);
-    if (isAdmin) {
-      const alg = "HS256";
-      const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
-      const jwtToken = await new SignJWT({ username: "admin" })
-        .setProtectedHeader({ alg })
-        .setExpirationTime("24h")
-        .sign(secret);
-      cookies().set("isLogin", "true");
-      cookies().set("jwt", jwtToken, {
-        httpOnly: true,
-        secure: true,
-        maxAge: 60 * 60 * 24,
-      });
-      // TODO: redirect prev page
-      redirect("/");
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: { redirect: string };
+}) {
+  const params = searchParams.redirect;
+  async function handleLoginSubmit(formData: FormData) {
+    "use server";
+    const inputPW = formData.get("password")?.toString();
+    const saltRounds = parseInt(process.env.SALT_ROUNDS!);
+    const hashedPW = await hash(process.env.PASSWORD!, saltRounds);
+    if (inputPW) {
+      const isAdmin = await compare(inputPW, hashedPW);
+      if (isAdmin) {
+        const alg = "HS256";
+        const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
+        const jwtToken = await new SignJWT({ username: "admin" })
+          .setProtectedHeader({ alg })
+          .setExpirationTime("24h")
+          .sign(secret);
+        cookies().set("isLogin", "true");
+        cookies().set("jwt", jwtToken, {
+          httpOnly: true,
+          secure: true,
+          maxAge: 60 * 60 * 24,
+        });
+        redirect(`${params}`);
+      }
     }
   }
-}
 
-export default async function LoginPage() {
   return (
     <div>
       <form action={handleLoginSubmit}>
