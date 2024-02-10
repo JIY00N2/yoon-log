@@ -7,6 +7,7 @@ export default function PostEditPage({ params }: { params: { slug: string } }) {
     "use server";
     const title = formData.get("title")?.toString();
     const content = formData.get("content")?.toString();
+    const subTitle = formData.get("subTitle")?.toString();
     let slug = decodeURIComponent(params.slug);
     if (title) {
       slug = generateSlug(title);
@@ -15,6 +16,7 @@ export default function PostEditPage({ params }: { params: { slug: string } }) {
       decodeURIComponent(params.slug),
       {
         title,
+        subTitle,
         content,
         slug,
       },
@@ -28,6 +30,7 @@ export default function PostEditPage({ params }: { params: { slug: string } }) {
   return (
     <form action={handlePostUpdate}>
       <input name="title" />
+      <input name="subTitle" />
       <input name="content" />
       <button type="submit">수정 완료</button>
     </form>
