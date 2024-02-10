@@ -8,7 +8,6 @@ export default async function LoginPage({
 }: {
   searchParams: { redirect: string };
 }) {
-  const params = searchParams.redirect;
   async function handleLoginSubmit(formData: FormData) {
     "use server";
     const inputPW = formData.get("password")?.toString();
@@ -29,7 +28,7 @@ export default async function LoginPage({
           secure: true,
           maxAge: 60 * 60 * 24,
         });
-        redirect(`${params}`);
+        redirect(`${searchParams.redirect}`);
       }
     }
   }
