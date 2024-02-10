@@ -6,7 +6,8 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const post = await PostsService.getPost(params.slug);
+  const post = await PostsService.getPost(decodeURIComponent(params.slug));
+
   return (
     <div>
       <AdminButton slug={params.slug} />
