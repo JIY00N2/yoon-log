@@ -1,5 +1,6 @@
 import { PostsService } from "@/app/api/_lib/posts/service";
 import AdminButton from "@/app/_components/AdminButton";
+import formattedDate from "@/app/_utils/formattedDate";
 
 export default async function PostPage({
   params,
@@ -15,7 +16,7 @@ export default async function PostPage({
         <div>
           <div>{post.title}</div>
           <div>{post.content}</div>
-          <div>{post.createdAt.toLocaleString()}</div>
+          <div>createdAt: {formattedDate(post.createdAt)}</div>
         </div>
       ) : (
         <div>없음</div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PostsService } from "./api/_lib/posts/service";
+import formattedDate from "./_utils/formattedDate";
 
 export const revalidate = 30;
 
@@ -17,7 +18,7 @@ export default async function HomePage() {
             >
               <div>title: {post.title}</div>
               <div>subTitle:{post.subTitle}</div>
-              <div>createdAt: {post.createdAt.toLocaleString()}</div>
+              <div>createdAt: {formattedDate(post.createdAt)}</div>
             </Link>
           ))
         ) : (
