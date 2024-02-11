@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@stylexjs/stylex": "^0.4.1",
+    "@stylexjs/stylex": "^0.5.1",
     "bcrypt": "^5.1.1",
     "jose": "^5.2.1",
     "js-cookie": "^3.0.5",
@@ -20,9 +20,9 @@
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@stylexjs/babel-plugin": "^0.4.1",
-    "@stylexjs/eslint-plugin": "^0.4.1",
-    "@stylexjs/nextjs-plugin": "^0.4.1",
+    "@stylexjs/babel-plugin": "^0.5.1",
+    "@stylexjs/eslint-plugin": "^0.5.1",
+    "@stylexjs/nextjs-plugin": "^0.5.1",
     "@types/bcrypt": "^5.0.2",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
