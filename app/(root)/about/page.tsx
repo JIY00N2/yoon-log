@@ -1,7 +1,13 @@
+import TabSummary from "@/app/_components/TabSummary";
 import stylex from "@stylexjs/stylex";
 
 export default function AboutPage() {
-  return <div>소개 페이지</div>;
+  return (
+    <TabSummary
+      title={"About"}
+      content={"소개입니당"}
+    />
+  );
 }
 
 const styles = stylex.create({});
