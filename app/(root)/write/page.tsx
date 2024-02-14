@@ -2,6 +2,7 @@ import generateSlug from "@/app/_utils/generateSlug";
 import { PostsService } from "@/app/_lib/posts/service";
 import { redirect } from "next/navigation";
 import FileForm from "./FileForm";
+import PostForm from "@/app/_components/PostForm";
 
 export async function handlePostSubmit(formData: FormData) {
   "use server";
@@ -17,12 +18,11 @@ export async function handlePostSubmit(formData: FormData) {
 
 export default async function WritePage() {
   return (
-    <form action={handlePostSubmit}>
-      <input name="title" />
-      <input name="subTitle" />
-      <textarea name="content" />
+    <PostForm
+      handleSubmit={handlePostSubmit}
+      submitBtnText={"글 작성"}
+    >
       <FileForm />
-      <button type="submit">글 작성</button>
-    </form>
+    </PostForm>
   );
 }
