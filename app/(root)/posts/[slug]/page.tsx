@@ -1,4 +1,5 @@
 import AdminButton from "@/app/_components/AdminButton";
+import MDContent from "@/app/_components/MDContent";
 import { PostsService } from "@/app/_lib/posts/service";
 import formattedDate from "@/app/_utils/formattedDate";
 
@@ -15,8 +16,8 @@ export default async function PostPage({
       {post ? (
         <div>
           <div>{post.title}</div>
-          <div>{post.content}</div>
           <div>createdAt: {formattedDate(post.createdAt)}</div>
+          <MDContent source={post.content} />
         </div>
       ) : (
         <div>없음</div>
