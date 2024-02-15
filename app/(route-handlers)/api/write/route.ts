@@ -7,12 +7,14 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData();
     const title = formData.get("title")?.toString();
     const subTitle = formData.get("subTitle")?.toString();
+    const thumbnailUrl = formData.get("thumbnailUrl")?.toString();
     const content = formData.get("content")?.toString();
-    if (title && subTitle && content) {
+    if (title && subTitle && thumbnailUrl && content) {
       const slug = generateSlug(title);
       const post = await PostsService.createdPost({
         title,
         subTitle,
+        thumbnailUrl,
         content,
         slug,
       });
