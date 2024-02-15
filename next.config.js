@@ -8,4 +8,13 @@ module.exports = stylexPlugin({
     "@/*": [path.join(__dirname, "*")],
   },
   rootDir: __dirname,
-})({});
+})({
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "oxpdlbqcseajmjnxawbb.supabase.co",
+      },
+    ],
+  },
+});
