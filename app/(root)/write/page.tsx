@@ -4,21 +4,25 @@ import { redirect } from "next/navigation";
 import ImageForm from "./ImageForm";
 import PostForm from "@/app/_components/PostForm";
 import { ContentProvider } from "@/app/_context/ContentContext";
+import { revalidatePath } from "next/cache";
 
-export async function handlePostSubmit(formData: FormData) {
+async function handlePostSubmit(formData: FormData) {
   "use server";
   const title = formData.get("title")?.toString();
   const subTitle = formData.get("subTitle")?.toString();
+  const thumbnailUrl = formData.get("thumbnailUrl")?.toString();
   const content = formData.get("content")?.toString();
-  if (title && subTitle && content) {
+  if (title && subTitle && thumbnailUrl && content) {
     const slug = generateSlug(title);
     await PostsService.createdPost({
       title,
       subTitle,
+      thumbnailUrl,
       content,
       slug,
     });
   }
+  revalidatePath("/");
   redirect("/");
 }
 
