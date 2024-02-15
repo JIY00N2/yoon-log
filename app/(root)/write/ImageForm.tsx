@@ -1,8 +1,10 @@
 "use client";
 
+import { useContentContext } from "@/app/_context/ContentContext";
 import { ChangeEvent } from "react";
 
-export default function FileForm() {
+export default function ImageForm() {
+  const { setContent } = useContentContext();
   async function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     const formData = new FormData();
     if (!e.target.files) {
@@ -13,10 +15,15 @@ export default function FileForm() {
       method: "POST",
       body: formData,
     });
-    const data = (await res.json()) as { imageUrl: string | undefined };
+    const data = (await res.json()) as {
+      imageFileName: string;
+      imageUrl: string;
+    };
+    let url = "![로딩중...]()";
     if (data.imageUrl) {
-      console.log(data.imageUrl);
+      url = `![${data.imageFileName}](${data.imageUrl})`;
     }
+    setContent((content) => content + url);
   }
 
   return (
