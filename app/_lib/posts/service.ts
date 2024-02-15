@@ -3,9 +3,21 @@ import connectDB from "../utils/connect-db";
 import { PostType } from "./serviceType";
 
 export class PostsService {
-  static async createdPost({ title, subTitle, content, slug }: PostType) {
+  static async createdPost({
+    title,
+    subTitle,
+    thumbnailUrl,
+    content,
+    slug,
+  }: PostType) {
     await connectDB();
-    const post = await Post.create({ title, subTitle, content, slug });
+    const post = await Post.create({
+      title,
+      subTitle,
+      thumbnailUrl,
+      content,
+      slug,
+    });
     return post;
   }
   static async getPosts() {
@@ -20,7 +32,7 @@ export class PostsService {
   }
   static async updatedPost(
     prevSlug: string,
-    { title, subTitle, content, slug }: Partial<PostType>,
+    { title, subTitle, thumbnailUrl, content, slug }: Partial<PostType>,
   ) {
     await connectDB();
     const prevPost = await PostsService.getPost(prevSlug);
@@ -28,6 +40,7 @@ export class PostsService {
     const update = {
       title: title || prevPost?.title,
       subTitle: subTitle || prevPost?.subTitle,
+      thumbnailUrl: thumbnailUrl || prevPost?.thumbnailUrl,
       content: content || prevPost?.content,
       slug: slug || prevPost?.slug,
     };
