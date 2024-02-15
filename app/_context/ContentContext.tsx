@@ -13,18 +13,23 @@ import {
 type ContentContextState = {
   content: string;
   setContent: Dispatch<SetStateAction<string>>;
+  isCompletedUploading: boolean;
+  setIsCompletedUploading: Dispatch<SetStateAction<boolean>>;
 };
 export const ContentContext = createContext<ContentContextState | null>(null);
 
 export const ContentProvider = ({ children }: PropsWithChildren) => {
   const [content, setContent] = useState("");
+  const [isCompletedUploading, setIsCompletedUploading] = useState(false);
 
   const value = useMemo(
     () => ({
       content,
       setContent,
+      isCompletedUploading,
+      setIsCompletedUploading,
     }),
-    [content],
+    [content, isCompletedUploading],
   );
   return (
     <ContentContext.Provider value={value}>{children}</ContentContext.Provider>
