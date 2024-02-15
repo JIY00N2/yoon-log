@@ -3,6 +3,7 @@ import formattedDate from "./_utils/formattedDate";
 import { PostsService } from "./_lib/posts/service";
 import stylex from "@stylexjs/stylex";
 import TabSummary from "./_components/TabSummary";
+import Image from "next/image";
 
 export const revalidate = 30;
 
@@ -21,9 +22,19 @@ export default async function HomePage() {
             <Link
               key={post._id.toString()}
               href={`/posts/${post.slug}`}
+              rel="preload"
             >
               <div>title: {post.title}</div>
               <div>subTitle:{post.subTitle}</div>
+              {post.thumbnailUrl && (
+                <Image
+                  src={post.thumbnailUrl}
+                  alt="thumbnail"
+                  priority
+                  width={100}
+                  height={100}
+                />
+              )}
               <div>createdAt: {formattedDate(post.createdAt)}</div>
             </Link>
           ))
