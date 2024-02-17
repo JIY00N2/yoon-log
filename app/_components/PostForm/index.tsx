@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const DEFAULT_THUMBNAIL_URL =
-  "https://oxpdlbqcseajmjnxawbb.supabase.co/storage/v1/object/public/yoonBucket/defaultThumbnail.jpg";
+  "https://oxpdlbqcseajmjnxawbb.supabase.co/storage/v1/object/public/yoonBucket/pexels-pixabay-162616%20(1).jpg";
 
 export default function PostForm({ handleSubmit, submitBtnText }: Props) {
   const { content, setContent, isCompletedUploading, setIsCompletedUploading } =
