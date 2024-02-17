@@ -1,7 +1,6 @@
 import generateSlug from "@/app/_utils/generateSlug";
 import { PostsService } from "@/app/_lib/posts/service";
 import { redirect } from "next/navigation";
-import ImageForm from "./ImageForm";
 import PostForm from "@/app/_components/PostForm";
 import { ContentProvider } from "@/app/_context/ContentContext";
 import { revalidatePath } from "next/cache";
@@ -33,7 +32,6 @@ export default async function WritePage() {
         handleSubmit={handlePostSubmit}
         submitBtnText={"글 작성"}
       />
-      <ImageForm />
     </ContentProvider>
   );
 }

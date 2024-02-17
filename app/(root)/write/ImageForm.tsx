@@ -1,7 +1,9 @@
 "use client";
 
-import { useContentContext } from "@/app/_context/ContentContext";
 import { ChangeEvent, useCallback } from "react";
+import stylex from "@stylexjs/stylex";
+import { useContentContext } from "@/app/_context/ContentContext";
+import { colors } from "@/app/tokens.stylex";
 
 export default function ImageForm() {
   const { setContent, isCompletedUploading } = useContentContext();
@@ -30,10 +32,35 @@ export default function ImageForm() {
   );
 
   return (
-    <input
-      type="file"
-      onChange={handleInputChange}
-      disabled={isCompletedUploading}
-    />
+    <>
+      <label
+        htmlFor="image"
+        {...stylex.props(styles.image)}
+      >
+        이미지 업로드
+      </label>
+      <input
+        id="image"
+        type="file"
+        onChange={handleInputChange}
+        disabled={isCompletedUploading}
+        {...stylex.props(styles.defaultFileInput)}
+      />
+    </>
   );
 }
+
+const styles = stylex.create({
+  image: {
+    width: "fit-content",
+    padding: "0.5rem",
+    borderRadius: "0.5rem",
+    cursor: "pointer",
+    color: colors.black,
+    backgroundColor: colors.greyOpacity200,
+    fontWeight: 600,
+  },
+  defaultFileInput: {
+    display: "none",
+  },
+});
