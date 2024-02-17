@@ -45,9 +45,13 @@ export default async function HomePage() {
                     <h2 {...stylex.props(styles.h2)}>{post.title}</h2>
                     <h4 {...stylex.props(styles.h4)}>{post.subTitle}</h4>
                   </div>
-                  <time {...stylex.props(styles.time)}>
-                    {formattedDate(post.createdAt)}
-                  </time>
+                  <div {...stylex.props(styles.infos)}>
+                    <span {...stylex.props(styles.author)}>By Yoon</span>
+                    <div {...stylex.props(styles.author)}>·</div>
+                    <time {...stylex.props(styles.time)}>
+                      {formattedDate(post.createdAt)}
+                    </time>
+                  </div>
                 </div>
               </Link>
             </article>
@@ -118,9 +122,17 @@ const styles = stylex.create({
     fontWeight: 600,
     color: colors.greyOpacity600,
   },
-  time: {
+  infos: {
     display: "flex",
-    width: "100%",
+    alignItems: "center",
+    gap: "0.5rem",
+  },
+  author: {
+    fontSize: "0.9rem",
+    fontWeight: 500,
+    color: colors.black,
+  },
+  time: {
     fontSize: "0.9rem",
     fontWeight: 500,
     color: colors.greyOpacity600,
