@@ -1,8 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import stylex from "@stylexjs/stylex";
 import ClientBoundary from "../ClientBoundary";
 import isLoggedIn from "@/app/_utils/isLoggedIn";
-import Link from "next/link";
 
 export default function AdminButton({ slug }: { slug: string }) {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function AdminButton({ slug }: { slug: string }) {
   return (
     <ClientBoundary>
       {isLoggedIn() && (
-        <div>
+        <div {...stylex.props(styles.container)}>
           <Link href={`/posts/${slug}/edit`}>수정</Link>
           <button onClick={handleDeleteClick}>삭제</button>
         </div>
@@ -26,3 +27,10 @@ export default function AdminButton({ slug }: { slug: string }) {
     </ClientBoundary>
   );
 }
+
+const styles = stylex.create({
+  container: {
+    display: "flex",
+    gap: "1rem",
+  },
+});
