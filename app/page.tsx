@@ -129,7 +129,7 @@ const styles = stylex.create({
   },
   author: {
     fontSize: "0.9rem",
-    fontWeight: 500,
+    fontWeight: 600,
     color: colors.black,
   },
   time: {
