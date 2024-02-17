@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import "./globals.css";
 import Header from "./_components/Header";
 import Footer from "./_components/Footer";
+import stylex from "@stylexjs/stylex";
+import { colors } from "./tokens.stylex";
 
 export const metadata: Metadata = {
   title: "Yoon's log",
@@ -14,12 +16,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko">
-      <body>
+    <html
+      lang="ko"
+      {...stylex.props(styles.reset)}
+    >
+      <body {...stylex.props(styles.reset, styles.body)}>
+        <main {...stylex.props(styles.main)}>{children}</main>
         <Header />
-        {children}
         <Footer />
       </body>
     </html>
   );
 }
+
+const styles = stylex.create({
+  reset: {
+    margin: 0,
+    padding: 0,
+  },
+  body: {
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100vh",
+    backgroundColor: colors.white,
+  },
+  main: {
+    flexGrow: "1",
+    margin: "100px 165px 50px 165px",
+  },
+});

@@ -1,14 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
+import stylex from "@stylexjs/stylex";
 import formattedDate from "./_utils/formattedDate";
 import { PostsService } from "./_lib/posts/service";
-import stylex from "@stylexjs/stylex";
 import TabSummary from "./_components/TabSummary";
-import Image from "next/image";
+import { colors } from "./tokens.stylex";
 
 export const revalidate = 30;
 
 export default async function HomePage() {
-  const posts = await PostsService.getPosts();
+  const posts = (await PostsService.getPosts()).reverse();
 
   return (
     <div>
@@ -16,32 +17,45 @@ export default async function HomePage() {
         title={"Post"}
         content={"학습한 지식과 구현한 프로젝트들에 대한 기록입니다."}
       />
-      <div {...stylex.props(styles.posts)}>
+      <section {...stylex.props(styles.posts)}>
         {posts ? (
           posts.map((post) => (
-            <Link
+            <article
               key={post._id.toString()}
-              href={`/posts/${post.slug}`}
-              rel="preload"
+              {...stylex.props(styles.post)}
             >
-              <div>title: {post.title}</div>
-              <div>subTitle:{post.subTitle}</div>
-              {post.thumbnailUrl && (
-                <Image
-                  src={post.thumbnailUrl}
-                  alt="thumbnail"
-                  priority
-                  width={100}
-                  height={100}
-                />
-              )}
-              <div>createdAt: {formattedDate(post.createdAt)}</div>
-            </Link>
+              <Link
+                href={`/posts/${post.slug}`}
+                rel="preload"
+                {...stylex.props(styles.link)}
+              >
+                <div {...stylex.props(styles.thumbnail)}>
+                  {post.thumbnailUrl && (
+                    <Image
+                      src={post.thumbnailUrl}
+                      alt="thumbnail"
+                      priority
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  )}
+                </div>
+                <div {...stylex.props(styles.text)}>
+                  <div {...stylex.props(styles.h)}>
+                    <h2 {...stylex.props(styles.h2)}>{post.title}</h2>
+                    <h4 {...stylex.props(styles.h4)}>{post.subTitle}</h4>
+                  </div>
+                  <time {...stylex.props(styles.time)}>
+                    {formattedDate(post.createdAt)}
+                  </time>
+                </div>
+              </Link>
+            </article>
           ))
         ) : (
           <span>없음</span>
         )}
-      </div>
+      </section>
     </div>
   );
 }
@@ -51,7 +65,64 @@ const styles = stylex.create({
     display: "flex",
   },
   posts: {
+    display: "grid",
+    width: "100%",
+    height: "100%",
+    marginTop: "20px",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: "1rem",
+  },
+  post: {
+    width: "100%",
+    minHeight: "300px",
+    padding: "0.5rem",
+  },
+  link: {
     display: "flex",
-    flexDirection: "column-reverse",
+    flexDirection: "column",
+    width: "100%",
+    height: "100%",
+    gap: "0.7rem",
+  },
+  thumbnail: {
+    display: "flex",
+    width: "100%",
+    minHeight: "170px",
+    position: "relative",
+    borderRadius: "10px",
+    overflow: "hidden",
+  },
+  text: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    height: "100%",
+    justifyContent: "space-between",
+  },
+  h: {
+    display: "flex",
+    width: "100%",
+    flexDirection: "column",
+    gap: "0.3rem",
+  },
+  h2: {
+    display: "flex",
+    width: "100%",
+    fontSize: "1.2rem",
+    fontWeight: 700,
+  },
+  h4: {
+    display: "flex",
+    width: "100%",
+    fontSize: "1rem",
+    fontWeight: 600,
+    color: colors.greyOpacity600,
+  },
+  time: {
+    display: "flex",
+    width: "100%",
+    fontSize: "0.9rem",
+    fontWeight: 500,
+    color: colors.greyOpacity600,
   },
 });
