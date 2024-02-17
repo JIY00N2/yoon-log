@@ -26,7 +26,9 @@ export async function middleware(request: NextRequest) {
     response.cookies.set("isLogin", "false");
     if (isLoginRequired(request.nextUrl.pathname)) {
       // 로그인이 필요한 페이지인데 로그인 안하고 요청보낸 것
-      return NextResponse.redirect(new URL("/login?=redirect", request.url));
+      return NextResponse.redirect(
+        new URL(`/login?redirect=${request.nextUrl.pathname}`, request.url),
+      );
     }
     return NextResponse.next(response);
   }
