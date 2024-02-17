@@ -4,8 +4,13 @@ import Link from "next/link";
 import ClientBoundary from "../ClientBoundary";
 import { usePathname, useRouter } from "next/navigation";
 import isLoggedIn from "../../_utils/isLoggedIn";
+import stylex, { StyleXStyles } from "@stylexjs/stylex";
 
-export default function LoginButton() {
+export default function LoginButton({
+  styleProps,
+}: {
+  styleProps: StyleXStyles;
+}) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -13,7 +18,7 @@ export default function LoginButton() {
     return null;
   }
 
-  async function handleClickLogout() {
+  async function handleLogoutClick() {
     await fetch("/api/logout", {
       method: "POST",
     });
@@ -22,15 +27,25 @@ export default function LoginButton() {
   }
 
   return (
-    <ClientBoundary fallback={<a>로그인</a>}>
-      {isLoggedIn() ? (
-        <>
-          <Link href="/write">글 작성</Link>
-          <button onClick={handleClickLogout}>로그아웃</button>
-        </>
-      ) : (
-        <Link href={`/login?redirect=${pathname}`}>로그인</Link>
-      )}
+    <ClientBoundary fallback={<div>관리자</div>}>
+      <div {...stylex.props(styleProps)}>
+        {isLoggedIn() ? (
+          <div {...stylex.props(styles.adminBtn)}>
+            <Link href="/write">새 글 작성</Link>
+            <button onClick={handleLogoutClick}>로그아웃</button>
+          </div>
+        ) : (
+          <Link href={`/login?redirect=${pathname}`}>관리자</Link>
+        )}
+      </div>
     </ClientBoundary>
   );
 }
+
+const styles = stylex.create({
+  adminBtn: {
+    display: "flex",
+    gap: "2rem",
+  },
+  logoutBtn: {},
+});
