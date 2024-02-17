@@ -1,7 +1,17 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+@layer reset {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  button {
+    border: none;
+    outline: none;
+    background-color: inherit;
+    cursor: pointer;
+  }
 }
-
-/* stylex 쓸 때 global css에 뭐라도 있어야함..ㅠ */
