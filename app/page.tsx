@@ -80,6 +80,11 @@ const styles = stylex.create({
     width: "100%",
     minHeight: "300px",
     padding: "0.5rem",
+    transition: "transform 0.3s ease-in-out",
+    transform: {
+      default: null,
+      ":hover": "scale(1.025)",
+    },
   },
   link: {
     display: "flex",
@@ -107,7 +112,7 @@ const styles = stylex.create({
     display: "flex",
     width: "100%",
     flexDirection: "column",
-    gap: "0.3rem",
+    gap: "0.5rem",
   },
   h2: {
     display: "flex",
