@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { PostsService } from "@/app/_lib/posts/service";
 import generateSlug from "@/app/_utils/generateSlug";
 import PostForm from "@/app/_components/PostForm";
+import { ContentProvider } from "@/app/_context/ContentContext";
 
 export default function PostEditPage({ params }: { params: { slug: string } }) {
   async function handlePostUpdate(formData: FormData) {
@@ -29,9 +30,11 @@ export default function PostEditPage({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <PostForm
-      handleSubmit={handlePostUpdate}
-      submitBtnText={"수정 완료"}
-    />
+    <ContentProvider>
+      <PostForm
+        handleSubmit={handlePostUpdate}
+        submitBtnText={"수정 완료"}
+      />
+    </ContentProvider>
   );
 }
