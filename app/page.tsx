@@ -70,7 +70,7 @@ const styles = stylex.create({
   posts: {
     display: "grid",
     width: "100%",
-    height: "100%",
+    height: "auto",
     marginTop: "20px",
     gridTemplateColumns: "repeat(3, 1fr)",
     gap: "1rem",
