@@ -3,10 +3,9 @@
 import { ChangeEvent, useCallback } from "react";
 import stylex from "@stylexjs/stylex";
 import { useContentContext } from "@/app/_context/ContentContext";
-import { colors } from "@/app/tokens.stylex";
 
 export default function ImageForm() {
-  const { setContent, isCompletedUploading } = useContentContext();
+  const { setNewContent, isCompletedUploading } = useContentContext();
   const handleInputChange = useCallback(
     async (e: ChangeEvent<HTMLInputElement>) => {
       const formData = new FormData();
@@ -26,9 +25,9 @@ export default function ImageForm() {
       if (data.imageUrl) {
         url = `![${data.imageFileName}](${data.imageUrl})`;
       }
-      setContent((content) => content + url);
+      setNewContent((content) => content + url);
     },
-    [setContent],
+    [setNewContent],
   );
 
   return (
@@ -56,8 +55,8 @@ const styles = stylex.create({
     padding: "0.5rem",
     borderRadius: "0.5rem",
     cursor: "pointer",
-    color: colors.black,
-    backgroundColor: colors.greyOpacity200,
+    color: "#171717",
+    backgroundColor: "rgba(0, 27, 55, 0.1)",
     fontWeight: 600,
   },
   defaultFileInput: {

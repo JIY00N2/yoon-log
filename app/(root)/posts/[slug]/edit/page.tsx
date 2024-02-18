@@ -4,7 +4,11 @@ import generateSlug from "@/app/_utils/generateSlug";
 import PostForm from "@/app/_components/PostForm";
 import { ContentProvider } from "@/app/_context/ContentContext";
 
-export default function PostEditPage({ params }: { params: { slug: string } }) {
+export default async function PostEditPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   async function handlePostUpdate(formData: FormData) {
     "use server";
     const title = formData.get("title")?.toString();
@@ -29,12 +33,19 @@ export default function PostEditPage({ params }: { params: { slug: string } }) {
     redirect(`/posts/${encodeURIComponent(newPost.slug)}`);
   }
 
+  const post = await PostsService.getPost(decodeURIComponent(params.slug));
+
   return (
-    <ContentProvider>
-      <PostForm
-        handleSubmit={handlePostUpdate}
-        submitBtnText={"수정 완료"}
-      />
+    <ContentProvider content={post?.content!}>
+      {post && (
+        <PostForm
+          handleSubmit={handlePostUpdate}
+          submitBtnText={"수정 완료"}
+          title={post.title}
+          subTitle={post.subTitle}
+          thumbnailUrl={post.thumbnailUrl}
+        />
+      )}
     </ContentProvider>
   );
 }

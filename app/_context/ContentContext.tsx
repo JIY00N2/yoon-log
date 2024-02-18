@@ -1,5 +1,6 @@
 "use client";
 
+import { Props } from "next/script";
 import {
   Dispatch,
   PropsWithChildren,
@@ -11,25 +12,28 @@ import {
 } from "react";
 
 type ContentContextState = {
-  content: string;
-  setContent: Dispatch<SetStateAction<string>>;
+  newContent: string;
+  setNewContent: Dispatch<SetStateAction<string>>;
   isCompletedUploading: boolean;
   setIsCompletedUploading: Dispatch<SetStateAction<boolean>>;
 };
 export const ContentContext = createContext<ContentContextState | null>(null);
 
-export const ContentProvider = ({ children }: PropsWithChildren) => {
-  const [content, setContent] = useState("");
+export const ContentProvider = ({
+  content,
+  children,
+}: PropsWithChildren<{ content: string }>) => {
+  const [newContent, setNewContent] = useState(content);
   const [isCompletedUploading, setIsCompletedUploading] = useState(false);
 
   const value = useMemo(
     () => ({
-      content,
-      setContent,
+      newContent,
+      setNewContent,
       isCompletedUploading,
       setIsCompletedUploading,
     }),
-    [content, isCompletedUploading],
+    [newContent, isCompletedUploading],
   );
   return (
     <ContentContext.Provider value={value}>{children}</ContentContext.Provider>

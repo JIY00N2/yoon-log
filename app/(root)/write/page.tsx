@@ -27,10 +27,13 @@ async function handlePostSubmit(formData: FormData) {
 
 export default async function WritePage() {
   return (
-    <ContentProvider>
+    <ContentProvider content={""}>
       <PostForm
         handleSubmit={handlePostSubmit}
         submitBtnText={"글 작성"}
+        title={""}
+        subTitle={""}
+        thumbnailUrl={""}
       />
     </ContentProvider>
   );

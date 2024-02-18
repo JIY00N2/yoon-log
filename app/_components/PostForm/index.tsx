@@ -6,20 +6,38 @@ import stylex from "@stylexjs/stylex";
 import { useContentContext } from "@/app/_context/ContentContext";
 import MDContent from "../MDContent";
 import ImageForm from "@/app/(root)/write/ImageForm";
-import { colors } from "@/app/tokens.stylex";
 
 type Props = {
   handleSubmit: (formData: FormData) => Promise<void>;
   submitBtnText: string;
+  title: string;
+  subTitle: string;
+  thumbnailUrl: string;
 };
+
+// TODO: 스크롤위치, 관리자 꾸미기, 사이드바, 다크모드, 스크롤 탑, 토스트ui, drop and drop
 
 export const DEFAULT_THUMBNAIL_URL =
   "https://oxpdlbqcseajmjnxawbb.supabase.co/storage/v1/object/public/yoonBucket/pexels-pixabay-162616%20(1).jpg";
 
-export default function PostForm({ handleSubmit, submitBtnText }: Props) {
-  const { content, setContent, isCompletedUploading, setIsCompletedUploading } =
-    useContentContext();
-  const [thumbnailUrl, setThumbnailUrl] = useState(DEFAULT_THUMBNAIL_URL);
+export default function PostForm({
+  handleSubmit,
+  submitBtnText,
+  title,
+  subTitle,
+  thumbnailUrl,
+}: Props) {
+  const {
+    newContent,
+    setNewContent,
+    isCompletedUploading,
+    setIsCompletedUploading,
+  } = useContentContext();
+  const [newTitle, setNewTitle] = useState(title);
+  const [newSubTitle, setNewSubTitle] = useState(subTitle);
+  const [newThumbnailUrl, setNewThumbnailUrl] = useState(
+    thumbnailUrl || DEFAULT_THUMBNAIL_URL,
+  );
 
   const handleThumbnailInputChange = useCallback(
     async (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +53,7 @@ export default function PostForm({ handleSubmit, submitBtnText }: Props) {
       });
       const data = (await res.json()) as { imageUrl: string };
       if (data.imageUrl) {
-        setThumbnailUrl(data.imageUrl);
+        setNewThumbnailUrl(data.imageUrl);
       }
       setIsCompletedUploading(false);
     },
@@ -51,24 +69,28 @@ export default function PostForm({ handleSubmit, submitBtnText }: Props) {
         name="title"
         disabled={isCompletedUploading}
         placeholder="제목을 입력해주세요.."
+        value={newTitle}
+        onChange={(e) => setNewTitle(e.target.value)}
         {...stylex.props(styles.input, styles.title)}
       />
       <input
         name="subTitle"
         disabled={isCompletedUploading}
         placeholder="소제목을 입력해주세요.."
+        value={newSubTitle}
+        onChange={(e) => setNewSubTitle(e.target.value)}
         {...stylex.props(styles.input, styles.subTitle)}
       />
       <div {...stylex.props(styles.thumbnailContainer)}>
         <input
           name="thumbnailUrl"
           type="hidden"
-          value={thumbnailUrl}
+          value={newThumbnailUrl}
           disabled={isCompletedUploading}
         />
         <div {...stylex.props(styles.thumbnail)}>
           <Image
-            src={thumbnailUrl}
+            src={newThumbnailUrl}
             alt="thumbnail"
             priority
             layout="fill"
@@ -94,14 +116,14 @@ export default function PostForm({ handleSubmit, submitBtnText }: Props) {
       <div {...stylex.props(styles.content)}>
         <textarea
           name="content"
-          value={content}
+          value={newContent}
           placeholder="내용을 입력해주세요.."
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e) => setNewContent(e.target.value)}
           disabled={isCompletedUploading}
           {...stylex.props(styles.input, styles.textarea)}
         />
         <div {...stylex.props(styles.preview, styles.textarea)}>
-          <MDContent source={content} />
+          <MDContent source={newContent} />
         </div>
       </div>
       <div {...stylex.props(styles.button)}>
@@ -155,8 +177,8 @@ const styles = stylex.create({
     padding: "0.5rem",
     borderRadius: "0.5rem",
     cursor: "pointer",
-    color: colors.black,
-    backgroundColor: colors.greyOpacity200,
+    color: "#171717",
+    backgroundColor: "rgba(2, 32, 71, 0.05)",
     fontWeight: 600,
   },
   defaultFileInput: {
@@ -173,7 +195,7 @@ const styles = stylex.create({
   preview: {
     borderWidth: "1px",
     borderStyle: "solid",
-    borderColor: colors.black,
+    borderColor: "#171717",
     borderRadius: "1rem",
     padding: "1rem",
   },
@@ -185,8 +207,8 @@ const styles = stylex.create({
   submitBtn: {
     padding: "0.5rem 1rem 0.5rem 1rem",
     borderRadius: "0.5rem",
-    color: colors.black,
-    backgroundColor: colors.greyOpacity200,
+    color: "#171717",
+    backgroundColor: "rgba(2, 32, 71, 0.05)",
     fontWeight: 600,
   },
 });
