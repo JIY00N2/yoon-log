@@ -2,6 +2,7 @@ import { compare, hash } from "bcrypt";
 import { SignJWT } from "jose";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import stylex from "@stylexjs/stylex";
 
 export default async function LoginPage({
   searchParams,
@@ -34,15 +35,69 @@ export default async function LoginPage({
   }
 
   return (
-    <div>
-      <form action={handleLoginSubmit}>
-        <label htmlFor="password">관리자 비밀번호</label>
+    <section {...stylex.props(styles.layout)}>
+      <form
+        action={handleLoginSubmit}
+        {...stylex.props(styles.container)}
+      >
+        <label
+          htmlFor="password"
+          {...stylex.props(styles.label)}
+        >
+          관리자 비밀번호 입력
+        </label>
         <input
+          id="password"
           name="password"
           type="password"
+          {...stylex.props(styles.input)}
         />
-        <button type="submit">확인</button>
+        <button
+          type="submit"
+          {...stylex.props(styles.button)}
+        >
+          확인
+        </button>
       </form>
-    </div>
+    </section>
   );
 }
+
+const styles = stylex.create({
+  layout: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "auto",
+  },
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    width: "60%",
+    height: "60%",
+    gap: "2rem",
+    borderWidth: "2px",
+    borderStyle: "solid",
+    borderColor: "rgba(0,19,43,.58)",
+  },
+  label: {
+    fontSize: "1.2rem",
+    fontWeight: 700,
+  },
+  input: {
+    width: "40%",
+    minHeight: "20px",
+    padding: "1rem",
+    borderRadius: "1rem",
+  },
+  button: {
+    borderRadius: "0.5rem",
+    padding: "0.5rem 1rem 0.5rem 1rem",
+    backgroundColor: "rgba(2, 32, 71, 0.05)",
+    fontSize: "0.9rem",
+    fontWeight: 700,
+  },
+});

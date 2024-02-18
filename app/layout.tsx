@@ -40,6 +40,8 @@ const styles = stylex.create({
     backgroundColor: "#fff",
   },
   main: {
+    display: "flex",
+    height: "100%",
     flexGrow: "1",
     margin: "100px 165px 50px 165px",
   },
