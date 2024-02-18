@@ -15,8 +15,6 @@ type Props = {
   thumbnailUrl: string;
 };
 
-// TODO: 스크롤위치, 관리자 꾸미기, 사이드바, 다크모드, 스크롤 탑, 토스트ui, drop and drop
-
 export const DEFAULT_THUMBNAIL_URL =
   "https://oxpdlbqcseajmjnxawbb.supabase.co/storage/v1/object/public/yoonBucket/pexels-pixabay-162616%20(1).jpg";
 
