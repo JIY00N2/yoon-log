@@ -1,4 +1,3 @@
-import { colors } from "@/app/tokens.stylex";
 import stylex from "@stylexjs/stylex";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,9 +29,9 @@ const styles = stylex.create({
     gap: "10px",
     borderTopWidth: "1px",
     borderTopStyle: "solid",
-    borderTopColor: colors.greyOpacity200,
+    borderTopColor: "rgba(0, 27, 55, 0.1)",
   },
   copyright: {
-    color: colors.greyOpacity400,
+    color: "rgba(0, 29, 54, 0.31)",
   },
 });

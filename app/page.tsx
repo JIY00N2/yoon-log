@@ -4,7 +4,6 @@ import stylex from "@stylexjs/stylex";
 import formattedDate from "./_utils/formattedDate";
 import { PostsService } from "./_lib/posts/service";
 import TabSummary from "./_components/TabSummary";
-import { colors } from "./tokens.stylex";
 
 export const revalidate = 30;
 
@@ -125,7 +124,7 @@ const styles = stylex.create({
     width: "100%",
     fontSize: "1rem",
     fontWeight: 600,
-    color: colors.greyOpacity600,
+    color: "rgba(0, 19, 43, 0.58)",
   },
   infos: {
     display: "flex",
@@ -135,11 +134,11 @@ const styles = stylex.create({
   author: {
     fontSize: "0.9rem",
     fontWeight: 600,
-    color: colors.black,
+    color: "#171717",
   },
   time: {
     fontSize: "0.9rem",
     fontWeight: 500,
-    color: colors.greyOpacity600,
+    color: "rgba(0, 19, 43, 0.58)",
   },
 });

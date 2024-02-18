@@ -3,7 +3,6 @@ import "./globals.css";
 import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 import stylex from "@stylexjs/stylex";
-import { colors } from "./tokens.stylex";
 
 export const metadata: Metadata = {
   title: "Yoon's log",
@@ -38,7 +37,7 @@ const styles = stylex.create({
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
-    backgroundColor: colors.white,
+    backgroundColor: "#fff",
   },
   main: {
     flexGrow: "1",

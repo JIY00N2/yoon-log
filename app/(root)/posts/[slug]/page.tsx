@@ -4,7 +4,6 @@ import AdminButton from "@/app/_components/AdminButton";
 import MDContent from "@/app/_components/MDContent";
 import { PostsService } from "@/app/_lib/posts/service";
 import formattedDate from "@/app/_utils/formattedDate";
-import { colors } from "@/app/tokens.stylex";
 
 export default async function PostPage({
   params,
@@ -84,7 +83,7 @@ const styles = stylex.create({
   title: {
     fontSize: "2rem",
     fontWeight: 700,
-    color: colors.black,
+    color: "#171717",
   },
   infos: {
     display: "flex",
@@ -100,13 +99,13 @@ const styles = stylex.create({
   author: {
     fontSize: "1.2rem",
     fontWeight: 700,
-    color: colors.black,
+    color: "#171717",
   },
   time: {
     textAlign: "center",
     fontSize: "1rem",
     fontWeight: 600,
-    color: colors.black,
+    color: "#171717",
   },
   thumbnail: {
     display: "flex",

@@ -1,7 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import LoginButton from "./LoginButton";
 import Link from "next/link";
-import { colors, fonts } from "@/app/tokens.stylex";
 import { navbar } from "./navbar";
 
 export default function Header() {
@@ -10,7 +9,7 @@ export default function Header() {
       <div {...stylex.props(styles.headerInner)}>
         <Link
           href="/"
-          {...stylex.props(fonts.l)}
+          {...stylex.props(styles.logo)}
         >
           YoonLog
         </Link>
@@ -42,7 +41,7 @@ const styles = stylex.create({
     height: "60px",
     position: "fixed",
     top: 0,
-    borderBottomColor: colors.greyOpacity200,
+    borderBottomColor: "rgba(0, 29, 54, 0.31)",
     borderBottomWidth: "1px",
     borderBottomStyle: "solid",
     backgroundColor: "inherit",
@@ -56,6 +55,10 @@ const styles = stylex.create({
     marginRight: "165px",
     marginLeft: "165px",
   },
+  logo: {
+    fontSize: "1.4rem",
+    fontWeight: 600,
+  },
   nav: {
     display: "flex",
     gap: "2rem",
@@ -68,11 +71,11 @@ const styles = stylex.create({
     padding: "5px 10px 5px 10px",
     borderRadius: "5px",
     backgroundColor: {
-      ":hover": colors.greyOpacity100,
+      ":hover": "rgba(2, 32, 71, 0.05)",
     },
     color: {
-      ":focus": colors.point,
-      ":active": colors.point,
+      ":focus": "rgb(3, 152, 178)",
+      ":active": "rgb(3, 152, 178)",
     },
   },
   login: {
