@@ -4,7 +4,7 @@ import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 import stylex from "@stylexjs/stylex";
 
-// TODO: 스크롤 탑, 스크롤위치, 사이드바, 다크모드, 토스트ui, drop and drop
+// TODO: 제목, 부제목 길이, 반응형, 스크롤 탑, 스크롤위치, 사이드바, 다크모드, 토스트ui, drop and drop
 
 export const metadata: Metadata = {
   title: "Yoon's log",
