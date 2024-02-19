@@ -3,7 +3,7 @@ import connectDB from "../utils/connect-db";
 import { PostType } from "./serviceType";
 
 export class PostsService {
-  static async createdPost({
+  static async createPost({
     title,
     subTitle,
     thumbnailUrl,
@@ -30,7 +30,7 @@ export class PostsService {
     const post = await Post.findOne({ slug }).lean().exec();
     return post;
   }
-  static async updatedPost(
+  static async updatePost(
     prevSlug: string,
     { title, subTitle, thumbnailUrl, content, slug }: Partial<PostType>,
   ) {
@@ -51,7 +51,7 @@ export class PostsService {
       .exec();
     return newPost;
   }
-  static async deletedPost(slug: string) {
+  static async deletePost(slug: string) {
     await connectDB();
     const post = await Post.findOneAndDelete({ slug }).lean().exec();
     return post;

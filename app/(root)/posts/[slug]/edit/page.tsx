@@ -3,6 +3,7 @@ import { PostsService } from "@/app/_lib/posts/service";
 import generateSlug from "@/app/_utils/generateSlug";
 import PostForm from "@/app/_components/PostForm";
 import { ContentProvider } from "@/app/_context/ContentContext";
+import { revalidatePath } from "next/cache";
 
 export default async function PostEditPage({
   params,
@@ -12,17 +13,19 @@ export default async function PostEditPage({
   async function handlePostUpdate(formData: FormData) {
     "use server";
     const title = formData.get("title")?.toString();
-    const content = formData.get("content")?.toString();
     const subTitle = formData.get("subTitle")?.toString();
+    const thumbnailUrl = formData.get("thumbnailUrl")?.toString();
+    const content = formData.get("content")?.toString();
     let slug = decodeURIComponent(params.slug);
     if (title) {
       slug = generateSlug(title);
     }
-    const newPost = await PostsService.updatedPost(
+    const newPost = await PostsService.updatePost(
       decodeURIComponent(params.slug),
       {
         title,
         subTitle,
+        thumbnailUrl,
         content,
         slug,
       },
@@ -30,22 +33,26 @@ export default async function PostEditPage({
     if (!newPost) {
       throw new Error("newPost가 없습니다.");
     }
+    revalidatePath("/");
+    revalidatePath(`/posts/${encodeURIComponent(newPost.slug)}`);
     redirect(`/posts/${encodeURIComponent(newPost.slug)}`);
   }
 
   const post = await PostsService.getPost(decodeURIComponent(params.slug));
 
   return (
-    <ContentProvider content={post?.content!}>
+    <>
       {post && (
-        <PostForm
-          handleSubmit={handlePostUpdate}
-          submitBtnText={"수정 완료"}
-          title={post.title}
-          subTitle={post.subTitle}
-          thumbnailUrl={post.thumbnailUrl}
-        />
+        <ContentProvider content={post.content}>
+          <PostForm
+            handleSubmit={handlePostUpdate}
+            submitBtnName={"수정 완료"}
+            title={post.title}
+            subTitle={post.subTitle}
+            thumbnailUrl={post.thumbnailUrl}
+          />
+        </ContentProvider>
       )}
-    </ContentProvider>
+    </>
   );
 }

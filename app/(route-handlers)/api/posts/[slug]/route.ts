@@ -22,7 +22,7 @@ export async function PATCH(
 ) {
   try {
     const body = await req.json();
-    const post = await PostsService.updatedPost(params.slug, body);
+    const post = await PostsService.updatePost(params.slug, body);
     return NextResponse.json(post);
   } catch (error) {
     return NextResponse.json(
@@ -37,7 +37,7 @@ export async function DELETE(
   { params }: { params: { slug: string } },
 ) {
   try {
-    await PostsService.deletedPost(params.slug);
+    await PostsService.deletePost(params.slug);
     return NextResponse.json({ message: "Post successfully deleted!" });
   } catch (error) {
     return NextResponse.json(

@@ -13,7 +13,7 @@ async function handlePostSubmit(formData: FormData) {
   const content = formData.get("content")?.toString();
   if (title && subTitle && thumbnailUrl && content) {
     const slug = generateSlug(title);
-    await PostsService.createdPost({
+    await PostsService.createPost({
       title,
       subTitle,
       thumbnailUrl,
@@ -30,7 +30,7 @@ export default async function WritePage() {
     <ContentProvider content={""}>
       <PostForm
         handleSubmit={handlePostSubmit}
-        submitBtnText={"글 작성"}
+        submitBtnName={"글 작성"}
         title={""}
         subTitle={""}
         thumbnailUrl={""}
