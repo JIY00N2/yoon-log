@@ -1,0 +1,43 @@
+import stylex, { StyleXStyles } from "@stylexjs/stylex";
+import MDContent from "../MDContent";
+import { useContentContext } from "@/app/_context/ContentContext";
+import { useFormStatus } from "react-dom";
+
+export default function ContentTextarea({ style }: { style: StyleXStyles }) {
+  const { newContent, setNewContent, isImageUploading } = useContentContext();
+  const { pending } = useFormStatus();
+
+  return (
+    <div {...stylex.props(styles.content)}>
+      <textarea
+        name="content"
+        value={newContent}
+        placeholder="내용을 입력해주세요.."
+        onChange={(e) => setNewContent(e.target.value)}
+        disabled={isImageUploading || pending}
+        {...stylex.props(styles.textarea, style)}
+      />
+      <div {...stylex.props(styles.preview, styles.textarea)}>
+        <MDContent source={newContent} />
+      </div>
+    </div>
+  );
+}
+
+const styles = stylex.create({
+  content: {
+    display: "flex",
+    gap: "1rem",
+  },
+  textarea: {
+    width: "100%",
+    minHeight: "700px",
+  },
+  preview: {
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "#171717",
+    borderRadius: "1rem",
+    padding: "1rem",
+  },
+});
