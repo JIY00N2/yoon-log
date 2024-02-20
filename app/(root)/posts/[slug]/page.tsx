@@ -64,7 +64,7 @@ const styles = stylex.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    width: "100%",
+    width: "90%",
     height: "100%",
   },
   container: {
