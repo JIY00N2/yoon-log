@@ -1,11 +1,13 @@
 import generateSlug from "@/app/_utils/generateSlug";
 import { PostsService } from "@/app/_lib/posts/service";
-import { redirect } from "next/navigation";
 import PostForm from "@/app/_components/PostForm";
 import { ContentProvider } from "@/app/_context/ContentContext";
 import { revalidatePath } from "next/cache";
 
-async function handlePostSubmit(formData: FormData) {
+async function handlePostSubmit(
+  prevState: { success: boolean; message: string; redirectUrl: string },
+  formData: FormData,
+) {
   "use server";
   const title = formData.get("title")?.toString();
   const subTitle = formData.get("subTitle")?.toString();
@@ -20,9 +22,18 @@ async function handlePostSubmit(formData: FormData) {
       content,
       slug,
     });
+    revalidatePath("/");
+    return {
+      success: true,
+      message: "포스트 생성 성공",
+      redirectUrl: "/",
+    };
   }
-  revalidatePath("/");
-  redirect("/");
+  return {
+    success: false,
+    message: "포스트 생성 실패",
+    redirectUrl: "/",
+  };
 }
 
 export default async function WritePage() {

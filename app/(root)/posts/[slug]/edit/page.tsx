@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import { PostsService } from "@/app/_lib/posts/service";
 import generateSlug from "@/app/_utils/generateSlug";
 import PostForm from "@/app/_components/PostForm";
@@ -10,7 +9,10 @@ export default async function PostEditPage({
 }: {
   params: { slug: string };
 }) {
-  async function handlePostUpdate(formData: FormData) {
+  async function handlePostUpdate(
+    prevState: { success: boolean },
+    formData: FormData,
+  ) {
     "use server";
     const title = formData.get("title")?.toString();
     const subTitle = formData.get("subTitle")?.toString();
@@ -31,11 +33,19 @@ export default async function PostEditPage({
       },
     );
     if (!newPost) {
-      throw new Error("newPost가 없습니다.");
+      return {
+        success: false,
+        message: "포스트 수정 실패",
+        redirectUrl: "/",
+      };
     }
     revalidatePath("/");
     revalidatePath(`/posts/${encodeURIComponent(newPost.slug)}`);
-    redirect(`/posts/${encodeURIComponent(newPost.slug)}`);
+    return {
+      success: true,
+      message: "포스트 수정 성공",
+      redirectUrl: `/posts/${encodeURIComponent(newPost.slug)}`,
+    };
   }
 
   const post = await PostsService.getPost(decodeURIComponent(params.slug));
