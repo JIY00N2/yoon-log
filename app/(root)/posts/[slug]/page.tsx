@@ -115,5 +115,7 @@ const styles = stylex.create({
     borderRadius: "10px",
     overflow: "hidden",
   },
-  content: {},
+  content: {
+    width: "100%",
+  },
 });

@@ -53,7 +53,8 @@ const styles = stylex.create({
   headerOuter: {
     display: "flex",
     width: "100%",
-    maxWidth: "1140px",
+    minWidth: "320px",
+    maxWidth: "1240px",
     height: "100%",
     marginHorizontal: "auto",
   },
