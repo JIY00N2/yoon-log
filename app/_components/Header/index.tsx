@@ -7,29 +7,31 @@ import ClientBoundary from "../ClientBoundary";
 export default function Header() {
   return (
     <header {...stylex.props(styles.header)}>
-      <div {...stylex.props(styles.headerInner)}>
-        <Link
-          href="/"
-          {...stylex.props(styles.logo)}
-        >
-          YoonLog
-        </Link>
-        <ClientBoundary fallback={null}>
-          <nav {...stylex.props(styles.nav)}>
-            <ul {...stylex.props(styles.ul)}>
-              {navbar.map(({ href, text }, id) => (
-                <Link
-                  href={href}
-                  key={id}
-                  {...stylex.props(styles.link)}
-                >
-                  {text}
-                </Link>
-              ))}
-            </ul>
-            <LoginButton style={styles.login} />
-          </nav>
-        </ClientBoundary>
+      <div {...stylex.props(styles.headerOuter)}>
+        <div {...stylex.props(styles.headerInner)}>
+          <Link
+            href="/"
+            {...stylex.props(styles.logo)}
+          >
+            YoonLog
+          </Link>
+          <ClientBoundary fallback={null}>
+            <nav {...stylex.props(styles.nav)}>
+              <ul {...stylex.props(styles.ul)}>
+                {navbar.map(({ href, text }, id) => (
+                  <Link
+                    href={href}
+                    key={id}
+                    {...stylex.props(styles.link)}
+                  >
+                    {text}
+                  </Link>
+                ))}
+              </ul>
+              <LoginButton style={styles.login} />
+            </nav>
+          </ClientBoundary>
+        </div>
       </div>
     </header>
   );
@@ -40,7 +42,6 @@ const styles = stylex.create({
     display: "flex",
     alignItems: "center",
     width: "100%",
-    minWidth: "1000px",
     height: "60px",
     position: "fixed",
     top: 0,
@@ -49,14 +50,19 @@ const styles = stylex.create({
     borderBottomStyle: "solid",
     backgroundColor: "inherit",
   },
+  headerOuter: {
+    display: "flex",
+    width: "100%",
+    maxWidth: "1140px",
+    height: "100%",
+    marginHorizontal: "auto",
+  },
   headerInner: {
     display: "flex",
+    width: "100%",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "100%",
-    height: "100%",
-    marginRight: "165px",
-    marginLeft: "165px",
+    marginHorizontal: "30px",
   },
   logo: {
     fontSize: "1.4rem",

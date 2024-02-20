@@ -4,8 +4,6 @@ import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 import stylex from "@stylexjs/stylex";
 
-// TODO: 반응형, 스크롤 탑, 스크롤위치, 사이드바, 다크모드, 토스트ui, drop and drop
-
 export const metadata: Metadata = {
   title: "Yoon's log",
   description: "Yoon's dev log",
@@ -22,13 +20,19 @@ export default function RootLayout({
       {...stylex.props(styles.reset)}
     >
       <body {...stylex.props(styles.reset, styles.body)}>
-        <main {...stylex.props(styles.main)}>{children}</main>
+        <main {...stylex.props(styles.main)}>
+          <div {...stylex.props(styles.mainInner)}>{children}</div>
+        </main>
         <Header />
         <Footer />
       </body>
     </html>
   );
 }
+
+const MEDIA_MOBILE = "@media (max-width: 700px)" as const;
+const MEDIA_TABLET =
+  "@media (min-width: 701px) and (max-width: 1100px)" as const;
 
 const styles = stylex.create({
   reset: {
@@ -40,11 +44,22 @@ const styles = stylex.create({
     flexDirection: "column",
     minHeight: "100vh",
     backgroundColor: "#fff",
+    overflowX: "hidden",
   },
   main: {
     display: "flex",
-    height: "100%",
-    flexGrow: "1",
-    margin: "100px 165px 50px 165px",
+    flexGrow: 1,
+    width: "100%",
+    maxWidth: "1140px",
+    marginHorizontal: "auto",
+    marginTop: "100px",
+    marginBottom: "50px",
+  },
+  mainInner: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    marginHorizontal: "30px",
   },
 });

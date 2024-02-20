@@ -63,6 +63,10 @@ export default async function HomePage() {
   );
 }
 
+const MEDIA_TABLET =
+  "@media (min-width: 701px) and (max-width: 1100px)" as const;
+const MEDIA_MOBILE = "@media (max-width: 700px)" as const;
+
 const styles = stylex.create({
   layout: {
     display: "flex",
@@ -72,12 +76,17 @@ const styles = stylex.create({
     width: "100%",
     height: "auto",
     marginTop: "20px",
-    gridTemplateColumns: "repeat(3, minmax(min-content, 1fr))",
+    gridTemplateColumns: {
+      default: "repeat(3, minmax(33%, auto))",
+      [MEDIA_TABLET]: "repeat(2, 50%)",
+      [MEDIA_MOBILE]: "1fr",
+    },
     gap: "1rem",
   },
   post: {
     width: "100%",
     minHeight: "300px",
+    minWidth: "300px",
     padding: "0.5rem",
     transition: "transform 0.3s ease-in-out",
     transform: {
@@ -95,7 +104,11 @@ const styles = stylex.create({
   thumbnail: {
     display: "flex",
     width: "100%",
-    minHeight: "170px",
+    minHeight: {
+      default: "180px",
+      [MEDIA_TABLET]: "200px",
+      [MEDIA_MOBILE]: "220px",
+    },
     position: "relative",
     borderRadius: "10px",
     overflow: "hidden",
