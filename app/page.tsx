@@ -73,15 +73,15 @@ const styles = stylex.create({
   },
   posts: {
     display: "grid",
-    width: "100%",
+    width: "auto",
     height: "auto",
     marginTop: "20px",
     gridTemplateColumns: {
-      default: "repeat(3, minmax(33%, auto))",
-      [MEDIA_TABLET]: "repeat(2, 50%)",
+      default: "repeat(3, 1fr)",
+      [MEDIA_TABLET]: "repeat(2, 1fr)",
       [MEDIA_MOBILE]: "1fr",
     },
-    gap: "1rem",
+    gap: "1.5rem",
   },
   post: {
     width: "100%",
@@ -90,6 +90,7 @@ const styles = stylex.create({
       default: null,
       ":hover": "scale(1.025)",
     },
+    paddingBottom: "1rem",
   },
   link: {
     display: "flex",
@@ -100,12 +101,13 @@ const styles = stylex.create({
   },
   thumbnail: {
     display: "flex",
-    width: "100%",
-    minHeight: {
-      default: "180px",
-      [MEDIA_TABLET]: "200px",
-      [MEDIA_MOBILE]: "220px",
-    },
+    // width: "100%",
+    // minHeight: {
+    //   default: "180px",
+    //   [MEDIA_TABLET]: "200px",
+    //   [MEDIA_MOBILE]: "220px",
+    // },
+    aspectRatio: "2",
     position: "relative",
     borderRadius: "10px",
     overflow: "hidden",
@@ -114,7 +116,7 @@ const styles = stylex.create({
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    height: "100%",
+    height: "auto",
     justifyContent: "space-between",
     gap: "0.3rem",
   },
