@@ -61,6 +61,7 @@ const styles = stylex.create({
   logo: {
     fontSize: "1.4rem",
     fontWeight: 600,
+    color: "rgb(3, 152, 178)",
   },
   nav: {
     display: "flex",
