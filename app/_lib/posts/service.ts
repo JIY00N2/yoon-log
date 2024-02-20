@@ -22,7 +22,7 @@ export class PostsService {
   }
   static async getPosts() {
     await connectDB();
-    const posts = await Post.find().lean().exec();
+    const posts = await Post.find().sort({ createdAt: -1 }).lean().exec();
     return posts;
   }
   static async getPost(slug: string) {

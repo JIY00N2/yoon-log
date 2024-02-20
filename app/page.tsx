@@ -8,7 +8,7 @@ import TabSummary from "./_components/TabSummary";
 export const revalidate = 30;
 
 export default async function HomePage() {
-  const posts = (await PostsService.getPosts()).reverse();
+  const posts = await PostsService.getPosts();
 
   return (
     <div>
@@ -72,7 +72,7 @@ const styles = stylex.create({
     width: "100%",
     height: "auto",
     marginTop: "20px",
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateColumns: "repeat(3, minmax(min-content, 1fr))",
     gap: "1rem",
   },
   post: {
