@@ -5,7 +5,12 @@ import { ContentProvider } from "@/app/_context/ContentContext";
 import { revalidatePath } from "next/cache";
 
 async function handlePostSubmit(
-  prevState: { success: boolean; message: string; redirectUrl: string },
+  prevState: {
+    success: boolean;
+    error: boolean;
+    message: string;
+    redirectUrl: string;
+  },
   formData: FormData,
 ) {
   "use server";
@@ -25,12 +30,14 @@ async function handlePostSubmit(
     revalidatePath("/");
     return {
       success: true,
+      error: false,
       message: "포스트 생성 성공",
       redirectUrl: "/",
     };
   }
   return {
     success: false,
+    error: true,
     message: "포스트 생성 실패",
     redirectUrl: "/",
   };

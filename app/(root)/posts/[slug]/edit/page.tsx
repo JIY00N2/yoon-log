@@ -10,7 +10,12 @@ export default async function PostEditPage({
   params: { slug: string };
 }) {
   async function handlePostUpdate(
-    prevState: { success: boolean },
+    prevState: {
+      success: boolean;
+      error: boolean;
+      message: string;
+      redirectUrl: string;
+    },
     formData: FormData,
   ) {
     "use server";
@@ -35,6 +40,7 @@ export default async function PostEditPage({
     if (!newPost) {
       return {
         success: false,
+        error: true,
         message: "포스트 수정 실패",
         redirectUrl: "/",
       };
@@ -43,6 +49,7 @@ export default async function PostEditPage({
     revalidatePath(`/posts/${encodeURIComponent(newPost.slug)}`);
     return {
       success: true,
+      error: false,
       message: "포스트 수정 성공",
       redirectUrl: `/posts/${encodeURIComponent(newPost.slug)}`,
     };

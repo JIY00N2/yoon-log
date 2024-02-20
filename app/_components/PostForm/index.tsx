@@ -9,12 +9,23 @@ import ContentTextarea from "./ContentTextarea";
 import SubmitButton from "./SubmitButton";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 type Props = {
   handleSubmit: (
-    prevState: { success: boolean; message: string; redirectUrl: string },
+    prevState: {
+      success: boolean;
+      error: boolean;
+      message: string;
+      redirectUrl: string;
+    },
     formData: FormData,
-  ) => Promise<{ success: boolean; message: string; redirectUrl: string }>;
+  ) => Promise<{
+    success: boolean;
+    error: boolean;
+    message: string;
+    redirectUrl: string;
+  }>;
   title: string;
   subTitle: string;
   thumbnailUrl: string;
@@ -31,13 +42,20 @@ export default function PostForm({
   const router = useRouter();
   const [formState, formAction] = useFormState(handleSubmit, {
     success: false,
+    error: false,
     message: "",
     redirectUrl: "",
   });
 
-  if (formState.success) {
-    router.replace(formState.redirectUrl);
-  }
+  useEffect(() => {
+    if (formState.success) {
+      router.replace(formState.redirectUrl);
+    }
+    if (formState.error) {
+      // TODO: alert -> Toast ui
+      alert(formState.message);
+    }
+  }, [formState, router]);
 
   // action 속성을 갖고있는 폼 태그 내부안의 컴포넌트에서 useFormStatus를 사용하면 form의 action 상태를 알 수 있다.
   return (
@@ -45,8 +63,6 @@ export default function PostForm({
       action={formAction}
       {...stylex.props(styles.layout)}
     >
-      {/* TODO: toast ui로 메시지 보여주깅 */}
-      {formState.message}
       <TitleInput
         title={title}
         style={styles.defaultInput}
