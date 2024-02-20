@@ -2,18 +2,20 @@
 import Link from "next/link";
 import stylex from "@stylexjs/stylex";
 import ClientBoundary from "../ClientBoundary";
-import isLoggedIn from "@/app/_utils/isLoggedIn";
 import { useRouter } from "next/navigation";
+import { useCookies } from "react-cookie";
 
 export default function AdminButton({ slug }: { slug: string }) {
   const router = useRouter();
+  const [cookies] = useCookies(["isLogin"]);
+
   async function handleDeleteClick() {
-    await fetch(`/api/posts/${slug}`, {
+    await fetch(`/api/admin/posts/${slug}`, {
       method: "DELETE",
     });
     const [resHome, resPost] = await Promise.all([
-      fetch("/api/revalidate?path=/"),
-      fetch(`/api/revalidate?path=/api/posts/${slug}`),
+      fetch("/api/admin/revalidate?path=/"),
+      fetch(`/api/admin/revalidate?path=/api/admin/posts/${slug}`),
     ]);
     const home = (await resHome.json()) as {
       revalidated: boolean;
@@ -34,7 +36,7 @@ export default function AdminButton({ slug }: { slug: string }) {
 
   return (
     <ClientBoundary>
-      {isLoggedIn() && (
+      {cookies.isLogin && (
         <div {...stylex.props(styles.container)}>
           <Link href={`/posts/${slug}/edit`}>수정</Link>
           <button onClick={handleDeleteClick}>삭제</button>

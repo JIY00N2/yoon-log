@@ -20,7 +20,7 @@ export default function ImageInput() {
       formData.append("file", e.target.files[0]);
       setIsImageUploading(true);
       try {
-        const res = await fetch("/api/upload", {
+        const res = await fetch("/api/admin/upload", {
           method: "POST",
           body: formData,
         });
