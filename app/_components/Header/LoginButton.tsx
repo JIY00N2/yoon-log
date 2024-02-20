@@ -1,44 +1,38 @@
 "use client";
 
 import Link from "next/link";
-import ClientBoundary from "../ClientBoundary";
 import { usePathname, useRouter } from "next/navigation";
-import isLoggedIn from "../../_utils/isLoggedIn";
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
+import { useCookies } from "react-cookie";
 
-export default function LoginButton({
-  styleProps,
-}: {
-  styleProps: StyleXStyles;
-}) {
+export default function LoginButton({ style }: { style: StyleXStyles }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [cookies] = useCookies(["isLogin"]);
 
   if (pathname === "/login") {
     return null;
   }
 
   async function handleLogoutClick() {
-    await fetch("/api/logout", {
+    await fetch("/api/admin/logout", {
       method: "POST",
     });
-    //router.refresh();
     router.replace("/");
+    router.refresh();
   }
 
   return (
-    <ClientBoundary fallback={<div>관리자</div>}>
-      <div {...stylex.props(styleProps)}>
-        {isLoggedIn() ? (
-          <div {...stylex.props(styles.adminBtn)}>
-            <Link href="/write">새 글 작성</Link>
-            <button onClick={handleLogoutClick}>로그아웃</button>
-          </div>
-        ) : (
-          <Link href={`/login?redirect=${pathname}`}>관리자</Link>
-        )}
-      </div>
-    </ClientBoundary>
+    <div {...stylex.props(style)}>
+      {cookies.isLogin ? (
+        <div {...stylex.props(styles.adminBtn)}>
+          <Link href="/write">새 글 작성</Link>
+          <button onClick={handleLogoutClick}>로그아웃</button>
+        </div>
+      ) : (
+        <Link href={`/login?redirect=${pathname}`}>관리자</Link>
+      )}
+    </div>
   );
 }
 

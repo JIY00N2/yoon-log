@@ -1,3 +1,5 @@
+"use client";
+
 import { PropsWithChildren, ReactNode, useEffect, useState } from "react";
 
 export default function ClientBoundary({

@@ -2,6 +2,7 @@ import stylex from "@stylexjs/stylex";
 import LoginButton from "./LoginButton";
 import Link from "next/link";
 import { navbar } from "./navbar";
+import ClientBoundary from "../ClientBoundary";
 
 export default function Header() {
   return (
@@ -13,20 +14,22 @@ export default function Header() {
         >
           YoonLog
         </Link>
-        <nav {...stylex.props(styles.nav)}>
-          <ul {...stylex.props(styles.ul)}>
-            {navbar.map(({ href, text }, id) => (
-              <Link
-                href={href}
-                key={id}
-                {...stylex.props(styles.link)}
-              >
-                {text}
-              </Link>
-            ))}
-          </ul>
-          <LoginButton styleProps={styles.login} />
-        </nav>
+        <ClientBoundary fallback={null}>
+          <nav {...stylex.props(styles.nav)}>
+            <ul {...stylex.props(styles.ul)}>
+              {navbar.map(({ href, text }, id) => (
+                <Link
+                  href={href}
+                  key={id}
+                  {...stylex.props(styles.link)}
+                >
+                  {text}
+                </Link>
+              ))}
+            </ul>
+            <LoginButton style={styles.login} />
+          </nav>
+        </ClientBoundary>
       </div>
     </header>
   );
