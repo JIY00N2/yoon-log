@@ -45,19 +45,29 @@ export default function LoginForm({ handleLogin, redirectUrl }: Props) {
       action={formAction}
       {...stylex.props(styles.container)}
     >
-      <label
-        htmlFor="password"
-        {...stylex.props(styles.label)}
-      >
-        관리자 비밀번호 입력
-      </label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        {...stylex.props(styles.input)}
-      />
-      {formState.error && <span>{formState.message}</span>}
+      <div {...stylex.props(styles.box)}>
+        <label
+          htmlFor="password"
+          {...stylex.props(styles.label)}
+        >
+          관리자 로그인
+        </label>
+        <span {...stylex.props(styles.text)}>
+          글을 작성하거나 수정할 수 있는 권한은 관리자만 가능합니다.
+        </span>
+      </div>
+      <div {...stylex.props(styles.box)}>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          placeholder="비밀번호를 입력해주세요.."
+          {...stylex.props(styles.input)}
+        />
+        {formState.error && (
+          <span {...stylex.props(styles.error)}>{formState.message}</span>
+        )}
+      </div>
       <SubmitButton />
     </form>
   );
@@ -76,9 +86,24 @@ const styles = stylex.create({
     borderStyle: "solid",
     borderColor: "rgba(0,19,43,.58)",
   },
+  box: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    gap: "0.5rem",
+  },
   label: {
     fontSize: "1.2rem",
     fontWeight: 700,
+  },
+  text: {
+    color: "rgba(0, 12, 30, 0.8)",
+  },
+  error: {
+    fontSize: "0.8rem",
+    color: "red",
   },
   input: {
     width: "40%",

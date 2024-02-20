@@ -35,11 +35,17 @@ export async function loginAction(
         error: false,
         message: "로그인 성공",
       };
+    } else {
+      return {
+        success: false,
+        error: true,
+        message: "비밀번호가 일치하지 않습니다.",
+      };
     }
   }
   return {
     success: false,
     error: true,
-    message: "로그인 실패",
+    message: "비밀번호를 입력해주세요",
   };
 }
