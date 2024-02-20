@@ -85,9 +85,6 @@ const styles = stylex.create({
   },
   post: {
     width: "100%",
-    minHeight: "300px",
-    minWidth: "300px",
-    padding: "0.5rem",
     transition: "transform 0.3s ease-in-out",
     transform: {
       default: null,
@@ -119,6 +116,7 @@ const styles = stylex.create({
     width: "100%",
     height: "100%",
     justifyContent: "space-between",
+    gap: "0.3rem",
   },
   h: {
     display: "flex",
