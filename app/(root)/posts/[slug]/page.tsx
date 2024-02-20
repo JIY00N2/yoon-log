@@ -110,7 +110,7 @@ const styles = stylex.create({
   thumbnail: {
     display: "flex",
     width: "100%",
-    minHeight: "420px",
+    minHeight: "400px",
     position: "relative",
     borderRadius: "10px",
     overflow: "hidden",

@@ -64,5 +64,6 @@ const styles = stylex.create({
     alignItems: "center",
     width: "100%",
     marginHorizontal: "30px",
+    minWidth: "320px",
   },
 });
