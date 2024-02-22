@@ -101,15 +101,9 @@ const styles = stylex.create({
   },
   thumbnail: {
     display: "flex",
-    // width: "100%",
-    // minHeight: {
-    //   default: "180px",
-    //   [MEDIA_TABLET]: "200px",
-    //   [MEDIA_MOBILE]: "220px",
-    // },
     aspectRatio: "2",
     position: "relative",
-    borderRadius: "10px",
+    borderRadius: "0.6rem",
     overflow: "hidden",
   },
   text: {

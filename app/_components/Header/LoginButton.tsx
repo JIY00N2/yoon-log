@@ -23,23 +23,57 @@ export default function LoginButton({ style }: { style: StyleXStyles }) {
   }
 
   return (
-    <div {...stylex.props(style)}>
+    <div {...stylex.props(styles.layout)}>
       {cookies.isLogin ? (
-        <div {...stylex.props(styles.adminBtn)}>
-          <Link href="/write">새 글 작성</Link>
-          <button onClick={handleLogoutClick}>로그아웃</button>
+        <div {...stylex.props(styles.container)}>
+          <Link
+            href="/write"
+            {...stylex.props(style)}
+          >
+            새 글 작성
+          </Link>
+          <button
+            onClick={handleLogoutClick}
+            {...stylex.props(style)}
+          >
+            로그아웃
+          </button>
         </div>
       ) : (
-        <Link href={`/login?redirect=${pathname}`}>관리자</Link>
+        <Link
+          href={`/login?redirect=${pathname}`}
+          {...stylex.props(style)}
+        >
+          관리자
+        </Link>
       )}
     </div>
   );
 }
 
+const MEDIA_TABLET =
+  "@media (min-width: 701px) and (max-width: 1100px)" as const;
+const MEDIA_MOBILE = "@media (max-width: 700px)" as const;
+
 const styles = stylex.create({
-  adminBtn: {
+  layout: {
     display: "flex",
-    gap: "2rem",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
   },
-  logoutBtn: {},
+  container: {
+    display: "flex",
+    width: "100%",
+    gap: {
+      default: "1.5rem",
+      [MEDIA_TABLET]: "1.5rem",
+      [MEDIA_MOBILE]: "0.18rem",
+    },
+    flexDirection: {
+      default: "row",
+      [MEDIA_TABLET]: "row",
+      [MEDIA_MOBILE]: "column",
+    },
+  },
 });

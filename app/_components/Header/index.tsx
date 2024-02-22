@@ -1,8 +1,8 @@
 import stylex from "@stylexjs/stylex";
-import LoginButton from "./LoginButton";
 import Link from "next/link";
-import { navbar } from "./navbar";
 import ClientBoundary from "../ClientBoundary";
+import DropDown from "./DropDown";
+import NavBar from "./NavBar";
 
 export default function Header() {
   return (
@@ -17,18 +17,10 @@ export default function Header() {
           </Link>
           <ClientBoundary fallback={null}>
             <nav {...stylex.props(styles.nav)}>
-              <ul {...stylex.props(styles.ul)}>
-                {navbar.map(({ href, text }, id) => (
-                  <Link
-                    href={href}
-                    key={id}
-                    {...stylex.props(styles.link)}
-                  >
-                    {text}
-                  </Link>
-                ))}
-              </ul>
-              <LoginButton style={styles.login} />
+              <NavBar />
+            </nav>
+            <nav {...stylex.props(styles.navMobile)}>
+              <DropDown />
             </nav>
           </ClientBoundary>
         </div>
@@ -37,11 +29,15 @@ export default function Header() {
   );
 }
 
+const MEDIA_TABLET =
+  "@media (min-width: 701px) and (max-width: 1100px)" as const;
+const MEDIA_MOBILE = "@media (max-width: 700px)" as const;
+
 const styles = stylex.create({
   header: {
     display: "flex",
     alignItems: "center",
-    width: "100%",
+    width: "100vw",
     height: "60px",
     position: "fixed",
     top: 0,
@@ -52,7 +48,6 @@ const styles = stylex.create({
   },
   headerOuter: {
     display: "flex",
-    width: "100%",
     minWidth: "320px",
     maxWidth: "1240px",
     height: "100%",
@@ -60,7 +55,7 @@ const styles = stylex.create({
   },
   headerInner: {
     display: "flex",
-    width: "100%",
+    width: "100vw",
     justifyContent: "space-between",
     alignItems: "center",
     marginHorizontal: "30px",
@@ -71,27 +66,17 @@ const styles = stylex.create({
     color: "rgb(3, 152, 178)",
   },
   nav: {
-    display: "flex",
-    gap: "2rem",
-  },
-  ul: {
-    display: "flex",
-    gap: "1.5rem",
-  },
-  link: {
-    padding: "5px 10px 5px 10px",
-    borderRadius: "5px",
-    backgroundColor: {
-      ":hover": "rgba(2, 32, 71, 0.05)",
-    },
-    color: {
-      ":focus": "rgb(3, 152, 178)",
-      ":active": "rgb(3, 152, 178)",
+    display: {
+      default: "flex",
+      [MEDIA_TABLET]: "flex",
+      [MEDIA_MOBILE]: "none",
     },
   },
-  login: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+  navMobile: {
+    display: {
+      default: "none",
+      [MEDIA_TABLET]: "none",
+      [MEDIA_MOBILE]: "flex",
+    },
   },
 });

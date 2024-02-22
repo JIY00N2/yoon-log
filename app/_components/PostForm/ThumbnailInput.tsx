@@ -102,7 +102,7 @@ const styles = stylex.create({
     width: "50%",
     minHeight: "300px",
     position: "relative",
-    borderRadius: "10px",
+    borderRadius: "0.6rem",
     overflow: "hidden",
   },
   thumbnailInput: {

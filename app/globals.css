@@ -20,6 +20,9 @@
       Segoe UI Symbol,
       Noto Color Emoji;
   }
+  li {
+    all: unset;
+  }
   a {
     text-decoration: none;
     color: inherit;

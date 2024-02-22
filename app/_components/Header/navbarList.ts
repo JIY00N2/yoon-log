@@ -1,4 +1,4 @@
-export const navbar = [
+export const navbarList = [
   {
     href: "/",
     text: "포스트",

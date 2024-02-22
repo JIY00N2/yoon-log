@@ -10,8 +10,8 @@ export default function Footer() {
         <Image
           src="/images/github.svg"
           alt="github"
-          width={25}
-          height={25}
+          width={26}
+          height={26}
         />
       </Link>
     </footer>
