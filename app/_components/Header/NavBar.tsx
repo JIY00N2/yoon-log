@@ -16,7 +16,6 @@ export default function NavBar({ style }: { style?: StyleXStyles }) {
           {text}
         </Link>
       ))}
-
       <LoginButton style={styles.link} />
     </ul>
   );
