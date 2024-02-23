@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 import stylex from "@stylexjs/stylex";
+import ScrollToHash from "./_components/ScrollToHash";
 
 export const metadata: Metadata = {
   title: "Yoon's log",
@@ -21,6 +22,7 @@ export default function RootLayout({
     >
       <body {...stylex.props(styles.reset, styles.body)}>
         <main {...stylex.props(styles.main)}>
+          <ScrollToHash />
           <div {...stylex.props(styles.mainInner)}>{children}</div>
         </main>
         <Header />
