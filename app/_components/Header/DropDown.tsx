@@ -23,7 +23,7 @@ export default function DropDown() {
     if (!toggle) {
       timerId = window.setTimeout(() => {
         setVisible(false);
-      }, 500);
+      }, 400);
     }
 
     return () => {
