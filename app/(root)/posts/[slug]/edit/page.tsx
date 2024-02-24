@@ -23,20 +23,13 @@ export default async function PostEditPage({
     const subTitle = formData.get("subTitle")?.toString();
     const thumbnailUrl = formData.get("thumbnailUrl")?.toString();
     const content = formData.get("content")?.toString();
-    let slug = decodeURIComponent(params.slug);
-    if (title) {
-      slug = generateSlug(title);
-    }
-    const newPost = await PostsService.updatePost(
-      decodeURIComponent(params.slug),
-      {
-        title,
-        subTitle,
-        thumbnailUrl,
-        content,
-        slug,
-      },
-    );
+
+    const newPost = await PostsService.updatePost(params.slug, {
+      title,
+      subTitle,
+      thumbnailUrl,
+      content,
+    });
     if (!newPost) {
       return {
         success: false,
@@ -46,16 +39,16 @@ export default async function PostEditPage({
       };
     }
     revalidatePath("/");
-    revalidatePath(`/posts/${encodeURIComponent(newPost.slug)}`);
+    revalidatePath(`/posts/${newPost.slug}`);
     return {
       success: true,
       error: false,
       message: "포스트 수정 성공",
-      redirectUrl: `/posts/${encodeURIComponent(newPost.slug)}`,
+      redirectUrl: `/posts/${newPost.slug}`,
     };
   }
 
-  const post = await PostsService.getPost(decodeURIComponent(params.slug));
+  const post = await PostsService.getPost(params.slug);
 
   return (
     <>

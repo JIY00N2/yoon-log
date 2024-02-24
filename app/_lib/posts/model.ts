@@ -21,6 +21,7 @@ const postSchema = new Schema(
     slug: {
       type: String,
       required: true,
+      unique: true,
     },
   },
   { timestamps: true },

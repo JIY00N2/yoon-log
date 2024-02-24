@@ -27,13 +27,12 @@ export class PostsService {
   }
   static async getPost(slug: string) {
     await connectDB();
-    const decodeSlug = decodeURI(slug);
-    const post = await Post.findOne({ slug: decodeSlug }).lean().exec();
+    const post = await Post.findOne({ slug }).lean().exec();
     return post;
   }
   static async updatePost(
     prevSlug: string,
-    { title, subTitle, thumbnailUrl, content, slug }: Partial<PostType>,
+    { title, subTitle, thumbnailUrl, content }: Partial<PostType>,
   ) {
     await connectDB();
     const prevPost = await PostsService.getPost(prevSlug);
@@ -43,7 +42,6 @@ export class PostsService {
       subTitle: subTitle || prevPost?.subTitle,
       thumbnailUrl: thumbnailUrl || prevPost?.thumbnailUrl,
       content: content || prevPost?.content,
-      slug: slug || prevPost?.slug,
     };
     const newPost = await Post.findOneAndUpdate(filter, update, {
       new: true,
@@ -55,6 +53,9 @@ export class PostsService {
   static async deletePost(slug: string) {
     await connectDB();
     const post = await Post.findOneAndDelete({ slug }).lean().exec();
+    if (!post) {
+      throw new Error("no post");
+    }
     return post;
   }
 }

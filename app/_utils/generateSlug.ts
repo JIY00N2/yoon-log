@@ -7,5 +7,5 @@ export default function generateSlug(title: string) {
   if (slug.endsWith("-")) {
     slug.slice(0, -1);
   }
-  return slug;
+  return encodeURI(slug);
 }

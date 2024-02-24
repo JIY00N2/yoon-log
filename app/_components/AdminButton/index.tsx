@@ -15,7 +15,7 @@ export default function AdminButton({ slug }: { slug: string }) {
     });
     const [resHome, resPost] = await Promise.all([
       fetch("/api/admin/revalidate?path=/"),
-      fetch(`/api/admin/revalidate?path=/api/admin/posts/${slug}`),
+      fetch(`/api/admin/revalidate?path=/posts/${slug}`),
     ]);
     const home = (await resHome.json()) as {
       revalidated: boolean;
