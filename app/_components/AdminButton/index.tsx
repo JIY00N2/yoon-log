@@ -38,7 +38,7 @@ export default function AdminButton({ slug }: { slug: string }) {
     <ClientBoundary>
       {cookies.isLogin && (
         <div {...stylex.props(styles.container)}>
-          <Link href={`/posts/${slug}/edit`}>수정</Link>
+          <Link href={`/posts/${decodeURI(slug)}/edit`}>수정</Link>
           <button onClick={handleDeleteClick}>삭제</button>
         </div>
       )}
