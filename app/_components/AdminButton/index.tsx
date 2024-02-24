@@ -10,12 +10,12 @@ export default function AdminButton({ slug }: { slug: string }) {
   const [cookies] = useCookies(["isLogin"]);
 
   async function handleDeleteClick() {
-    await fetch(`/api/admin/posts/${slug}`, {
+    await fetch(`/api/admin/posts/${decodeURI(slug)}`, {
       method: "DELETE",
     });
     const [resHome, resPost] = await Promise.all([
       fetch("/api/admin/revalidate?path=/"),
-      fetch(`/api/admin/revalidate?path=/posts/${slug}`),
+      fetch(`/api/admin/revalidate?path=/posts/${decodeURI(slug)}`),
     ]);
     const home = (await resHome.json()) as {
       revalidated: boolean;
