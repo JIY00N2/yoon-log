@@ -4,7 +4,6 @@ import AdminButton from "@/app/_components/AdminButton";
 import MDContent from "@/app/_components/MDContent";
 import { PostsService } from "@/app/_lib/posts/service";
 import formattedDate from "@/app/_utils/formattedDate";
-import SideBar from "@/app/_components/SideBar";
 
 export default async function PostPage({
   params,
@@ -56,7 +55,7 @@ export default async function PostPage({
 export async function generateStaticParams() {
   const posts = await PostsService.getPosts();
   return posts.map((post) => ({
-    slug: encodeURI(post.slug),
+    slug: post.slug,
   }));
 }
 

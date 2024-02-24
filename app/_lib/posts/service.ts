@@ -27,7 +27,8 @@ export class PostsService {
   }
   static async getPost(slug: string) {
     await connectDB();
-    const post = await Post.findOne({ slug }).lean().exec();
+    const decodeSlug = decodeURI(slug);
+    const post = await Post.findOne({ slug: decodeSlug }).lean().exec();
     return post;
   }
   static async updatePost(
