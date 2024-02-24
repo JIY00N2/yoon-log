@@ -25,7 +25,7 @@ export default function SideBar() {
         {hTagId.map((id) => (
           <Link
             key={id}
-            href={`#${decodeURI(id)}`}
+            href={`#${id}`}
             {...stylex.props(styles.link)}
           >
             {id}
