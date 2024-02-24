@@ -10,7 +10,7 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const post = await PostsService.getPost(params.slug);
+  const post = await PostsService.getPost(decodeURI(params.slug));
 
   return (
     <div {...stylex.props(styles.layout)}>
