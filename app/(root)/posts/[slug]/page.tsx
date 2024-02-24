@@ -10,7 +10,7 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const post = await PostsService.getPost(decodeURI(params.slug));
+  const post = await PostsService.getPost(decodeURI(decodeURI(params.slug)));
 
   return (
     <div {...stylex.props(styles.layout)}>
@@ -55,7 +55,7 @@ export default async function PostPage({
 export async function generateStaticParams() {
   const posts = await PostsService.getPosts();
   return posts.map((post) => ({
-    slug: post.slug,
+    slug: encodeURI(post.slug),
   }));
 }
 
