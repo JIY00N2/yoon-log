@@ -24,7 +24,7 @@ export default async function HomePage() {
               {...stylex.props(styles.post)}
             >
               <Link
-                href={`/posts/${post.slug}`}
+                href={`/posts/${encodeURI(post.slug)}`}
                 rel="preload"
                 {...stylex.props(styles.link)}
               >
