@@ -4,6 +4,7 @@ import AdminButton from "@/app/_components/AdminButton";
 import MDContent from "@/app/_components/MDContent";
 import { PostsService } from "@/app/_lib/posts/service";
 import formattedDate from "@/app/_utils/formattedDate";
+import SideBar from "@/app/_components/SideBar";
 
 export default async function PostPage({
   params,
@@ -42,6 +43,7 @@ export default async function PostPage({
           </section>
           <section {...stylex.props(styles.content)}>
             <MDContent source={post.content} />
+            <SideBar />
           </section>
         </div>
       ) : (
@@ -115,6 +117,8 @@ const styles = stylex.create({
     aspectRatio: "2",
   },
   content: {
+    display: "flex",
     width: "100%",
+    position: "relative",
   },
 });

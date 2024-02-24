@@ -22,8 +22,10 @@ export default function RootLayout({
     >
       <body {...stylex.props(styles.reset, styles.body)}>
         <main {...stylex.props(styles.main)}>
-          <ScrollToHash />
-          <div {...stylex.props(styles.mainInner)}>{children}</div>
+          <div {...stylex.props(styles.mainInner)}>
+            <ScrollToHash />
+            {children}
+          </div>
         </main>
         <Header />
         <Footer />
@@ -31,10 +33,6 @@ export default function RootLayout({
     </html>
   );
 }
-
-const MEDIA_MOBILE = "@media (max-width: 700px)" as const;
-const MEDIA_TABLET =
-  "@media (min-width: 701px) and (max-width: 1100px)" as const;
 
 const styles = stylex.create({
   reset: {

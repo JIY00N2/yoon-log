@@ -1,11 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 
 export default function ScrollToHash() {
+  const [url, setUrl] = useState<string>();
+
   useEffect(() => {
     const handleHashChange = () => {
-      const hTagId = decodeURI(window.location.hash).slice(1);
+      console.log(window.location.href);
+      setUrl(window.location.href);
+      const hash = window.location.hash;
+      const hTagId = decodeURI(hash.slice(1));
       const h = document.getElementById(hTagId);
       if (!h) {
         console.error("Element with id '" + hTagId + "' not found.");
@@ -13,6 +18,7 @@ export default function ScrollToHash() {
       }
       const rect = h.getBoundingClientRect();
       const height = rect.top + window.scrollY - 70;
+
       window.scrollTo({
         top: height,
         behavior: "smooth",
@@ -24,7 +30,7 @@ export default function ScrollToHash() {
     return () => {
       window.removeEventListener("hashchange", handleHashChange);
     };
-  }, []);
+  }, [url]);
 
   return null;
 }
