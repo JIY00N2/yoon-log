@@ -11,7 +11,7 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const post = await PostsService.getPost(decodeURIComponent(params.slug));
+  const post = await PostsService.getPost(params.slug);
 
   return (
     <div {...stylex.props(styles.layout)}>
