@@ -66,7 +66,7 @@ const styles = stylex.create({
   },
   link: {
     color: "rgba(0,19,43,.58)",
-    fontSize: "0.8rem",
+    fontSize: "0.9rem",
     wordWrap: "break-word",
   },
 });
