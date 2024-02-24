@@ -56,7 +56,7 @@ export default async function PostPage({
 export async function generateStaticParams() {
   const posts = await PostsService.getPosts();
   return posts.map((post) => ({
-    slug: post.slug,
+    slug: encodeURI(post.slug),
   }));
 }
 
