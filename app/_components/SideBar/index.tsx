@@ -22,7 +22,7 @@ export default function SideBar() {
   return (
     <div {...stylex.props(styles.sidebar)}>
       <ul {...stylex.props(hTagId.length ? styles.ul : styles.hidden)}>
-        {hTagId.map((id) => (
+        {/* {hTagId.map((id) => (
           <Link
             key={id}
             href={`#${id}`}
@@ -30,7 +30,7 @@ export default function SideBar() {
           >
             {id}
           </Link>
-        ))}
+        ))} */}
       </ul>
     </div>
   );
