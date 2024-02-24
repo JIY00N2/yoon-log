@@ -43,7 +43,7 @@ export default async function PostPage({
           </section>
           <section {...stylex.props(styles.content)}>
             <MDContent source={post.content} />
-            <SideBar />
+            {/* <SideBar /> */}
           </section>
         </div>
       ) : (
