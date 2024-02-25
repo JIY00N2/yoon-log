@@ -38,6 +38,7 @@ const styles = stylex.create({
   reset: {
     margin: 0,
     padding: 0,
+    scrollBehavior: "smooth",
   },
   body: {
     display: "flex",
