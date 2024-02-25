@@ -1,8 +1,8 @@
-import generateSlug from "@/app/_utils/generateSlug";
 import { PostsService } from "@/app/_lib/posts/service";
 import PostForm from "@/app/_components/PostForm";
 import { ContentProvider } from "@/app/_context/ContentContext";
 import { revalidatePath } from "next/cache";
+import generateFilteredSlug from "@/app/_utils/generateFilteredSlug";
 
 async function handlePostSubmit(
   prevState: {
@@ -18,14 +18,14 @@ async function handlePostSubmit(
   const subTitle = formData.get("subTitle")?.toString();
   const thumbnailUrl = formData.get("thumbnailUrl")?.toString();
   const content = formData.get("content")?.toString();
-  if (title && subTitle && thumbnailUrl && content) {
-    const slug = generateSlug(title);
+  const slug = formData.get("slug")?.toString();
+  if (title && subTitle && thumbnailUrl && content && slug) {
     await PostsService.createPost({
       title,
       subTitle,
       thumbnailUrl,
       content,
-      slug,
+      slug: generateFilteredSlug(slug),
     });
     revalidatePath("/");
     return {
@@ -52,6 +52,7 @@ export default async function WritePage() {
         title={""}
         subTitle={""}
         thumbnailUrl={""}
+        slug={""}
       />
     </ContentProvider>
   );

@@ -10,6 +10,7 @@ import SubmitButton from "./SubmitButton";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import SlugInput from "./SlugInput";
 
 type Props = {
   handleSubmit: (
@@ -30,6 +31,7 @@ type Props = {
   subTitle: string;
   thumbnailUrl: string;
   submitBtnName: string;
+  slug: string;
 };
 
 export default function PostForm({
@@ -38,6 +40,7 @@ export default function PostForm({
   subTitle,
   thumbnailUrl,
   submitBtnName,
+  slug,
 }: Props) {
   const router = useRouter();
   const [formState, formAction] = useFormState(handleSubmit, {
@@ -71,6 +74,12 @@ export default function PostForm({
         subTitle={subTitle}
         style={styles.defaultInput}
       />
+      <span>URL 설정</span>
+      <SlugInput
+        slug={slug}
+        style={styles.defaultInput}
+        disabled={slug !== ""}
+      />
       <ThumbnailInput
         thumbnailUrl={thumbnailUrl}
         style={styles.defaultFileInput}
@@ -94,6 +103,9 @@ const styles = stylex.create({
     width: "100%",
     padding: "1rem",
     borderRadius: "1rem",
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "rgba(0,29,54,.31)",
   },
   defaultFileInput: {
     display: "none",

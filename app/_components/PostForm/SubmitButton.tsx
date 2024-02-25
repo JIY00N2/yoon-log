@@ -1,3 +1,5 @@
+"use client";
+
 import stylex from "@stylexjs/stylex";
 import { useFormStatus } from "react-dom";
 import { useContentContext } from "@/app/_context/ContentContext";

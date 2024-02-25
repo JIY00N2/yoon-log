@@ -1,5 +1,5 @@
 import { PostsService } from "@/app/_lib/posts/service";
-import generateSlug from "@/app/_utils/generateSlug";
+import generateSlug from "@/app/_utils/generateFilteredSlug";
 import PostForm from "@/app/_components/PostForm";
 import { ContentProvider } from "@/app/_context/ContentContext";
 import { revalidatePath } from "next/cache";
@@ -23,7 +23,6 @@ export default async function PostEditPage({
     const subTitle = formData.get("subTitle")?.toString();
     const thumbnailUrl = formData.get("thumbnailUrl")?.toString();
     const content = formData.get("content")?.toString();
-
     const newPost = await PostsService.updatePost(params.slug, {
       title,
       subTitle,
@@ -60,6 +59,7 @@ export default async function PostEditPage({
             title={post.title}
             subTitle={post.subTitle}
             thumbnailUrl={post.thumbnailUrl}
+            slug={post.slug}
           />
         </ContentProvider>
       )}

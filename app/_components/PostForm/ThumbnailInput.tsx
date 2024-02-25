@@ -1,3 +1,5 @@
+"use client";
+
 import { useContentContext } from "@/app/_context/ContentContext";
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import Image from "next/image";

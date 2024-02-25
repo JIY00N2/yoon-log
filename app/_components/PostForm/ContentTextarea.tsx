@@ -1,3 +1,5 @@
+"use client";
+
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import MDContent from "../MDContent";
 import { useContentContext } from "@/app/_context/ContentContext";
