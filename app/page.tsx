@@ -11,7 +11,7 @@ export default async function HomePage() {
   const posts = await PostsService.getPosts();
 
   return (
-    <div>
+    <>
       <TabSummary
         title={"Post"}
         content={"학습한 지식과 구현한 프로젝트들에 대한 기록입니다."}
@@ -59,7 +59,7 @@ export default async function HomePage() {
           <span>없음</span>
         )}
       </section>
-    </div>
+    </>
   );
 }
 
@@ -68,9 +68,6 @@ const MEDIA_TABLET =
 const MEDIA_MOBILE = "@media (max-width: 700px)" as const;
 
 const styles = stylex.create({
-  layout: {
-    display: "flex",
-  },
   posts: {
     display: "grid",
     width: "auto",
