@@ -15,10 +15,7 @@ export default function ScrollToHash() {
       const rect = h.getBoundingClientRect();
       const height = rect.top + window.scrollY - 70;
 
-      window.scrollTo({
-        top: height,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: height });
     };
 
     window.addEventListener("hashchange", handleHashChange);

@@ -1,7 +1,6 @@
 "use client";
 
 import stylex from "@stylexjs/stylex";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function SideBar() {
@@ -23,13 +22,13 @@ export default function SideBar() {
     <div {...stylex.props(styles.sidebar)}>
       <ul {...stylex.props(hTagId.length ? styles.ul : styles.hidden)}>
         {hTagId.map((id) => (
-          <Link
+          <a
             key={id}
             href={`#${id}`}
             {...stylex.props(styles.link)}
           >
             {id}
-          </Link>
+          </a>
         ))}
       </ul>
     </div>
