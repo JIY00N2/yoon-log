@@ -13,6 +13,7 @@ export default function DropDown() {
 
   useEffect(() => {
     setVisible(false);
+    setToggle(false);
   }, [pathname]);
 
   useEffect(() => {
