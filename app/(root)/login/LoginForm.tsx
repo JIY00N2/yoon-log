@@ -45,30 +45,32 @@ export default function LoginForm({ handleLogin, redirectUrl }: Props) {
       action={formAction}
       {...stylex.props(styles.container)}
     >
-      <div {...stylex.props(styles.box)}>
-        <label
-          htmlFor="password"
-          {...stylex.props(styles.label)}
-        >
-          관리자 로그인
-        </label>
-        <span {...stylex.props(styles.text)}>
-          글을 작성하거나 수정할 수 있는 권한은 관리자만 가능합니다.
-        </span>
+      <div {...stylex.props(styles.boxContainer)}>
+        <div {...stylex.props(styles.box)}>
+          <label
+            htmlFor="password"
+            {...stylex.props(styles.label)}
+          >
+            관리자 로그인
+          </label>
+          <span {...stylex.props(styles.text)}>
+            글을 작성하거나 수정할 수 있는 권한은 관리자만 가능합니다.
+          </span>
+        </div>
+        <div {...stylex.props(styles.box)}>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="비밀번호를 입력해주세요.."
+            {...stylex.props(styles.input)}
+          />
+          {formState.error && (
+            <span {...stylex.props(styles.error)}>{formState.message}</span>
+          )}
+        </div>
+        <SubmitButton />
       </div>
-      <div {...stylex.props(styles.box)}>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          placeholder="비밀번호를 입력해주세요.."
-          {...stylex.props(styles.input)}
-        />
-        {formState.error && (
-          <span {...stylex.props(styles.error)}>{formState.message}</span>
-        )}
-      </div>
-      <SubmitButton />
     </form>
   );
 }
@@ -78,13 +80,19 @@ const styles = stylex.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    width: "100%",
+    height: "100%",
+  },
+  boxContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     flexDirection: "column",
-    width: "60%",
-    height: "60%",
-    gap: "2rem",
+    padding: "1rem",
     borderWidth: "2px",
     borderStyle: "solid",
     borderColor: "rgba(0,19,43,.58)",
+    gap: "1rem",
   },
   box: {
     display: "flex",
@@ -106,7 +114,7 @@ const styles = stylex.create({
     color: "red",
   },
   input: {
-    width: "40%",
+    width: "100%",
     minHeight: "20px",
     padding: "1rem",
     borderRadius: "1rem",
