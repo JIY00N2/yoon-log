@@ -3,31 +3,39 @@
 import stylex from "@stylexjs/stylex";
 import { useEffect, useState } from "react";
 
+const INDENT_MAP: { [key in string]: number } = {
+  H1: 0,
+  H2: 10,
+  H3: 20,
+};
+
 export default function SideBar() {
-  const [hTagId, setHTagId] = useState<string[]>([]);
+  const [hTags, setHTags] = useState<{ headingId: string; indent: number }[]>(
+    [],
+  );
 
   useEffect(() => {
     const headings = document.querySelectorAll("h1, h2, h3");
-    const newHTagIds: string[] = [];
+    const newHTag: { headingId: string; indent: number }[] = [];
     headings.forEach((h) => {
-      const id = h.getAttribute("id");
-      if (id) {
-        newHTagIds.push(id);
+      const headingId = h.getAttribute("id");
+      if (headingId && h.tagName in INDENT_MAP) {
+        newHTag.push({ headingId, indent: INDENT_MAP[h.tagName] });
       }
     });
-    setHTagId(newHTagIds);
+    setHTags(newHTag);
   }, []);
 
   return (
     <div {...stylex.props(styles.sidebar)}>
-      <ul {...stylex.props(hTagId.length ? styles.ul : styles.hidden)}>
-        {hTagId.map((id) => (
+      <ul {...stylex.props(hTags.length ? styles.ul : styles.hidden)}>
+        {hTags.map(({ headingId, indent }) => (
           <a
-            key={id}
-            href={`#${id}`}
-            {...stylex.props(styles.link)}
+            key={headingId}
+            href={`#${headingId}`}
+            {...stylex.props(styles.link(`${indent}px`))}
           >
-            {id}
+            {headingId}
           </a>
         ))}
       </ul>
@@ -66,9 +74,10 @@ const styles = stylex.create({
   hidden: {
     display: "none",
   },
-  link: {
+  link: (marginLeft: string) => ({
     color: "rgba(0,19,43,.58)",
     fontSize: "0.9rem",
     wordWrap: "break-word",
-  },
+    marginLeft,
+  }),
 });
