@@ -1,9 +1,9 @@
 "use client";
 
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
-import MDContent from "../MDContent";
 import { useContentContext } from "@/app/_context/ContentContext";
 import { useFormStatus } from "react-dom";
+import DynamicMDContent from "../MDContent/DynamicMDContent";
 
 export default function ContentTextarea({ style }: { style: StyleXStyles }) {
   const { newContent, setNewContent, isImageUploading } = useContentContext();
@@ -20,7 +20,7 @@ export default function ContentTextarea({ style }: { style: StyleXStyles }) {
         {...stylex.props(styles.textarea, style)}
       />
       <div {...stylex.props(styles.preview, styles.textarea)}>
-        <MDContent source={newContent} />
+        <DynamicMDContent source={newContent} />
       </div>
     </div>
   );
