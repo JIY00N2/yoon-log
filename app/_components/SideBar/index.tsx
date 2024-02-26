@@ -70,6 +70,9 @@ const styles = stylex.create({
     minHeight: "150px",
     height: "calc(100vh - 320px)",
     overflowY: "scroll",
+    "::-webkit-scrollbar": {
+      display: "none",
+    },
   },
   hidden: {
     display: "none",
