@@ -42,7 +42,7 @@
     border: none;
   }
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 5px;
     height: 3px;
   }
   ::-webkit-scrollbar-thumb {
