@@ -13,7 +13,7 @@ export async function uploadFile(file: File, path: string) {
     .upload(path, file);
 
   if (error) {
-    throw new Error(error.message);
+    throw new Error(`${error.message} + ${path}`);
   }
 
   const url = supabase.storage
