@@ -19,7 +19,15 @@ async function handlePostSubmit(
   const thumbnailUrl = formData.get("thumbnailUrl")?.toString();
   const content = formData.get("content")?.toString();
   const slug = formData.get("slug")?.toString();
-  if (title && subTitle && thumbnailUrl && content && slug) {
+  if (!title || !subTitle || !thumbnailUrl || !content || !slug) {
+    return {
+      success: false,
+      error: true,
+      message: "모두 입력해주세요",
+      redirectUrl: "/",
+    };
+  }
+  try {
     await PostsService.createPost({
       title,
       subTitle,
@@ -34,13 +42,14 @@ async function handlePostSubmit(
       message: "포스트 생성 성공",
       redirectUrl: "/",
     };
+  } catch (error) {
+    return {
+      success: false,
+      error: true,
+      message: (error as Error).message,
+      redirectUrl: "/",
+    };
   }
-  return {
-    success: false,
-    error: true,
-    message: "포스트 생성 실패",
-    redirectUrl: "/",
-  };
 }
 
 export default async function WritePage() {
