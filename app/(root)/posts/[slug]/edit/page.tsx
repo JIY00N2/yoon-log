@@ -1,5 +1,4 @@
 import { PostsService } from "@/app/_lib/posts/service";
-import generateSlug from "@/app/_utils/generateFilteredSlug";
 import PostForm from "@/app/_components/PostForm";
 import { ContentProvider } from "@/app/_context/ContentContext";
 import { revalidatePath } from "next/cache";
