@@ -47,6 +47,10 @@ export default function SlugInput({
   );
 }
 
+const MEDIA_TABLET =
+  "@media (min-width: 701px) and (max-width: 1100px)" as const;
+const MEDIA_MOBILE = "@media (max-width: 700px)" as const;
+
 const styles = stylex.create({
   container: {
     display: "flex",
@@ -57,7 +61,6 @@ const styles = stylex.create({
     fontSize: "1rem",
   },
   prefix: {
-    minWidth: "fit-content",
     color: "#757575",
   },
   input: {
