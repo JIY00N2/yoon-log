@@ -57,9 +57,11 @@ const styles = stylex.create({
     fontSize: "1rem",
   },
   prefix: {
+    minWidth: "fit-content",
     color: "#757575",
   },
   input: {
+    width: "100%",
     flexGrow: "1",
     outline: {
       ":active": "none",
