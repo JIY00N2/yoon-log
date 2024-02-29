@@ -4,7 +4,7 @@ import { ChangeEvent, useCallback } from "react";
 import stylex from "@stylexjs/stylex";
 import { useFormStatus } from "react-dom";
 import useDragAndDrop from "@/app/_hooks/useDragAndDrop";
-import { useContentContext } from "@/app/_context/ContentContext/useContentContext";
+import useContentContext from "@/app/_context/ContentContext/useContentContext";
 
 export default function ImageInput() {
   const { setNewContent, isImageUploading, setIsImageUploading } =

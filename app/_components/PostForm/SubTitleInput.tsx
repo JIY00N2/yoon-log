@@ -1,6 +1,6 @@
 "use client";
 
-import { useContentContext } from "@/app/_context/ContentContext/useContentContext";
+import useContentContext from "@/app/_context/ContentContext/useContentContext";
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import { useFormStatus } from "react-dom";
 
