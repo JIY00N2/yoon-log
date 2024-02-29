@@ -5,7 +5,6 @@ import {
   PropsWithChildren,
   SetStateAction,
   createContext,
-  useContext,
   useMemo,
   useState,
 } from "react";
@@ -16,6 +15,7 @@ type ContentContextState = {
   isImageUploading: boolean;
   setIsImageUploading: Dispatch<SetStateAction<boolean>>;
 };
+
 export const ContentContext = createContext<ContentContextState | null>(null);
 
 export const ContentProvider = ({
@@ -37,13 +37,4 @@ export const ContentProvider = ({
   return (
     <ContentContext.Provider value={value}>{children}</ContentContext.Provider>
   );
-};
-
-export const useContentContext = () => {
-  const state = useContext(ContentContext);
-  if (state === null) {
-    throw Error("Cannot find ContentProvider");
-  }
-
-  return state;
 };
