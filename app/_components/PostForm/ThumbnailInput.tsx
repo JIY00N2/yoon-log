@@ -1,6 +1,6 @@
 "use client";
 
-import { useContentContext } from "@/app/_context/ContentContext";
+import useContentContext from "@/app/_context/ContentContext/useContentContext";
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import Image from "next/image";
 import { ChangeEvent, useCallback, useState } from "react";
