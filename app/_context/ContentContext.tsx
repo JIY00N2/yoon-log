@@ -1,6 +1,5 @@
 "use client";
 
-import { Props } from "next/script";
 import {
   Dispatch,
   PropsWithChildren,
