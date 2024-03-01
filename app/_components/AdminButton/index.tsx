@@ -4,10 +4,13 @@ import stylex from "@stylexjs/stylex";
 import ClientBoundary from "../ClientBoundary";
 import { useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
+import useToast from "@/app/_context/ToastContext/useToast";
+import { Error, Success } from "../Toast";
 
 export default function AdminButton({ slug }: { slug: string }) {
   const router = useRouter();
   const [cookies] = useCookies(["isLogin"]);
+  const { toast } = useToast();
 
   async function handleDeleteClick() {
     await fetch(`/api/admin/posts/${decodeURI(slug)}`, {
@@ -26,11 +29,13 @@ export default function AdminButton({ slug }: { slug: string }) {
       message?: string;
     };
     if (home.revalidated && post.revalidated) {
+      toast(<Success message="포스트 삭제 성공!" />);
       router.replace("/");
       router.refresh();
     } else {
-      console.log(home.message, post.message);
-      // TODO: 토스트 ui
+      toast(
+        <Error message={home.message || post.message || "포스트 삭제 실패!"} />,
+      );
     }
   }
 

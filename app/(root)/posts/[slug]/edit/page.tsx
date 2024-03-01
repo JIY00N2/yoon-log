@@ -22,6 +22,14 @@ export default async function PostEditPage({
     const subTitle = formData.get("subTitle")?.toString();
     const thumbnailUrl = formData.get("thumbnailUrl")?.toString();
     const content = formData.get("content")?.toString();
+    if (!title || !subTitle || !content) {
+      return {
+        success: false,
+        error: true,
+        message: "모두 입력해주세요",
+        redirectUrl: "/",
+      };
+    }
     const newPost = await PostsService.updatePost(params.slug, {
       title,
       subTitle,

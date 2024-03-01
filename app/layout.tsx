@@ -4,6 +4,7 @@ import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 import stylex from "@stylexjs/stylex";
 import ScrollToHash from "./_components/ScrollToHash";
+import { ToastProvider } from "./_context/ToastContext";
 
 export const metadata: Metadata = {
   title: "Yoon's log",
@@ -21,14 +22,19 @@ export default function RootLayout({
       {...stylex.props(styles.reset)}
     >
       <body {...stylex.props(styles.reset, styles.body)}>
-        <main {...stylex.props(styles.main)}>
-          <div {...stylex.props(styles.mainInner)}>
-            <ScrollToHash />
-            {children}
-          </div>
-        </main>
-        <Header />
-        <Footer />
+        <ToastProvider
+          defaultDuration={2000}
+          containerStyles={toastContainerStyles.custom}
+        >
+          <main {...stylex.props(styles.main)}>
+            <div {...stylex.props(styles.mainInner)}>
+              <ScrollToHash />
+              {children}
+            </div>
+          </main>
+          <Header />
+          <Footer />
+        </ToastProvider>
       </body>
     </html>
   );
@@ -63,4 +69,8 @@ const styles = stylex.create({
     paddingHorizontal: "30px",
     minWidth: "320px",
   },
+});
+
+const toastContainerStyles = stylex.create({
+  custom: {},
 });

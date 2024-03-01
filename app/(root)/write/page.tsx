@@ -23,7 +23,7 @@ async function handlePostSubmit(
     return {
       success: false,
       error: true,
-      message: "모두 입력해주세요",
+      message: "모두 입력해주세요!",
       redirectUrl: "/",
     };
   }
@@ -39,7 +39,7 @@ async function handlePostSubmit(
     return {
       success: true,
       error: false,
-      message: "포스트 생성 성공",
+      message: "포스트 생성 성공!",
       redirectUrl: "/",
     };
   } catch (error) {

@@ -33,7 +33,7 @@ export async function loginAction(
       return {
         success: true,
         error: false,
-        message: "로그인 성공",
+        message: "로그인 성공!",
       };
     } else {
       return {
@@ -46,6 +46,6 @@ export async function loginAction(
   return {
     success: false,
     error: true,
-    message: "비밀번호를 입력해주세요",
+    message: "비밀번호를 입력해주세요!",
   };
 }

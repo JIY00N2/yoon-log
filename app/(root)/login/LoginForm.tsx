@@ -5,6 +5,8 @@ import SubmitButton from "./SubmitButton";
 import { useFormState } from "react-dom";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Error, Success } from "@/app/_components/Toast";
+import useToast from "@/app/_context/ToastContext/useToast";
 
 type Props = {
   handleLogin: (
@@ -24,6 +26,7 @@ type Props = {
 
 export default function LoginForm({ handleLogin, redirectUrl }: Props) {
   const router = useRouter();
+  const { toast } = useToast();
   const [formState, formAction] = useFormState(handleLogin, {
     success: false,
     error: false,
@@ -32,13 +35,13 @@ export default function LoginForm({ handleLogin, redirectUrl }: Props) {
 
   useEffect(() => {
     if (formState.success) {
+      toast(<Success message={formState.message} />);
       router.replace(redirectUrl);
     }
     if (formState.error) {
-      // TODO: alert -> Toast ui
-      alert(formState.message);
+      toast(<Error message={formState.message} />);
     }
-  }, [formState, router, redirectUrl]);
+  }, [formState, router, redirectUrl, toast]);
 
   return (
     <form
