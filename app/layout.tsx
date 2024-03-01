@@ -23,7 +23,7 @@ export default function RootLayout({
     >
       <body {...stylex.props(styles.reset, styles.body)}>
         <ToastProvider
-          defaultDuration={2000}
+          defaultDuration={1000}
           containerStyles={toastContainerStyles.custom}
         >
           <main {...stylex.props(styles.main)}>

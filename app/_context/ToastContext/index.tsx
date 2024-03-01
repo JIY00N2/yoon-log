@@ -6,6 +6,7 @@ import {
   ReactNode,
   createContext,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -30,6 +31,7 @@ type Props = {
 
 type ToastMap = {
   element: ReactNode;
+  isActive: boolean;
   containerStyles?: StyleXStyles;
   toastStyles?: StyleXStyles;
 };
@@ -39,8 +41,8 @@ export const ToastProvider = ({
   defaultDuration = 1000,
   containerStyles = {},
 }: PropsWithChildren<Props>) => {
-  const [toasts, setToasts] = useState<Map<string, ToastMap>>(new Map());
   const idRef = useRef(0);
+  const [toasts, setToasts] = useState<Map<string, ToastMap>>(new Map());
 
   const close = useCallback((id: string) => {
     setToasts((prev) => {
@@ -50,6 +52,24 @@ export const ToastProvider = ({
     });
   }, []);
 
+  const update = useCallback(
+    (id: string) => {
+      setToasts((prev) => {
+        const cloned = new Map(prev);
+        const toast = cloned.get(id);
+        if (toast) {
+          cloned.set(id, {
+            ...toast,
+            isActive: false,
+          });
+        }
+        return cloned;
+      });
+      setTimeout(() => close(id), 500);
+    },
+    [close],
+  );
+
   const toast = useCallback(
     (element: ReactNode, options: ToastOptions = {}) => {
       idRef.current += 1;
@@ -57,33 +77,57 @@ export const ToastProvider = ({
       const { duration = defaultDuration, toastStyles = {} } = options;
       setToasts((prev) => {
         const cloned = new Map(prev);
-        cloned.set(id, { element, toastStyles });
+        cloned.set(id, {
+          element,
+          isActive: true,
+          toastStyles,
+        });
         return cloned;
       });
-      setTimeout(() => close(id), duration);
+      setTimeout(() => update(id), 400);
       return id;
     },
-    [close, defaultDuration],
+    [defaultDuration, update],
   );
 
-  const value = useMemo(() => ({ toast, close }), [toast, close]);
+  const value = useMemo(
+    () => ({ toast, close, update }),
+    [toast, close, update],
+  );
 
   return (
     <ToastContext.Provider value={value}>
       {children}
       <div {...stylex.props(styles.defaultContainer, containerStyles)}>
-        {[...toasts.entries()].map(([id, { element, toastStyles }]) => (
-          <div
-            key={id}
-            {...stylex.props(styles.defaultToast, toastStyles)}
-          >
-            {element}
-          </div>
-        ))}
+        {[...toasts.entries()].map(
+          ([id, { element, isActive, toastStyles }]) => (
+            <div
+              key={id}
+              {...stylex.props(
+                isActive
+                  ? styles.defaultToastFadeIn
+                  : styles.defaultToastFadeOut,
+                toastStyles,
+              )}
+            >
+              {element}
+            </div>
+          ),
+        )}
       </div>
     </ToastContext.Provider>
   );
 };
+
+const fadeIn = stylex.keyframes({
+  "0%": { opacity: 0, transform: "translate(-50%, -20px)" },
+  "100%": { opacity: 1, transform: "translate(-50%, 0)" },
+});
+
+const fadeOut = stylex.keyframes({
+  "0%": { opacity: 1, transform: "translate(-50%, 0)" },
+  "100%": { opacity: 0, transform: "translate(-50%, -20px)" },
+});
 
 const styles = stylex.create({
   defaultContainer: {
@@ -96,7 +140,7 @@ const styles = stylex.create({
     padding: "5px",
     gap: "5px",
   },
-  defaultToast: {
+  defaultToastFadeIn: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -106,5 +150,24 @@ const styles = stylex.create({
     borderRadius: "5px",
     boxShadow: "0 2px 5px gray",
     transform: "translate(-50%)",
+    animationName: fadeIn,
+    animationDuration: "0.5s",
+    animationTimingFunction: "ease-in-out",
+    animationIterationCount: "1",
+  },
+  defaultToastFadeOut: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "50px",
+    backgroundColor: "white",
+    padding: "10px",
+    borderRadius: "5px",
+    boxShadow: "0 2px 5px gray",
+    transform: "translate(-50%)",
+    animationName: fadeOut,
+    animationDuration: "0.5s",
+    animationTimingFunction: "ease-in-out",
+    animationIterationCount: "1",
   },
 });
