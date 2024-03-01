@@ -53,7 +53,7 @@ export const ToastProvider = ({
   }, []);
 
   const update = useCallback(
-    (id: string) => {
+    (id: string, duration: number) => {
       setToasts((prev) => {
         const cloned = new Map(prev);
         const toast = cloned.get(id);
@@ -65,7 +65,7 @@ export const ToastProvider = ({
         }
         return cloned;
       });
-      setTimeout(() => close(id), 500);
+      setTimeout(() => close(id), duration - 200);
     },
     [close],
   );
@@ -84,7 +84,7 @@ export const ToastProvider = ({
         });
         return cloned;
       });
-      setTimeout(() => update(id), 400);
+      setTimeout(() => update(id, duration), duration - 300);
       return id;
     },
     [defaultDuration, update],
@@ -151,7 +151,7 @@ const styles = stylex.create({
     boxShadow: "0 2px 5px gray",
     transform: "translate(-50%)",
     animationName: fadeIn,
-    animationDuration: "0.5s",
+    animationDuration: "0.8s",
     animationTimingFunction: "ease-in-out",
     animationIterationCount: "1",
   },
@@ -166,7 +166,7 @@ const styles = stylex.create({
     boxShadow: "0 2px 5px gray",
     transform: "translate(-50%)",
     animationName: fadeOut,
-    animationDuration: "0.5s",
+    animationDuration: "0.8s",
     animationTimingFunction: "ease-in-out",
     animationIterationCount: "1",
   },
