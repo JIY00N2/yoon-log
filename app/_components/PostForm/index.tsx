@@ -78,7 +78,7 @@ export default function PostForm({
           subTitle={subTitle}
           style={styles.defaultInput}
         />
-        <span>URL 설정</span>
+        <span {...stylex.props(styles.slugLabel)}>URL 설정</span>
         <SlugInput
           slug={slug}
           style={styles.defaultInput}
@@ -110,9 +110,12 @@ const styles = stylex.create({
     borderRadius: "1rem",
     borderWidth: "1px",
     borderStyle: "solid",
-    borderColor: "rgba(0,29,54,.31)",
+    borderColor: "var(--text200)",
   },
   defaultFileInput: {
     display: "none",
+  },
+  slugLabel: {
+    color: "var(--font)",
   },
 });

@@ -1,15 +1,17 @@
 import stylex from "@stylexjs/stylex";
-import Image from "next/image";
 import Link from "next/link";
+import GithubSvg from "@/public/images/github.svg";
 
 export default function Footer() {
   return (
     <footer {...stylex.props(styles.footer)}>
       <div {...stylex.props(styles.copyright)}>Copyright © 2024 JIYOON2</div>
-      <Link href="https://github.com/JIY00N2">
-        <Image
-          src="/images/github.svg"
-          alt="github"
+      <Link
+        href="https://github.com/JIY00N2"
+        {...stylex.props(styles.copyright)}
+      >
+        <GithubSvg
+          color={"var(--text200)"}
           width={26}
           height={26}
         />
@@ -29,9 +31,9 @@ const styles = stylex.create({
     gap: "10px",
     borderTopWidth: "1px",
     borderTopStyle: "solid",
-    borderTopColor: "rgba(0, 27, 55, 0.1)",
+    borderTopColor: "var(--text100)",
   },
   copyright: {
-    color: "rgba(0, 29, 54, 0.31)",
+    color: "var(--text200)",
   },
 });

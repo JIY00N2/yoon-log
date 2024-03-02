@@ -30,20 +30,22 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
     }
   }, []);
 
-  const toggleDarkMode = useCallback(() => {
-    const newDarkMode = !isDarkMode;
-    setIsDarkMode(newDarkMode);
-    localStorage.setItem(key, newDarkMode ? "dark" : "light");
-
+  useEffect(() => {
     const htmlTag = document.getElementById("html");
     if (!htmlTag) {
       throw Error("html 태그가 없습니다.");
     }
-    if (newDarkMode) {
+    if (isDarkMode) {
       htmlTag.classList.add("dark");
     } else {
       htmlTag.classList.remove("dark");
     }
+  }, [isDarkMode]);
+
+  const toggleDarkMode = useCallback(() => {
+    const newDarkMode = !isDarkMode;
+    setIsDarkMode(newDarkMode);
+    localStorage.setItem(key, newDarkMode ? "dark" : "light");
   }, [isDarkMode]);
 
   const theme = useMemo(

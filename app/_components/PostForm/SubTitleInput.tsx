@@ -27,6 +27,8 @@ export default function SubTitleInput({
 
 const styles = stylex.create({
   subTitle: {
+    backgroundColor: "var(--backGround)",
+    caretColor: "var(--font)",
     fontSize: "1.2rem",
   },
 });

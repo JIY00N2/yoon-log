@@ -34,11 +34,13 @@ const styles = stylex.create({
   textarea: {
     width: "100%",
     minHeight: "700px",
+    backgroundColor: "var(--backGround)",
+    caretColor: "var(--font)",
   },
   preview: {
     borderWidth: "1px",
     borderStyle: "solid",
-    borderColor: "#171717",
+    borderColor: "var(--font)",
     borderRadius: "1rem",
     padding: "1rem",
   },

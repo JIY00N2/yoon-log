@@ -23,9 +23,11 @@ const styles = stylex.create({
   title: {
     fontSize: "1.4rem",
     fontWeight: 600,
+    color: "var(--font)",
   },
   content: {
     fontSize: "1rem",
     fontWeight: 500,
+    color: "var(--font)",
   },
 });

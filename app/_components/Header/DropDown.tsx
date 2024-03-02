@@ -1,10 +1,10 @@
 "use client";
 
 import stylex from "@stylexjs/stylex";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import NavBar from "./NavBar";
+import MenuSvg from "@/public/images/menu.svg";
 
 export default function DropDown() {
   const [visible, setVisible] = useState(false);
@@ -42,11 +42,10 @@ export default function DropDown() {
         {...stylex.props(styles.button)}
         onClick={handleClickMenu}
       >
-        <Image
-          src={"/images/menu.svg"}
-          alt="메뉴"
-          width={26}
-          height={26}
+        <MenuSvg
+          width={24}
+          height={24}
+          color={"var(--font)"}
         />
       </button>
       {visible && (
@@ -92,8 +91,8 @@ const styles = stylex.create({
     right: 0,
     width: "140px",
     height: "auto",
-    boxShadow: "1px 1px 3px 1px #adb5bd",
-    backgroundColor: "#fff",
+    boxShadow: "1px 1px 3px 1px var(--shadow)",
+    backgroundColor: "var(--backGround)",
     borderRadius: "0.5rem",
     animationName: scaleUp,
     animationDuration: "0.5s",
@@ -111,8 +110,8 @@ const styles = stylex.create({
     right: 0,
     width: "140px",
     height: "auto",
-    boxShadow: "1px 1px 3px 1px #adb5bd",
-    backgroundColor: "#fff",
+    boxShadow: "1px 1px 3px 1px var(--shadow)",
+    backgroundColor: "var(--backGround)",
     borderRadius: "0.5rem",
     animationName: scaleDown,
     animationDuration: "0.5s",

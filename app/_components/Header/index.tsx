@@ -3,6 +3,8 @@ import Link from "next/link";
 import ClientBoundary from "../ClientBoundary";
 import DropDown from "./DropDown";
 import NavBar from "./NavBar";
+import ThemeButton from "./ThemeButton";
+import { colors } from "@/app/globalTokens.stylex";
 
 export default function Header() {
   return (
@@ -18,8 +20,10 @@ export default function Header() {
           <ClientBoundary fallback={null}>
             <nav {...stylex.props(styles.nav)}>
               <NavBar />
+              <ThemeButton />
             </nav>
             <nav {...stylex.props(styles.navMobile)}>
+              <ThemeButton />
               <DropDown />
             </nav>
           </ClientBoundary>
@@ -41,7 +45,7 @@ const styles = stylex.create({
     height: "60px",
     position: "fixed",
     top: 0,
-    borderBottomColor: "rgba(0, 29, 54, 0.31)",
+    borderBottomColor: "var(--text200)",
     borderBottomWidth: "1px",
     borderBottomStyle: "solid",
     backgroundColor: "inherit",
@@ -63,7 +67,7 @@ const styles = stylex.create({
   logo: {
     fontSize: "1.4rem",
     fontWeight: 600,
-    color: "rgb(3, 152, 178)",
+    color: colors.point,
   },
   nav: {
     display: {
@@ -71,6 +75,9 @@ const styles = stylex.create({
       [MEDIA_TABLET]: "flex",
       [MEDIA_MOBILE]: "none",
     },
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "1.5rem",
   },
   navMobile: {
     display: {
@@ -78,5 +85,8 @@ const styles = stylex.create({
       [MEDIA_TABLET]: "none",
       [MEDIA_MOBILE]: "flex",
     },
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "1.5rem",
   },
 });

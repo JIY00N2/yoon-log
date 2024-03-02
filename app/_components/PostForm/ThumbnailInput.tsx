@@ -111,8 +111,8 @@ const styles = stylex.create({
     padding: "0.5rem",
     borderRadius: "0.5rem",
     cursor: "pointer",
-    color: "#171717",
-    backgroundColor: "rgba(2, 32, 71, 0.05)",
+    color: "var(--font)",
+    backgroundColor: "var(--text500)",
     fontWeight: 600,
   },
 });

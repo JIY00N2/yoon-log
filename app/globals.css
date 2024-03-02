@@ -24,8 +24,8 @@
       Segoe UI Symbol,
       Noto Color Emoji;
   }
-  li {
-    all: unset;
+  html {
+    scroll-behavior: smooth;
   }
   a {
     text-decoration: none;
@@ -63,4 +63,26 @@
     Consolas,
     Liberation Mono,
     monospace !important;
+}
+
+:root {
+  --backGround: #ffffff;
+  --font: #171717;
+  --shadow: #adb5bd;
+  --text100: rgba(0, 27, 55, 0.1);
+  --text200: rgba(0, 29, 54, 0.31);
+  --text300: rgba(0, 19, 43, 0.58);
+  --text400: rgba(0, 12, 30, 0.8);
+  --text500: rgba(2, 32, 71, 0.05);
+}
+
+.dark {
+  --backGround: #1c1c1c;
+  --font: #ededed;
+  --shadow: #18191a;
+  --text100: rgba(255, 255, 240, 0.1);
+  --text200: rgba(255, 255, 240, 0.31);
+  --text300: rgba(255, 255, 240, 0.58);
+  --text400: rgba(255, 255, 240, 0.8);
+  --text500: rgba(255, 255, 240, 0.05);
 }

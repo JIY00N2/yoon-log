@@ -43,8 +43,18 @@ export default function AdminButton({ slug }: { slug: string }) {
     <ClientBoundary>
       {cookies.isLogin && (
         <div {...stylex.props(styles.container)}>
-          <Link href={`/posts/${decodeURI(slug)}/edit`}>수정</Link>
-          <button onClick={handleDeleteClick}>삭제</button>
+          <Link
+            href={`/posts/${decodeURI(slug)}/edit`}
+            {...stylex.props(styles.font)}
+          >
+            수정
+          </Link>
+          <button
+            onClick={handleDeleteClick}
+            {...stylex.props(styles.font)}
+          >
+            삭제
+          </button>
         </div>
       )}
     </ClientBoundary>
@@ -55,5 +65,8 @@ const styles = stylex.create({
   container: {
     display: "flex",
     gap: "1rem",
+  },
+  font: {
+    color: "var(--font)",
   },
 });

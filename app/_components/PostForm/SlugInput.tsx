@@ -1,6 +1,7 @@
 "use client";
 
 import useContentContext from "@/app/_context/ContentContext/useContentContext";
+import { colors } from "@/app/globalTokens.stylex";
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import { useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
@@ -47,10 +48,6 @@ export default function SlugInput({
   );
 }
 
-const MEDIA_TABLET =
-  "@media (min-width: 701px) and (max-width: 1100px)" as const;
-const MEDIA_MOBILE = "@media (max-width: 700px)" as const;
-
 const styles = stylex.create({
   container: {
     display: "flex",
@@ -61,7 +58,7 @@ const styles = stylex.create({
     fontSize: "1rem",
   },
   prefix: {
-    color: "#757575",
+    color: colors.gray,
   },
   input: {
     width: "100%",
@@ -70,5 +67,7 @@ const styles = stylex.create({
       ":active": "none",
       ":focus": "none",
     },
+    backgroundColor: "var(--backGround)",
+    caretColor: "var(--font)",
   },
 });

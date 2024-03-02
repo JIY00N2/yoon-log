@@ -27,6 +27,8 @@ export default function TitleInput({
 
 const styles = stylex.create({
   title: {
+    backgroundColor: "var(--backGround)",
+    caretColor: "var(--font)",
     fontSize: "1.5rem",
   },
 });

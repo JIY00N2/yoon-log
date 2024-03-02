@@ -122,13 +122,14 @@ const styles = stylex.create({
     width: "100%",
     fontSize: "1.2rem",
     fontWeight: 700,
+    color: "var(--font)",
   },
   h4: {
     display: "flex",
     width: "100%",
     fontSize: "1rem",
     fontWeight: 600,
-    color: "rgba(0, 19, 43, 0.58)",
+    color: "var(--text300)",
   },
   infos: {
     display: "flex",
@@ -138,11 +139,11 @@ const styles = stylex.create({
   author: {
     fontSize: "0.9rem",
     fontWeight: 600,
-    color: "#171717",
+    color: "var(--font)",
   },
   time: {
     fontSize: "0.9rem",
     fontWeight: 500,
-    color: "rgba(0, 19, 43, 0.58)",
+    color: "var(--text300)",
   },
 });

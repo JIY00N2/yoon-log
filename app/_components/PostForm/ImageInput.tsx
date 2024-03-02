@@ -5,6 +5,7 @@ import stylex from "@stylexjs/stylex";
 import { useFormStatus } from "react-dom";
 import useDragAndDrop from "@/app/_hooks/useDragAndDrop";
 import useContentContext from "@/app/_context/ContentContext/useContentContext";
+import { colors } from "@/app/globalTokens.stylex";
 
 export default function ImageInput() {
   const { setNewContent, isImageUploading, setIsImageUploading } =
@@ -74,7 +75,7 @@ export default function ImageInput() {
       <label
         htmlFor="image"
         {...stylex.props(
-          styles.draggingInput(isDragging ? "rgb(3, 152, 178)" : "#171717"),
+          styles.draggingInput(isDragging ? colors.point : "var(--font)"),
         )}
         ref={dragRef}
       >
@@ -101,9 +102,9 @@ const styles = stylex.create({
     padding: "0.5rem",
     borderRadius: "0.5rem",
     cursor: "pointer",
-    color: "#171717",
+    color: "var(--font)",
     borderStyle: "dashed",
-    backgroundColor: "rgba(2, 32, 71, 0.05)",
+    backgroundColor: "var(--text500)",
     fontWeight: 600,
     textAlign: "center",
     borderColor,

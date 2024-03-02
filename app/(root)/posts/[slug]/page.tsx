@@ -81,7 +81,7 @@ const styles = stylex.create({
   title: {
     fontSize: "2rem",
     fontWeight: 700,
-    color: "#171717",
+    color: "var(--font)",
   },
   infos: {
     display: "flex",
@@ -97,13 +97,13 @@ const styles = stylex.create({
   author: {
     fontSize: "1.2rem",
     fontWeight: 700,
-    color: "#171717",
+    color: "var(--font)",
   },
   time: {
     textAlign: "center",
     fontSize: "1rem",
     fontWeight: 600,
-    color: "#171717",
+    color: "var(--font)",
   },
   thumbnail: {
     display: "flex",

@@ -5,6 +5,7 @@ import Footer from "./_components/Footer";
 import stylex from "@stylexjs/stylex";
 import ScrollToHash from "./_components/ScrollToHash";
 import { ToastProvider } from "./_context/ToastContext";
+import { ThemeProvider } from "./_context/ThemeContext";
 
 export const metadata: Metadata = {
   title: "Yoon's log",
@@ -19,38 +20,35 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      {...stylex.props(styles.reset)}
+      id="html"
     >
-      <body {...stylex.props(styles.reset, styles.body)}>
-        <ToastProvider
-          defaultDuration={1000}
-          containerStyles={toastContainerStyles.custom}
-        >
-          <main {...stylex.props(styles.main)}>
-            <div {...stylex.props(styles.mainInner)}>
-              <ScrollToHash />
-              {children}
-            </div>
-          </main>
-          <Header />
-          <Footer />
-        </ToastProvider>
-      </body>
+      <ThemeProvider>
+        <body {...stylex.props(styles.body)}>
+          <ToastProvider defaultDuration={1000}>
+            <main {...stylex.props(styles.main)}>
+              <div {...stylex.props(styles.mainInner)}>
+                <ScrollToHash />
+                {children}
+              </div>
+            </main>
+            <Header />
+            <Footer />
+          </ToastProvider>
+        </body>
+      </ThemeProvider>
     </html>
   );
 }
 
 const styles = stylex.create({
-  reset: {
-    margin: 0,
-    padding: 0,
+  html: {
     scrollBehavior: "smooth",
   },
   body: {
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
-    backgroundColor: "#fff",
+    backgroundColor: "var(--backGround)",
     overflowX: "hidden",
   },
   main: {
@@ -69,8 +67,4 @@ const styles = stylex.create({
     paddingHorizontal: "30px",
     minWidth: "320px",
   },
-});
-
-const toastContainerStyles = stylex.create({
-  custom: {},
 });

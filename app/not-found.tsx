@@ -1,5 +1,6 @@
 import Link from "next/link";
 import stylex from "@stylexjs/stylex";
+import { colors } from "./globalTokens.stylex";
 
 export default function NotFound() {
   return (
@@ -24,15 +25,16 @@ const styles = stylex.create({
     justifyContent: "center",
     marginTop: "180px",
     gap: "0.5rem",
+    color: "var(--font)",
   },
   link: {
     marginTop: "20px",
     paddingHorizontal: "1rem",
     paddingVertical: "0.5rem",
     borderRadius: "0.3rem",
-    backgroundColor: "rgb(3, 152, 178)",
+    backgroundColor: colors.point,
     fontSize: "1.2rem",
     fontWeight: 700,
-    color: "white",
+    color: colors.white,
   },
 });

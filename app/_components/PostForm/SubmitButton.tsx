@@ -40,8 +40,8 @@ const styles = stylex.create({
   button: {
     padding: "0.5rem 1rem 0.5rem 1rem",
     borderRadius: "0.5rem",
-    color: "#171717",
-    backgroundColor: "rgba(2, 32, 71, 0.05)",
+    color: "var(--font)",
+    backgroundColor: "var(--text500)",
     fontWeight: 600,
   },
 });

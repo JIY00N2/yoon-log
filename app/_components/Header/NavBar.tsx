@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { navbarList } from "./navbarList";
 import LoginButton from "./LoginButton";
+import { colors } from "@/app/globalTokens.stylex";
 
 export default function NavBar({ style }: { style?: StyleXStyles }) {
   return (
@@ -54,12 +55,12 @@ const styles = stylex.create({
     borderRadius: "0.3rem",
     backgroundColor: {
       default: "inherit",
-      ":hover": "rgba(2, 32, 71, 0.05)",
+      ":hover": "var(--text500)",
     },
     color: {
-      default: "inherit",
-      ":focus": "rgb(3, 152, 178)",
-      ":active": "rgb(3, 152, 178)",
+      default: "var(--font)",
+      ":focus": colors.point,
+      ":active": colors.point,
     },
     textAlign: "center",
   },

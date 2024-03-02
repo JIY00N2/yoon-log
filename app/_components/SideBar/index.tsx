@@ -64,7 +64,7 @@ const styles = stylex.create({
     paddingHorizontal: "1rem",
     paddingVertical: "0.5rem",
     borderLeftWidth: "2px",
-    borderLeftColor: "rgba(0, 27, 55, 0.1)",
+    borderLeftColor: "var(--text100)",
     borderLeftStyle: "solid",
     gap: "0.3rem",
     minHeight: "150px",
@@ -78,7 +78,7 @@ const styles = stylex.create({
     display: "none",
   },
   link: (marginLeft: string) => ({
-    color: "rgba(0,19,43,.58)",
+    color: "var(--text300)",
     fontSize: "0.9rem",
     wordWrap: "break-word",
     marginLeft,

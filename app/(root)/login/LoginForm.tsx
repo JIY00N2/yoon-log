@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Error, Success } from "@/app/_components/Toast";
 import useToast from "@/app/_context/ToastContext/useToast";
+import { colors } from "@/app/globalTokens.stylex";
 
 type Props = {
   handleLogin: (
@@ -94,7 +95,7 @@ const styles = stylex.create({
     padding: "1rem",
     borderWidth: "2px",
     borderStyle: "solid",
-    borderColor: "rgba(0,19,43,.58)",
+    borderColor: "var(--text300)",
     gap: "1rem",
   },
   box: {
@@ -108,13 +109,14 @@ const styles = stylex.create({
   label: {
     fontSize: "1.2rem",
     fontWeight: 700,
+    color: "var(--font)",
   },
   text: {
-    color: "rgba(0, 12, 30, 0.8)",
+    color: "var(--text400)",
   },
   error: {
     fontSize: "0.8rem",
-    color: "red",
+    color: colors.red,
   },
   input: {
     width: "100%",
