@@ -1,7 +1,7 @@
 "use client";
 
 import stylex from "@stylexjs/stylex";
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 
 const INDENT_MAP: { [key in string]: number } = {
   H1: 0,
@@ -13,6 +13,7 @@ export default function SideBar() {
   const [hTags, setHTags] = useState<{ headingId: string; indent: number }[]>(
     [],
   );
+  const [activeAnchor, setActiveAnchor] = useState<number | null>(null);
 
   useEffect(() => {
     const headings = document.querySelectorAll("h1, h2, h3");
@@ -26,14 +27,23 @@ export default function SideBar() {
     setHTags(newHTag);
   }, []);
 
+  const handleClick = (e: MouseEvent<HTMLAnchorElement>, id: number) => {
+    e.stopPropagation();
+    setActiveAnchor(id);
+  };
+
   return (
     <div {...stylex.props(styles.sidebar)}>
       <ul {...stylex.props(hTags.length ? styles.ul : styles.hidden)}>
         {hTags.map(({ headingId, indent }, id) => (
           <a
-            key={id}
             href={`#${headingId}`}
-            {...stylex.props(styles.a(`${indent}px`))}
+            key={id}
+            onClick={(e) => handleClick(e, id)}
+            {...stylex.props(
+              styles.a(`${indent}px`),
+              id === activeAnchor && styles.active,
+            )}
           >
             {headingId}
           </a>
@@ -81,16 +91,19 @@ const styles = stylex.create({
     color: {
       default: "var(--text300)",
       ":hover": "var(--font)",
-      ":active": "var(--font)",
     },
     fontSize: "0.9rem",
     wordWrap: "break-word",
     transition: "transform 0.125s ease-in-out",
     transform: {
       default: "none",
-      ":hover": "scale(1.05)",
-      ":active": "scale(1.05)",
+      ":hover": "scale(1.025)",
     },
     marginLeft,
   }),
+  active: {
+    color: "var(--font)",
+    transition: "transform 0.125s ease-in-out",
+    transform: "scale(1.05)",
+  },
 });
