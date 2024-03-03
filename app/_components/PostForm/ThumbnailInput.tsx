@@ -7,7 +7,7 @@ import { ChangeEvent, useCallback, useState } from "react";
 import { useFormStatus } from "react-dom";
 
 export const DEFAULT_THUMBNAIL_URL =
-  "https://oxpdlbqcseajmjnxawbb.supabase.co/storage/v1/object/public/yoonBucket/pexels-pixabay-162616%20(1).jpg";
+  "https://oxpdlbqcseajmjnxawbb.supabase.co/storage/v1/object/public/yoonBucket/default-thumbnail.jpg";
 
 export default function ThumbnailInput({
   thumbnailUrl,
