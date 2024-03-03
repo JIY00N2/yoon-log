@@ -45,7 +45,7 @@ export default async function PostEditPage({
       };
     }
     revalidatePath("/");
-    revalidatePath(`/posts/${decodeURI(params.slug)}`);
+    revalidatePath(`/posts/${params.slug}`);
     return {
       success: true,
       error: false,
