@@ -111,6 +111,7 @@ const styles = stylex.create({
     borderWidth: "1px",
     borderStyle: "solid",
     borderColor: "var(--text200)",
+    color: "var(--font)",
   },
   defaultFileInput: {
     display: "none",

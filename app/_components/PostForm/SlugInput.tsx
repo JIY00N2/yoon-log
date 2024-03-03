@@ -69,5 +69,6 @@ const styles = stylex.create({
     },
     backgroundColor: "var(--backGround)",
     caretColor: "var(--font)",
+    color: "inherit",
   },
 });
