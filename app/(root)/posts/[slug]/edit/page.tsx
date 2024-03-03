@@ -45,12 +45,12 @@ export default async function PostEditPage({
       };
     }
     revalidatePath("/");
-    revalidatePath(`/posts/${decodeURI(newPost.slug)}`);
+    revalidatePath(`/posts/${decodeURI(params.slug)}`);
     return {
       success: true,
       error: false,
       message: "포스트 수정 성공",
-      redirectUrl: `/posts/${newPost.slug}`,
+      redirectUrl: `/posts/${params.slug}`,
     };
   }
 
