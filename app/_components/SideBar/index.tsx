@@ -27,10 +27,20 @@ export default function SideBar() {
     setHTags(newHTag);
   }, []);
 
-  const handleClick = (e: MouseEvent<HTMLAnchorElement>, id: number) => {
-    e.stopPropagation();
-    setActiveAnchor(id);
-  };
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      const hTagId = decodeURI(hash.slice(1));
+      const id = hTags.findIndex((h) => h.headingId === hTagId);
+      setActiveAnchor(id);
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, [hTags]);
 
   return (
     <div {...stylex.props(styles.sidebar)}>
@@ -39,7 +49,6 @@ export default function SideBar() {
           <a
             href={`#${headingId}`}
             key={id}
-            onClick={(e) => handleClick(e, id)}
             {...stylex.props(
               styles.a(`${indent}px`),
               id === activeAnchor && styles.active,
