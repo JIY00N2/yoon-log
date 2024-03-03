@@ -36,6 +36,8 @@ export default async function PostEditPage({
       thumbnailUrl,
       content,
     });
+    revalidatePath("/");
+    revalidatePath(`/posts/${params.slug}`);
     if (!newPost) {
       return {
         success: false,
@@ -44,8 +46,6 @@ export default async function PostEditPage({
         redirectUrl: "/",
       };
     }
-    revalidatePath("/");
-    revalidatePath(`/posts/${params.slug}`);
     return {
       success: true,
       error: false,
