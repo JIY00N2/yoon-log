@@ -1,18 +1,30 @@
+"use client";
+
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { navbarList } from "./navbarList";
 import LoginButton from "./LoginButton";
 import { colors } from "@/app/globalTokens.stylex";
+import { usePathname } from "next/navigation";
 
 export default function NavBar({ style }: { style?: StyleXStyles }) {
+  const pathname = usePathname();
+  const [activeLink, setActiveLink] = useState<number | null>(null);
+  const activePath = useMemo(() => ["/", "/about", "/resume"], []);
+
+  useEffect(() => {
+    const id = activePath.findIndex((path) => path === pathname);
+    setActiveLink(id);
+  }, [pathname, activePath]);
+
   return (
     <ul {...stylex.props(styles.ul, style)}>
       {navbarList.map(({ href, text }, id) => (
         <Link
-          href={href}
           key={id}
-          {...stylex.props(styles.link)}
+          href={href}
+          {...stylex.props(styles.link, id === activeLink && styles.active)}
         >
           {text}
         </Link>
@@ -57,11 +69,10 @@ const styles = stylex.create({
       default: "inherit",
       ":hover": "var(--text500)",
     },
-    color: {
-      default: "var(--font)",
-      ":focus": colors.point,
-      ":active": colors.point,
-    },
+    color: "var(--font)",
     textAlign: "center",
+  },
+  active: {
+    color: colors.point,
   },
 });
