@@ -29,16 +29,19 @@ export default async function PostPage({
               <AdminButton slug={params.slug} />
             </div>
           </section>
-          <section {...stylex.props(styles.thumbnail)}>
-            {post.thumbnailUrl && (
-              <Image
-                src={post.thumbnailUrl}
-                alt="thumbnail"
-                priority
-                layout="fill"
-                objectFit="cover"
-              />
-            )}
+          <section {...stylex.props(styles.subContainer)}>
+            <section {...stylex.props(styles.thumbnail)}>
+              {post.thumbnailUrl && (
+                <Image
+                  src={post.thumbnailUrl}
+                  alt="thumbnail"
+                  priority
+                  layout="fill"
+                  objectFit="cover"
+                />
+              )}
+            </section>
+            <div {...stylex.props(styles.subTitle)}>{post.subTitle}</div>
           </section>
           <PostSection content={post.content} />
         </div>
@@ -105,11 +108,27 @@ const styles = stylex.create({
     fontWeight: 600,
     color: "var(--font)",
   },
+  subContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "1rem",
+    marginBottom: "3rem",
+  },
   thumbnail: {
     display: "flex",
     position: "relative",
     borderRadius: "0.6rem",
     overflow: "hidden",
     aspectRatio: "2",
+    marginBottom: "1rem",
+  },
+  subTitle: {
+    fontSize: "1.2rem",
+    fontWeight: 600,
+    color: "var(--text300)",
+    borderLeftWidth: "3px",
+    borderLeftStyle: "solid",
+    borderLeftColor: "var(--text300)",
+    paddingLeft: "1rem",
   },
 });
