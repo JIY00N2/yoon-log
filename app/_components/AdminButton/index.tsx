@@ -13,12 +13,12 @@ export default function AdminButton({ slug }: { slug: string }) {
   const { toast } = useToast();
 
   async function handleDeleteClick() {
-    await fetch(`/api/admin/posts/${slug}`, {
+    await fetch(`/api/admin/posts/${decodeURI(slug)}`, {
       method: "DELETE",
     });
     const [resHome, resPost] = await Promise.all([
       fetch("/api/admin/revalidate?path=/"),
-      fetch(`/api/admin/revalidate?path=/posts/${slug}`),
+      fetch(`/api/admin/revalidate?path=/posts/${decodeURI(slug)}`),
     ]);
     const home = (await resHome.json()) as {
       revalidated: boolean;
@@ -44,7 +44,7 @@ export default function AdminButton({ slug }: { slug: string }) {
       {cookies.isLogin && (
         <div {...stylex.props(styles.container)}>
           <Link
-            href={`/posts/${slug}/edit`}
+            href={`/posts/${decodeURI(slug)}/edit`}
             {...stylex.props(styles.font)}
           >
             수정
