@@ -25,7 +25,7 @@ export default function SideBar() {
       }
     });
     setHTags(newHTag);
-  }, [hTags]);
+  }, []);
 
   useEffect(() => {
     const handleHashChange = () => {
