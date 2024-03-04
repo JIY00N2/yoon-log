@@ -100,7 +100,11 @@ const styles = stylex.create({
   thumbnail: {
     display: "flex",
     aspectRatio: "2",
-    minHeight: "185px",
+    minHeight: {
+      default: "185px",
+      [MEDIA_TABLET]: "0px",
+      [MEDIA_MOBILE]: "0px",
+    },
     position: "relative",
     borderRadius: "0.6rem",
     overflow: "hidden",
