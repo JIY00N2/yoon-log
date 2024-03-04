@@ -29,10 +29,12 @@ export default function ContentTextarea({ style }: { style: StyleXStyles }) {
 const styles = stylex.create({
   content: {
     display: "flex",
+    width: "100%",
     gap: "1rem",
   },
   textarea: {
-    width: "100%",
+    width: "50%",
+    flex: "1",
     minHeight: "700px",
     backgroundColor: "var(--backGround)",
     caretColor: "var(--font)",
