@@ -5,7 +5,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const post = await PostsService.getPost(decodeURI(params.slug));
+  const post = await PostsService.getPost(params.slug);
 
   if (!post) {
     return {

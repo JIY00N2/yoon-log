@@ -6,7 +6,7 @@ export async function DELETE(
   { params }: { params: { slug: string } },
 ) {
   try {
-    await PostsService.deletePost(encodeURI(params.slug));
+    await PostsService.deletePost(params.slug);
     return NextResponse.json({ message: "Post successfully deleted!" });
   } catch (error) {
     return NextResponse.json(
