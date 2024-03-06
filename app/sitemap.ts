@@ -12,18 +12,18 @@ export async function generateSitemaps() {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const routesSiteMap = ["/", "/about", "/portfolio"].map((route) => ({
+  const routesSitemaps = ["/", "/about", "/portfolio"].map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: formattedDate(new Date()),
   }));
 
   const posts = await PostsService.getPosts();
-  const postsSiteMap = posts.map((post) => ({
+  const postsSitemaps = posts.map((post) => ({
     url: `${BASE_URL}/posts/${post.slug}`,
     lastModified: formattedDate(post.updatedAt),
   }));
 
-  const allSiteMap = [...routesSiteMap, ...postsSiteMap];
+  const sitemaps = [...routesSitemaps, ...postsSitemaps];
 
-  return allSiteMap;
+  return sitemaps;
 }
