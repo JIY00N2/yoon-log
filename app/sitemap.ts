@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import formattedDate from "./_utils/formattedDate";
 import { PostsService } from "./_lib/posts/service";
-import { BASE_URL } from "./_contants";
+import { BASE_URL } from "./_constants";
 
 export async function generateSitemaps() {
   const posts = await PostsService.getPosts();
