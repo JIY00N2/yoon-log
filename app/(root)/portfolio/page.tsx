@@ -1,11 +1,11 @@
 import TabSummary from "@/app/_components/TabSummary";
 import stylex from "@stylexjs/stylex";
 
-export default function ResumePage() {
+export default function PortfolioPage() {
   return (
     <TabSummary
-      title={"Resume"}
-      content={"이력서입니당"}
+      title={"Portfolio"}
+      content={"포트폴리오입니당"}
     />
   );
 }

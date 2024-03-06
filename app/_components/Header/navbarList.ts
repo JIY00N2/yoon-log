@@ -1,14 +1,14 @@
 export const navbarList = [
   {
     href: "/",
-    text: "포스트",
+    text: "Post",
   },
   {
     href: "/about",
-    text: "소개",
+    text: "About",
   },
   {
-    href: "/resume",
-    text: "이력서",
+    href: "/portfolio",
+    text: "Portfolio",
   },
 ];

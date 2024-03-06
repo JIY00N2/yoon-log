@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "이력서",
-  description: "이력서 페이지입니다.",
+  title: "포트폴리오",
+  description: "포트폴리오 페이지입니다.",
 };
 
-export default function ResumeLayout({
+export default function PortfolioLayout({
   children,
 }: {
   children: React.ReactNode;

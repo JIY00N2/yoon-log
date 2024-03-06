@@ -38,13 +38,13 @@ export default function LoginButton({ style }: { style: StyleXStyles }) {
             href="/write"
             {...stylex.props(style)}
           >
-            새 글 작성
+            Write
           </Link>
           <button
             onClick={handleLogoutClick}
             {...stylex.props(style)}
           >
-            로그아웃
+            Logout
           </button>
         </div>
       ) : (
@@ -52,7 +52,7 @@ export default function LoginButton({ style }: { style: StyleXStyles }) {
           href={`/login?redirect=${pathname}`}
           {...stylex.props(style)}
         >
-          관리자
+          Admin
         </Link>
       )}
     </div>
