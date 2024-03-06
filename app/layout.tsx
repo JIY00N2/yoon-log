@@ -25,7 +25,7 @@ export default function RootLayout({
       <head>
         <meta
           name="google-site-verification"
-          content="a43m2EcNn3YyiwTjKE9g0yDNGaPC7pZIOS3b3tVYN0w"
+          content={process.env.GOOGLE_SITE_VERIFICATION!}
         />
         <ThemeProvider>
           <body {...stylex.props(styles.body)}>
