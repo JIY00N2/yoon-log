@@ -6,10 +6,15 @@ import stylex from "@stylexjs/stylex";
 import ScrollToHash from "./_components/ScrollToHash";
 import { ToastProvider } from "./_context/ToastContext";
 import { ThemeProvider } from "./_context/ThemeContext";
+import { BASE_URL } from "./_constants";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: "Yoon's log",
   description: "Yoon's dev log",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({

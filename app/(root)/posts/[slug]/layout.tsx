@@ -19,6 +19,9 @@ export async function generateMetadata({
     openGraph: {
       images: post.thumbnailUrl,
     },
+    alternates: {
+      canonical: `/posts/${post.slug}`,
+    },
   };
 }
 
