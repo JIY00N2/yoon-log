@@ -1,8 +1,7 @@
 import { MetadataRoute } from "next";
 import formattedDate from "./_utils/formattedDate";
 import { PostsService } from "./_lib/posts/service";
-
-const BASE_URL = "https://yoon-log.vercel.app";
+import { BASE_URL } from "./_contants";
 
 export async function generateSitemaps() {
   const posts = await PostsService.getPosts();
