@@ -22,20 +22,26 @@ export default function RootLayout({
       lang="ko"
       id="html"
     >
-      <ThemeProvider>
-        <body {...stylex.props(styles.body)}>
-          <ToastProvider defaultDuration={1000}>
-            <main {...stylex.props(styles.main)}>
-              <div {...stylex.props(styles.mainInner)}>
-                <ScrollToHash />
-                {children}
-              </div>
-            </main>
-            <Header />
-            <Footer />
-          </ToastProvider>
-        </body>
-      </ThemeProvider>
+      <head>
+        <meta
+          name="google-site-verification"
+          content="a43m2EcNn3YyiwTjKE9g0yDNGaPC7pZIOS3b3tVYN0w"
+        />
+        <ThemeProvider>
+          <body {...stylex.props(styles.body)}>
+            <ToastProvider defaultDuration={1000}>
+              <main {...stylex.props(styles.main)}>
+                <div {...stylex.props(styles.mainInner)}>
+                  <ScrollToHash />
+                  {children}
+                </div>
+              </main>
+              <Header />
+              <Footer />
+            </ToastProvider>
+          </body>
+        </ThemeProvider>
+      </head>
     </html>
   );
 }
