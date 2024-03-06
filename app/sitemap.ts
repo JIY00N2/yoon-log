@@ -7,7 +7,7 @@ const BASE_URL = "https://yoon-log.vercel.app";
 export async function generateSitemaps() {
   const posts = await PostsService.getPosts();
   return posts.map((post) => ({
-    slug: post.slug,
+    id: post._id,
   }));
 }
 
