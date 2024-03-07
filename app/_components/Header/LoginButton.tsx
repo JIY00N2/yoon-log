@@ -31,7 +31,7 @@ export default function LoginButton({ style }: { style: StyleXStyles }) {
   }
 
   return (
-    <div {...stylex.props(styles.layout)}>
+    <li {...stylex.props(styles.layout)}>
       {cookies.isLogin ? (
         <div {...stylex.props(styles.container)}>
           <Link
@@ -55,7 +55,7 @@ export default function LoginButton({ style }: { style: StyleXStyles }) {
           Admin
         </Link>
       )}
-    </div>
+    </li>
   );
 }
 
@@ -69,6 +69,7 @@ const styles = stylex.create({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
+    listStyleType: "none",
   },
   container: {
     display: "flex",

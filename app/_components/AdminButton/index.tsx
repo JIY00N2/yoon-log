@@ -42,7 +42,7 @@ export default function AdminButton({ slug }: { slug: string }) {
   return (
     <ClientBoundary>
       {cookies.isLogin && (
-        <div {...stylex.props(styles.container)}>
+        <li {...stylex.props(styles.container)}>
           <Link
             href={`/posts/${decodeURI(slug)}/edit`}
             {...stylex.props(styles.font)}
@@ -55,7 +55,7 @@ export default function AdminButton({ slug }: { slug: string }) {
           >
             삭제
           </button>
-        </div>
+        </li>
       )}
     </ClientBoundary>
   );
@@ -65,6 +65,7 @@ const styles = stylex.create({
   container: {
     display: "flex",
     gap: "1rem",
+    listStyleType: "none",
   },
   font: {
     color: "var(--font)",
