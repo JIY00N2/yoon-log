@@ -10,7 +10,7 @@ import { BASE_URL } from "./_constants";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: "Yoon's log",
+  title: "Yoon Log",
   description: "Yoon's dev log",
   alternates: {
     canonical: "/",
