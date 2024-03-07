@@ -21,13 +21,17 @@ export default function NavBar({ style }: { style?: StyleXStyles }) {
   return (
     <ul {...stylex.props(styles.ul, style)}>
       {navbarList.map(({ href, text }, id) => (
-        <Link
+        <li
           key={id}
-          href={href}
-          {...stylex.props(styles.link, id === activeLink && styles.active)}
+          {...stylex.props(styles.li)}
         >
-          <li {...stylex.props(styles.li)}>{text}</li>
-        </Link>
+          <Link
+            href={href}
+            {...stylex.props(styles.link, id === activeLink && styles.active)}
+          >
+            {text}
+          </Link>
+        </li>
       ))}
       <LoginButton style={styles.link} />
     </ul>
@@ -45,6 +49,15 @@ const styles = stylex.create({
       default: "1.5rem",
       [MEDIA_TABLET]: "1.5rem",
       [MEDIA_MOBILE]: "0.2rem",
+    },
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  li: {
+    display: "flex",
+    listStyleType: "none",
+    width: {
+      [MEDIA_MOBILE]: "100%",
     },
   },
   link: {
@@ -71,9 +84,6 @@ const styles = stylex.create({
     },
     color: "var(--font)",
     textAlign: "center",
-  },
-  li: {
-    listStyleType: "none",
   },
   active: {
     color: colors.point,
