@@ -8,6 +8,7 @@ export default function Footer() {
       <div {...stylex.props(styles.copyright)}>Copyright © 2024 JIYOON2</div>
       <Link
         href="https://github.com/JIY00N2"
+        aria-label="github"
         {...stylex.props(styles.copyright)}
       >
         <GithubSvg
