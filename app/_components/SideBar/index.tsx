@@ -21,11 +21,7 @@ export default function SideBar() {
 
   useEffect(() => {
     const headings = document.querySelectorAll("h1, h2, h3");
-    const newHTag: {
-      headingId: string;
-      headingText: string;
-      indent: number;
-    }[] = [];
+    const newHTag: HTag[] = [];
     headings.forEach((h) => {
       const headingId = h.getAttribute("id");
       const headingText = h.textContent;
