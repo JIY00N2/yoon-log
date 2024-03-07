@@ -39,8 +39,9 @@ export default function DropDown() {
   return (
     <menu {...stylex.props(styles.menu)}>
       <button
-        {...stylex.props(styles.button)}
+        aria-label="menu"
         onClick={handleClickMenu}
+        {...stylex.props(styles.button)}
       >
         <MenuSvg
           width={24}
