@@ -46,16 +46,17 @@ export default function SideBar() {
     <div {...stylex.props(styles.sidebar)}>
       <ul {...stylex.props(hTags.length ? styles.ul : styles.hidden)}>
         {hTags.map(({ headingId, indent }, id) => (
-          <a
-            href={`#${headingId}`}
+          <li
             key={id}
-            {...stylex.props(
-              styles.a(`${indent}px`),
-              id === activeAnchor && styles.active,
-            )}
+            {...stylex.props(styles.li(`${indent}px`))}
           >
-            {headingId}
-          </a>
+            <a
+              href={`#${headingId}`}
+              {...stylex.props(styles.a, id === activeAnchor && styles.active)}
+            >
+              {headingId}
+            </a>
+          </li>
         ))}
       </ul>
     </div>
@@ -92,10 +93,14 @@ const styles = stylex.create({
       display: "none",
     },
   },
+  li: (marginLeft: string) => ({
+    listStyleType: "none",
+    marginLeft,
+  }),
   hidden: {
     display: "none",
   },
-  a: (marginLeft: string) => ({
+  a: {
     color: {
       default: "var(--text300)",
       ":hover": "var(--font)",
@@ -107,8 +112,7 @@ const styles = stylex.create({
       default: "none",
       ":hover": "scale(1.025)",
     },
-    marginLeft,
-  }),
+  },
   active: {
     color: "var(--font)",
     transition: "transform 0.125s ease-in-out",
