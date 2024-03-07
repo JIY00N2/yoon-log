@@ -1,7 +1,7 @@
 "use client";
 
 import stylex from "@stylexjs/stylex";
-import { MouseEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const INDENT_MAP: { [key in string]: number } = {
   H1: 0,
@@ -9,19 +9,28 @@ const INDENT_MAP: { [key in string]: number } = {
   H3: 20,
 };
 
+type HTag = {
+  headingId: string;
+  headingText: string;
+  indent: number;
+};
+
 export default function SideBar() {
-  const [hTags, setHTags] = useState<{ headingId: string; indent: number }[]>(
-    [],
-  );
+  const [hTags, setHTags] = useState<HTag[]>([]);
   const [activeAnchor, setActiveAnchor] = useState<number | null>(null);
 
   useEffect(() => {
     const headings = document.querySelectorAll("h1, h2, h3");
-    const newHTag: { headingId: string; indent: number }[] = [];
+    const newHTag: {
+      headingId: string;
+      headingText: string;
+      indent: number;
+    }[] = [];
     headings.forEach((h) => {
       const headingId = h.getAttribute("id");
-      if (headingId && h.tagName in INDENT_MAP) {
-        newHTag.push({ headingId, indent: INDENT_MAP[h.tagName] });
+      const headingText = h.textContent;
+      if (headingId && headingText && h.tagName in INDENT_MAP) {
+        newHTag.push({ headingId, headingText, indent: INDENT_MAP[h.tagName] });
       }
     });
     setHTags(newHTag);
@@ -45,7 +54,7 @@ export default function SideBar() {
   return (
     <div {...stylex.props(styles.sidebar)}>
       <ul {...stylex.props(hTags.length ? styles.ul : styles.hidden)}>
-        {hTags.map(({ headingId, indent }, id) => (
+        {hTags.map(({ headingId, headingText, indent }, id) => (
           <li
             key={id}
             {...stylex.props(styles.li(`${indent}px`))}
@@ -54,7 +63,7 @@ export default function SideBar() {
               href={`#${headingId}`}
               {...stylex.props(styles.a, id === activeAnchor && styles.active)}
             >
-              {headingId}
+              {headingText}
             </a>
           </li>
         ))}
