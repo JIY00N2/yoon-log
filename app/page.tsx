@@ -42,7 +42,7 @@ export default async function HomePage() {
                 <div {...stylex.props(styles.text)}>
                   <div {...stylex.props(styles.h)}>
                     <h2 {...stylex.props(styles.h2)}>{post.title}</h2>
-                    <h4 {...stylex.props(styles.h4)}>{post.subTitle}</h4>
+                    <h3 {...stylex.props(styles.h3)}>{post.subTitle}</h3>
                   </div>
                   <div {...stylex.props(styles.infos)}>
                     <span {...stylex.props(styles.author)}>By Yoon</span>
@@ -136,7 +136,7 @@ const styles = stylex.create({
     WebkitLineClamp: 1,
     WebkitBoxOrient: "vertical",
   },
-  h4: {
+  h3: {
     width: "100%",
     height: "70px",
     flexGrow: "1",
