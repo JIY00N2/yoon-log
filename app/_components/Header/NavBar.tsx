@@ -26,7 +26,7 @@ export default function NavBar({ style }: { style?: StyleXStyles }) {
           href={href}
           {...stylex.props(styles.link, id === activeLink && styles.active)}
         >
-          {text}
+          <li {...stylex.props(styles.li)}>{text}</li>
         </Link>
       ))}
       <LoginButton style={styles.link} />
@@ -71,6 +71,9 @@ const styles = stylex.create({
     },
     color: "var(--font)",
     textAlign: "center",
+  },
+  li: {
+    listStyleType: "none",
   },
   active: {
     color: colors.point,
