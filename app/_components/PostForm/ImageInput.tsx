@@ -6,12 +6,15 @@ import { useFormStatus } from "react-dom";
 import useDragAndDrop from "@/app/_hooks/useDragAndDrop";
 import useContentContext from "@/app/_context/ContentContext/useContentContext";
 import { colors } from "@/app/globalTokens.stylex";
+import useToast from "@/app/_context/ToastContext/useToast";
+import { Error, Success } from "../Toast";
 
 export default function ImageInput() {
   const { setNewContent, isImageUploading, setIsImageUploading } =
     useContentContext();
   // pending은 PostForm의 form 내부의 button submit과 관련
   const { pending } = useFormStatus();
+  const { toast } = useToast();
 
   const uploadFile = useCallback(
     async (file: File) => {
@@ -27,18 +30,19 @@ export default function ImageInput() {
           imageFileName: string;
           imageUrl: string;
         };
-        let url = "![이미지...]()";
+        let url = `<p align="center"><img src=${""} alt=${""} width="100%" height="100%"/></p>`;
         if (data.imageUrl) {
-          url = `![${data.imageFileName}](${data.imageUrl})`;
+          url = `<p align="center"><img src=${data.imageUrl} alt=${data.imageFileName} width="100%" height="100%" /></p>`;
         }
         setNewContent((content) => content + url);
+        toast(<Success message={"이미지 업로드 성공!"} />);
       } catch (error) {
-        // TODO: 토스트 ui
+        toast(<Error message={(error as Error).message} />);
       } finally {
         setIsImageUploading(false);
       }
     },
-    [setNewContent, setIsImageUploading],
+    [setNewContent, setIsImageUploading, toast],
   );
 
   const handleFileInputChange = useCallback(
