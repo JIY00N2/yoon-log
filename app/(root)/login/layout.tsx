@@ -1,8 +1,15 @@
 import { Metadata } from "next";
 
+const TITLE = "관리자 로그인";
+const DESCRIPTION = "관리자 로그인 페이지입니다.";
+
 export const metadata: Metadata = {
-  title: "관리자 로그인",
-  description: "관리자 로그인 페이지입니다.",
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+  },
   alternates: {
     canonical: "/login",
   },

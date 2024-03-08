@@ -1,5 +1,9 @@
 import { PostsService } from "@/app/_lib/posts/service";
 
+const TITLE = "글 수정";
+const NO_TITLE = "글을 찾을 수 없습니다.";
+const DESCRIPTION = "글 수정 페이지입니다.";
+
 export async function generateMetadata({
   params,
 }: {
@@ -9,14 +13,16 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "글을 찾을 수 없습니다.",
+      title: NO_TITLE,
     };
   }
 
   return {
-    title: `${post.title} 글 수정`,
-    description: `${post.title} 글 수정 페이지입니다.`,
+    title: `${post.title} ${TITLE}`,
+    description: `${post.subTitle} ${DESCRIPTION}`,
     openGraph: {
+      title: `${post.title} ${TITLE}`,
+      description: `${post.subTitle} ${DESCRIPTION}`,
       images: post.thumbnailUrl,
     },
   };
