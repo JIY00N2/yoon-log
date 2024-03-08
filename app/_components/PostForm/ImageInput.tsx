@@ -32,7 +32,7 @@ export default function ImageInput() {
         };
         let url = `<p align="center"><img src=${""} alt=${""} width="100%" height="100%"/></p>`;
         if (data.imageUrl) {
-          url = `<p align="center"><img src=${data.imageUrl} alt=${data.imageFileName} width="100%" height="100%" /></p>`;
+          url = `<p align="center"><img src="${data.imageUrl}" alt="${data.imageFileName}" width="100%" height="100%" /></p>`;
         }
         setNewContent((content) => content + url);
         toast(<Success message={"이미지 업로드 성공!"} />);
