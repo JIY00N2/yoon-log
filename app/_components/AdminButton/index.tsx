@@ -13,29 +13,35 @@ export default function AdminButton({ slug }: { slug: string }) {
   const { toast } = useToast();
 
   async function handleDeleteClick() {
-    await fetch(`/api/admin/posts/${decodeURI(slug)}`, {
-      method: "DELETE",
-    });
-    const [resHome, resPost] = await Promise.all([
-      fetch("/api/admin/revalidate?path=/"),
-      fetch(`/api/admin/revalidate?path=/posts/${decodeURI(slug)}`),
-    ]);
-    const home = (await resHome.json()) as {
-      revalidated: boolean;
-      message?: string;
-    };
-    const post = (await resPost.json()) as {
-      revalidated: boolean;
-      message?: string;
-    };
-    if (home.revalidated && post.revalidated) {
-      toast(<Success message="포스트 삭제 성공!" />);
-      router.replace("/");
-      router.refresh();
-    } else {
-      toast(
-        <Error message={home.message || post.message || "포스트 삭제 실패!"} />,
-      );
+    //TODO - 추후에 모달로 변경
+    const confirmResult = confirm("정말 삭제하시겠습니까?");
+    if (confirmResult) {
+      await fetch(`/api/admin/posts/${decodeURI(slug)}`, {
+        method: "DELETE",
+      });
+      const [resHome, resPost] = await Promise.all([
+        fetch("/api/admin/revalidate?path=/"),
+        fetch(`/api/admin/revalidate?path=/posts/${decodeURI(slug)}`),
+      ]);
+      const home = (await resHome.json()) as {
+        revalidated: boolean;
+        message?: string;
+      };
+      const post = (await resPost.json()) as {
+        revalidated: boolean;
+        message?: string;
+      };
+      if (home.revalidated && post.revalidated) {
+        toast(<Success message="포스트 삭제 성공!" />);
+        router.replace("/");
+        router.refresh();
+      } else {
+        toast(
+          <Error
+            message={home.message || post.message || "포스트 삭제 실패!"}
+          />,
+        );
+      }
     }
   }
 
