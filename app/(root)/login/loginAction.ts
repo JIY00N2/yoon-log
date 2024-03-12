@@ -20,12 +20,12 @@ export async function loginAction(
     if (isAdmin) {
       const alg = "HS256";
       const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
-      const jwtToken = await new SignJWT({ username: "admin" })
+      const jwt = await new SignJWT({ username: "admin" })
         .setProtectedHeader({ alg })
         .setExpirationTime("24h")
         .sign(secret);
       cookies().set("isLogin", "true");
-      cookies().set("jwt", jwtToken, {
+      cookies().set("jwt", jwt, {
         httpOnly: true,
         secure: true,
         maxAge: 60 * 60 * 24,
