@@ -70,7 +70,7 @@ const styles = stylex.create({
     maxWidth: "1240px",
     marginHorizontal: "auto",
     marginTop: "100px",
-    marginBottom: "150px",
+    marginBottom: "40px",
   },
   mainInner: {
     justifyContent: "center",
