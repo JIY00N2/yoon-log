@@ -10,9 +10,6 @@
       sans-serif,
       -apple-system;
   }
-  html {
-    scroll-behavior: smooth;
-  }
   a {
     text-decoration: none;
     color: inherit;

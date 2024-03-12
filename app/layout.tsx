@@ -26,6 +26,7 @@ export default function RootLayout({
     <html
       lang="ko"
       id="html"
+      {...stylex.props(styles.html)}
     >
       <head>
         <meta
