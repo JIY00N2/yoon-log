@@ -37,7 +37,7 @@ export default function RootLayout({
             <ToastProvider defaultDuration={1000}>
               <main {...stylex.props(styles.main)}>
                 <div {...stylex.props(styles.mainInner)}>
-                  <ScrollToHash />
+                  <ScrollToHash offset={70} />
                   {children}
                 </div>
               </main>

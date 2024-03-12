@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-export default function ScrollToHash() {
+export default function ScrollToHash({ offset }: { offset: number }) {
   const router = useRouter();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function ScrollToHash() {
         return null;
       }
       const rect = h.getBoundingClientRect();
-      const height = rect.top + window.scrollY - 70;
+      const height = rect.top + window.scrollY - offset;
 
       window.scrollTo({ top: height });
     };
@@ -34,7 +34,7 @@ export default function ScrollToHash() {
       window.removeEventListener("hashchange", handleHashChange);
       window.removeEventListener("popstate", handlePopState);
     };
-  }, [router]);
+  }, [router, offset]);
 
   return null;
 }
