@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 export default function NavBar({ style }: { style?: StyleXStyles }) {
   const pathname = usePathname();
   const [activeLink, setActiveLink] = useState<number | null>(null);
-  const activePath = useMemo(() => ["/", "/about", "/portfolio"], []);
+  const activePath = useMemo(() => ["/", "/about"], []);
 
   useEffect(() => {
     const id = activePath.findIndex((path) => path === pathname);

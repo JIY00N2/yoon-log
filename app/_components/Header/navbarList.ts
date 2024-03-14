@@ -7,8 +7,4 @@ export const navbarList = [
     href: "/about",
     text: "About",
   },
-  {
-    href: "/portfolio",
-    text: "Portfolio",
-  },
 ];
