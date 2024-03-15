@@ -39,41 +39,42 @@ export default function Projects() {
           key={id}
           {...stylex.props(styles.article)}
         >
-          <div {...stylex.props(styles.titleContainer)}>
-            <h1 {...stylex.props(styles.title)}>{project.title}</h1>
-            <div {...stylex.props(styles.link)}>
-              <Link
-                href={project.githubHref}
-                aria-label="github"
-              >
-                <GithubSvg
-                  color={"var(--font)"}
-                  width={20}
-                  height={20}
-                />
-              </Link>
-              <Link
-                href={project.siteHref}
-                aria-label="link"
-              >
-                <LinkSvg
-                  color={colors.point}
-                  width={22}
-                  height={22}
-                />
-              </Link>
+          <section {...stylex.props(styles.container)}>
+            <div {...stylex.props(styles.titleContainer)}>
+              <h1 {...stylex.props(styles.title)}>{project.title}</h1>
+              <div {...stylex.props(styles.link)}>
+                <Link
+                  href={project.githubHref}
+                  aria-label="github"
+                >
+                  <GithubSvg
+                    color={"var(--font)"}
+                    width={20}
+                    height={20}
+                  />
+                </Link>
+                <Link
+                  href={project.siteHref}
+                  aria-label="link"
+                >
+                  <LinkSvg
+                    color={colors.point}
+                    width={22}
+                    height={22}
+                  />
+                </Link>
+              </div>
             </div>
-          </div>
-          <p {...stylex.props(styles.subTitle)}>{project.subTitle}</p>
-          <div {...stylex.props(styles.image)}>
+            <p {...stylex.props(styles.subTitle)}>{project.subTitle}</p>
+          </section>
+          <section {...stylex.props(styles.image)}>
             <Image
               src={project.imageSrc}
               alt={project.title}
               layout="fill"
               objectFit="cover"
-              style={{ borderRadius: "10px" }}
             />
-          </div>
+          </section>
         </article>
       ))}
     </div>
@@ -101,13 +102,18 @@ const styles = stylex.create({
   article: {
     display: "flex",
     flexDirection: "column",
+    justifyContent: "space-between",
     width: "100%",
-    height: "300px",
     borderWidth: "1px",
     borderStyle: "solid",
     borderColor: "var(--text300)",
     borderRadius: "5px",
     padding: "1rem",
+  },
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.5rem",
   },
   titleContainer: {
     display: "flex",
@@ -121,8 +127,6 @@ const styles = stylex.create({
   subTitle: {
     color: "var(--text300)",
     fontSize: "0.9rem",
-    marginTop: "5px",
-    marginBottom: "20px",
   },
   link: {
     display: "flex",
@@ -130,10 +134,11 @@ const styles = stylex.create({
   },
   image: {
     display: "flex",
-    aspectRatio: "3 / 2",
+    aspectRatio: "2",
     width: "100%",
-    maxHeight: "200px",
-    margin: "auto",
     position: "relative",
+    borderRadius: "10px",
+    marginTop: "2rem",
+    overflow: "hidden",
   },
 });
