@@ -19,6 +19,7 @@ export default function PostSection({ content }: Props) {
 
   const handleLoad = useCallback(() => {
     setIsLoaded(true);
+    window.dispatchEvent(new CustomEvent("mdload", { bubbles: true }));
   }, []);
 
   // before: section  => MDContent => useEffect => SideBar => MarkDown(dynamic)

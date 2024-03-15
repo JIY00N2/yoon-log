@@ -27,12 +27,18 @@ export default function ScrollToHash({ offset }: { offset: number }) {
       window.scrollTo({ top: height });
     };
 
+    const handleLoad = () => {
+      handleHashChange();
+    };
+
     window.addEventListener("hashchange", handleHashChange);
     window.addEventListener("popstate", handlePopState);
+    window.addEventListener("mdload", handleLoad);
 
     return () => {
       window.removeEventListener("hashchange", handleHashChange);
       window.removeEventListener("popstate", handlePopState);
+      window.addEventListener("mdload", handleLoad);
     };
   }, [router, offset]);
 
