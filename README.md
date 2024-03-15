@@ -6,6 +6,7 @@
 ## 1. 기술 스택
 
 - Next.js 14
+- TypeScript
 - StyleX
 - MongoDB
 - Supabase
@@ -15,7 +16,7 @@
 1. 포스트 CRUD
 2. 이미지 업로드
 3. 관리자 페이지(로그인, 로그아웃)
-4. About / Porfolio 페이지
+4. About 페이지
 5. 다크 모드
 
 ## 3. 제작 기간 & 참여 인원
