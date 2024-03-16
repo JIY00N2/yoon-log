@@ -29,17 +29,7 @@ export default function ScrollToHash({ offset }: { offset: number }) {
     };
 
     const handleLoad = () => {
-      // handleHashChange();
-      const hash = window.location.hash;
-      const hTagId = decodeURI(hash.slice(1));
-      const h = document.getElementById(hTagId);
-      if (!h) {
-        console.error("Element with id '" + hTagId + "' not found.");
-        return null;
-      }
-      const rect = h.getBoundingClientRect();
-      const height = rect.top + window.scrollY - offset;
-      window.scrollTo({ top: height });
+      handleHashChange();
     };
 
     window.addEventListener("hashchange", handleHashChange);
