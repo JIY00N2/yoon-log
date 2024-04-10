@@ -56,6 +56,7 @@ const styles = stylex.create({
   li: {
     display: "flex",
     listStyleType: "none",
+    whiteSpace: "nowrap",
     width: {
       [MEDIA_MOBILE]: "100%",
     },

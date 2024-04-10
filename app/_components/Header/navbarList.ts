@@ -7,4 +7,8 @@ export const navbarList = [
     href: "/about",
     text: "About",
   },
+  {
+    href: "/guestbook",
+    text: "방명록",
+  },
 ];
