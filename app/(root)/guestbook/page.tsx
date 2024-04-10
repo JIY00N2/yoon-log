@@ -4,7 +4,7 @@ import { GuestBookService } from "@/app/_lib/guestbook/service";
 import formattedDate from "@/app/_utils/formattedDate";
 import { revalidatePath } from "next/cache";
 
-export async function handleGuestBookCommentSubmit(
+async function handleGuestBookCommentSubmit(
   prevState: {
     success: boolean;
     error: boolean;
