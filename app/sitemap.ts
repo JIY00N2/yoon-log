@@ -18,6 +18,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${BASE_URL}/about`,
       lastModified: new Date(),
     },
+    {
+      url: `${BASE_URL}/guestbook`,
+      lastModified: new Date(),
+    },
     ...postsSitemap,
   ];
 }
