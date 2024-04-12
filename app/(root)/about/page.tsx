@@ -1,8 +1,8 @@
-import Container from "@/app/_components/AboutComponent/Container";
-import Experience from "@/app/_components/AboutComponent/Experience";
-import Introduce from "@/app/_components/AboutComponent/Introduce";
-import Projects from "@/app/_components/AboutComponent/Projects";
-import Skills from "@/app/_components/AboutComponent/Skiils";
+import Container from "@/app/(root)/about/Container";
+import Experience from "@/app/(root)/about/Experience";
+import Introduce from "@/app/(root)/about/Introduce";
+import Projects from "@/app/(root)/about/Projects";
+import Skills from "@/app/(root)/about/Skiils";
 import stylex from "@stylexjs/stylex";
 
 export default function AboutPage() {
