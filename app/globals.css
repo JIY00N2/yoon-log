@@ -57,6 +57,11 @@
   --text300: rgba(0, 19, 43, 0.58);
   --text400: rgba(0, 12, 30, 0.8);
   --text500: rgba(2, 32, 71, 0.05);
+  --gbbg100: #d8f9ff;
+  --gbbg200: #bcf5ff;
+  --gbbg300: #94efff;
+  --gbbg400: #75cfdf;
+  --gbbg500: #61b2c3;
 }
 
 .dark {

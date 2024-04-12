@@ -2,11 +2,11 @@
 
 import stylex from "@stylexjs/stylex";
 import SubmitButton from "./SubmitButton";
-import CommentInput from "./CommentInput";
 import { useFormState } from "react-dom";
 import useToast from "@/app/_context/ToastContext/useToast";
 import { useEffect } from "react";
-import { Error, Success } from "../Toast";
+import { Error, Success } from "../../_components/Toast";
+import GuestBookCommentInput from "./GuestBookCommentInput";
 
 type Props = {
   handleSubmit: (
@@ -41,11 +41,22 @@ export default function GuestBookCommentForm({ handleSubmit }: Props) {
   }, [formState, toast]);
 
   return (
-    <form action={formAction}>
-      <CommentInput />
+    <form
+      action={formAction}
+      {...stylex.props(styles.layout)}
+    >
+      <GuestBookCommentInput />
       <SubmitButton />
     </form>
   );
 }
 
-const styles = stylex.create({});
+const styles = stylex.create({
+  layout: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "10px",
+    marginVertical: "20px",
+  },
+});

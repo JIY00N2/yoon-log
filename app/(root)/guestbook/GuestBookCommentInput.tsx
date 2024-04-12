@@ -4,7 +4,7 @@ import stylex from "@stylexjs/stylex";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 
-export default function CommentInput() {
+export default function GuestBookCommentInput() {
   const { pending } = useFormStatus();
   const [text, setText] = useState("");
 
@@ -23,8 +23,19 @@ export default function CommentInput() {
       name="comment"
       onChange={handleChange}
       value={text}
+      {...stylex.props(styles.input)}
     />
   );
 }
 
-const styles = stylex.create({});
+const styles = stylex.create({
+  input: {
+    width: "600px",
+    height: "35px",
+    borderRadius: "10px",
+    paddingHorizontal: "10px",
+    borderColor: "black",
+    borderWidth: "1px",
+    borderStyle: "solid",
+  },
+});
