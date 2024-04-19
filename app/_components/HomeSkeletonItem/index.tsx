@@ -1,18 +1,25 @@
+import { animations } from "@/app/globalTokens.stylex";
 import stylex from "@stylexjs/stylex";
+
+const SUBTITLE_SKELETON_COUNT = 2;
 
 export default async function HomeSkeletonItem() {
   return (
     <>
       <article {...stylex.props(styles.post)}>
         <div {...stylex.props(styles.link)}>
-          <div {...stylex.props(styles.thumbnail)} />
+          <div {...stylex.props(styles.thumbnail, styles.animation)} />
           <div {...stylex.props(styles.text)}>
             <div {...stylex.props(styles.h)}>
-              <div {...stylex.props(styles.h1)} />
-              <div {...stylex.props(styles.h2)} />
-              <div {...stylex.props(styles.h2)} />
+              <div {...stylex.props(styles.h1, styles.animation)} />
+              {Array.from({ length: SUBTITLE_SKELETON_COUNT }, (_, id) => (
+                <div
+                  key={id}
+                  {...stylex.props(styles.h2, styles.animation)}
+                />
+              ))}
             </div>
-            <div {...stylex.props(styles.infos)} />
+            <div {...stylex.props(styles.infos, styles.animation)} />
           </div>
         </div>
       </article>
@@ -23,12 +30,6 @@ export default async function HomeSkeletonItem() {
 const MEDIA_TABLET =
   "@media (min-width: 701px) and (max-width: 1100px)" as const;
 const MEDIA_MOBILE = "@media (max-width: 700px)" as const;
-
-const loadingAnimation = stylex.keyframes({
-  "0%": { backgroundColor: "var(--skeletonDefault)" },
-  "50%": { backgroundColor: "var(--skeletonGradient)" },
-  "100%": { backgroundColor: "var(--skeletonDefault)" },
-});
 
 const styles = stylex.create({
   post: {
@@ -54,10 +55,6 @@ const styles = stylex.create({
     position: "relative",
     borderRadius: "0.6rem",
     overflow: "hidden",
-    animationName: loadingAnimation,
-    animationDuration: "1.8s",
-    animationTimingFunction: "ease-in-out",
-    animationIterationCount: "infinite",
   },
   text: {
     display: "flex",
@@ -80,27 +77,21 @@ const styles = stylex.create({
     width: "80%",
     height: "28px",
     borderRadius: "10px",
-    animationName: loadingAnimation,
-    animationDuration: "1.8s",
-    animationTimingFunction: "ease-in-out",
-    animationIterationCount: "infinite",
   },
   h2: {
     display: "flex",
     width: "100%",
     height: "20px",
     borderRadius: "10px",
-    animationName: loadingAnimation,
-    animationDuration: "1.8s",
-    animationTimingFunction: "ease-in-out",
-    animationIterationCount: "infinite",
   },
   infos: {
     display: "flex",
     width: "200px",
     height: "20px",
     borderRadius: "10px",
-    animationName: loadingAnimation,
+  },
+  animation: {
+    animationName: animations.loadingAnimation,
     animationDuration: "1.8s",
     animationTimingFunction: "ease-in-out",
     animationIterationCount: "infinite",

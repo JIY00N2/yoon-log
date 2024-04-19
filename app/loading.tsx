@@ -2,9 +2,9 @@ import HomeSkeletonItem from "@/app/_components/HomeSkeletonItem";
 import TabSummary from "@/app/_components/TabSummary";
 import stylex from "@stylexjs/stylex";
 
-const ItemCount = 9;
+const POST_SKELETON_COUNT = 9;
 
-export default async function Loading() {
+export default function Loading() {
   return (
     <>
       <TabSummary
@@ -13,8 +13,8 @@ export default async function Loading() {
         color={"var(--text300)"}
       />
       <section {...stylex.props(styles.posts)}>
-        {Array.from({ length: ItemCount }, (_, id) => (
-          <HomeSkeletonItem key={id} />
+        {Array.from({ length: POST_SKELETON_COUNT }, (_, i) => (
+          <HomeSkeletonItem key={i} />
         ))}
       </section>
     </>
