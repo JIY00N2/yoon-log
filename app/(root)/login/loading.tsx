@@ -20,8 +20,6 @@ export default function Loading() {
   );
 }
 
-const MEDIA_TABLET =
-  "@media (min-width: 500px) and (max-width: 1100px)" as const;
 const MEDIA_MOBILE = "@media (max-width: 500px)" as const;
 
 const styles = stylex.create({

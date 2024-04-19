@@ -9,7 +9,7 @@ export default function Loading() {
     <>
       <TabSummary
         title={"Loading..."}
-        content={""}
+        content={"Please wait a moment.."}
         color={"var(--text300)"}
       />
       <section {...stylex.props(styles.posts)}>
