@@ -3,13 +3,18 @@ import stylex from "@stylexjs/stylex";
 type Props = {
   title: string;
   content: string;
+  color?: string;
 };
 
-export default function TabSummary({ title, content }: Props) {
+export default function TabSummary({
+  title,
+  content,
+  color = "var(--font)",
+}: Props) {
   return (
     <section {...stylex.props(styles.section)}>
-      <h1 {...stylex.props(styles.title)}>{title}</h1>
-      <p {...stylex.props(styles.content)}>{content}</p>
+      <h1 {...stylex.props(styles.title(color))}>{title}</h1>
+      <p {...stylex.props(styles.content(color))}>{content}</p>
     </section>
   );
 }
@@ -20,14 +25,14 @@ const styles = stylex.create({
     flexDirection: "column",
     gap: "0.5rem",
   },
-  title: {
+  title: (color) => ({
     fontSize: "1.4rem",
     fontWeight: 600,
-    color: "var(--font)",
-  },
-  content: {
+    color,
+  }),
+  content: (color) => ({
     fontSize: "1rem",
     fontWeight: 500,
-    color: "var(--font)",
-  },
+    color,
+  }),
 });
