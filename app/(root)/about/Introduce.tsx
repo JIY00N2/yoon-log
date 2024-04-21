@@ -11,6 +11,8 @@ export default function Introduce() {
           layout="fill"
           objectFit="cover"
           style={{ borderRadius: "10px" }}
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNccOz8fwAHeQM2IYMbHwAAAABJRU5ErkJggg=="
         />
       </section>
       <section {...stylex.props(styles.infos)}>
