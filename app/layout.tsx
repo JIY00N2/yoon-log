@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   },
 };
 
+const themeInitializerScript = `
+  const theme = localStorage.getItem("theme");
+  document.documentElement.setAttribute("data-theme", theme);
+  `;
+
 export default function RootLayout({
   children,
 }: {
@@ -25,7 +30,6 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      id="html"
       {...stylex.props(styles.html)}
     >
       <head>
@@ -35,6 +39,9 @@ export default function RootLayout({
         />
         <ThemeProvider>
           <body {...stylex.props(styles.body)}>
+            <script
+              dangerouslySetInnerHTML={{ __html: themeInitializerScript }}
+            />
             <ToastProvider defaultDuration={1000}>
               <main {...stylex.props(styles.main)}>
                 <div {...stylex.props(styles.mainInner)}>

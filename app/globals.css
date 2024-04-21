@@ -66,7 +66,7 @@
   --skeletonGradient: #d1d5db;
 }
 
-.dark {
+[data-theme="dark"] {
   --backGround: #1c1c1c;
   --font: #ededed;
   --shadow: #18191a;

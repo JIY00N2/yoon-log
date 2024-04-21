@@ -22,30 +22,20 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
-    const newTheme = localStorage.getItem(key);
-    if (!newTheme) {
+    const theme = localStorage.getItem(key);
+    if (!theme) {
       localStorage.setItem(key, "light");
     } else {
-      setIsDarkMode(newTheme === "dark");
+      setIsDarkMode(theme === "dark");
     }
   }, []);
 
-  useEffect(() => {
-    const htmlTag = document.getElementById("html");
-    if (!htmlTag) {
-      throw Error("html 태그가 없습니다.");
-    }
-    if (isDarkMode) {
-      htmlTag.classList.add("dark");
-    } else {
-      htmlTag.classList.remove("dark");
-    }
-  }, [isDarkMode]);
-
   const toggleDarkMode = useCallback(() => {
-    const newDarkMode = !isDarkMode;
-    setIsDarkMode(newDarkMode);
-    localStorage.setItem(key, newDarkMode ? "dark" : "light");
+    const newDarkModeState = !isDarkMode;
+    setIsDarkMode(newDarkModeState);
+    const newTheme = newDarkModeState ? "dark" : "light";
+    localStorage.setItem(key, newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
   }, [isDarkMode]);
 
   const theme = useMemo(
