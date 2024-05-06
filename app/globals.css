@@ -29,11 +29,11 @@
     height: 3px;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(3, 24, 50, 0.46);
+    background: var(--scrollbarThumb);
     border-radius: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: rgba(2, 32, 71, 0.05);
+    background: var(--text500);
   }
 }
 
@@ -64,6 +64,7 @@
   --gbbg500: #61b2c3;
   --skeletonDefault: #e5e7eb;
   --skeletonGradient: #d1d5db;
+  --scrollbarThumb: rgba(3, 24, 50, 0.46);
 }
 
 [data-theme="dark"] {
@@ -77,4 +78,5 @@
   --text500: rgba(255, 255, 240, 0.05);
   --skeletonDefault: #323335;
   --skeletonGradient: #2b2b2b;
+  --scrollbarThumb: rgba(150, 150, 150, 1);
 }
