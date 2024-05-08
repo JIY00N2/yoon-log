@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
+    images: "/images/yoon-log.jpg",
   },
   alternates: {
     canonical: "/login",

@@ -8,10 +8,18 @@ import { ToastProvider } from "./_context/ToastContext";
 import { ThemeProvider } from "./_context/ThemeContext";
 import { BASE_URL } from "./_constants";
 
+const TITLE = "Yoon Log";
+const DESCRIPTION = "Yoon's dev log";
+
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: "Yoon Log",
-  description: "Yoon's dev log",
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    images: "/images/yoon-log.jpg",
+  },
   alternates: {
     canonical: "/",
   },
