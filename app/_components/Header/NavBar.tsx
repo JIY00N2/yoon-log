@@ -3,24 +3,35 @@
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
-import { navbarList } from "./navbarList";
-import LoginButton from "./LoginButton";
 import { colors } from "@/app/globalTokens.stylex";
 import { usePathname } from "next/navigation";
+import { useCookies } from "react-cookie";
+import LogoutButton from "./LogoutButton";
+import { AdminNavbarList, UserNavbarList } from "./NavBarList";
 
 export default function NavBar({ style }: { style?: StyleXStyles }) {
   const pathname = usePathname();
   const [activeLink, setActiveLink] = useState<number | null>(null);
-  const activePath = useMemo(() => ["/", "/about"], []);
+
+  const [cookies] = useCookies(["isLogin"]);
+  const activeNavbarList = useMemo(
+    () => (cookies.isLogin ? AdminNavbarList : UserNavbarList),
+    [cookies.isLogin],
+  );
+
+  const activePath = useMemo(
+    () => activeNavbarList().map((list) => list.href),
+    [activeNavbarList],
+  );
 
   useEffect(() => {
-    const id = activePath.findIndex((path) => path === pathname);
+    const id = activePath.findIndex((path) => path.split("?")[0] === pathname);
     setActiveLink(id);
   }, [pathname, activePath]);
 
   return (
     <ul {...stylex.props(styles.ul, style)}>
-      {navbarList.map(({ href, text }, id) => (
+      {activeNavbarList().map(({ href, text }, id) => (
         <li
           key={id}
           {...stylex.props(styles.li)}
@@ -33,7 +44,7 @@ export default function NavBar({ style }: { style?: StyleXStyles }) {
           </Link>
         </li>
       ))}
-      <LoginButton style={styles.link} />
+      <LogoutButton style={styles.link} />
     </ul>
   );
 }

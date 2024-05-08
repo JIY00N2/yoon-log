@@ -1,21 +1,15 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import { useCookies } from "react-cookie";
 import useToast from "@/app/_context/ToastContext/useToast";
 import { Error, Success } from "../Toast";
 
-export default function LoginButton({ style }: { style: StyleXStyles }) {
-  const pathname = usePathname();
+export default function LogoutButton({ style }: { style: StyleXStyles }) {
   const router = useRouter();
   const [cookies] = useCookies(["isLogin"]);
   const { toast } = useToast();
-
-  if (pathname === "/login") {
-    return null;
-  }
 
   async function handleLogoutClick() {
     try {
@@ -32,14 +26,8 @@ export default function LoginButton({ style }: { style: StyleXStyles }) {
 
   return (
     <li {...stylex.props(styles.layout)}>
-      {cookies.isLogin ? (
+      {cookies.isLogin && (
         <div {...stylex.props(styles.container)}>
-          <Link
-            href="/write"
-            {...stylex.props(style)}
-          >
-            Write
-          </Link>
           <button
             onClick={handleLogoutClick}
             {...stylex.props(style)}
@@ -47,13 +35,6 @@ export default function LoginButton({ style }: { style: StyleXStyles }) {
             Logout
           </button>
         </div>
-      ) : (
-        <Link
-          href={`/login?redirect=${pathname}`}
-          {...stylex.props(style)}
-        >
-          Admin
-        </Link>
       )}
     </li>
   );
