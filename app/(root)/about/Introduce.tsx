@@ -12,26 +12,22 @@ export default function Introduce() {
           objectFit="cover"
           style={{ borderRadius: "10px" }}
           placeholder="blur"
-          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNccOz8fwAHeQM2IYMbHwAAAABJRU5ErkJggg=="
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOMaL1RDwAFKAI2AzSFRQAAAABJRU5ErkJggg=="
         />
       </section>
       <section {...stylex.props(styles.infos)}>
         <p {...stylex.props(styles.strong)}>
-          안녕하세요, 프런트엔드 개발자를 꿈꾸는 이지윤입니다.
+          안녕하세요, 프론트엔드 개발자 이지윤입니다.
         </p>
         <div {...stylex.props(styles.info)}>
+          <p>Next.js, React.js, Typescript 프로젝트 경험이 있습니다.</p>
+          <p>새로운 기술을 학습하고 이를 구현하는 것에 흥미를 느낍니다.</p>
+          <p>개발 과정에서 발생한 문제를 해결하고 기록합니다.</p>
           <p>
-            개발 과정에서의 오류 해결과 결과물로부터 보람과 성취감을 느낍니다.
+            사용자와 직접 소통하며 사용자 경험이 우수한 서비스를 제공하려고
+            노력합니다.
           </p>
-          <p>
-            새로운 기술을 도입하고 학습하는 데 거부감이 없으며, 계속해서
-            도전하려고 노력합니다.
-          </p>
-          <p>
-            사용자 경험을 향상시키고, 팀워크를 통해 효율적인 웹 애플리케이션을
-            개발하는 것을 목표로 삼고 있습니다.
-          </p>
-          <p>최근에는 기술 블로그를 통해 인사이트를 확장하고 있습니다.</p>
+          <p>{"'나보다는 우리'를 우선시합니다."}</p>
         </div>
         <div {...stylex.props(styles.info)}>
           <span {...stylex.props(styles.strong)}>☎️ Contact</span>
