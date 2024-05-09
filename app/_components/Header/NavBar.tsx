@@ -2,50 +2,69 @@
 
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import Link from "next/link";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { colors } from "@/app/globalTokens.stylex";
 import { usePathname } from "next/navigation";
 import { useCookies } from "react-cookie";
 import LogoutButton from "./LogoutButton";
-import { AdminNavbarList, UserNavbarList } from "./NavBarList";
 
 export default function NavBar({ style }: { style?: StyleXStyles }) {
   const pathname = usePathname();
-  const [activeLink, setActiveLink] = useState<number | null>(null);
-
   const [cookies] = useCookies(["isLogin"]);
-  const activeNavbarList = useMemo(
-    () => (cookies.isLogin ? AdminNavbarList : UserNavbarList),
-    [cookies.isLogin],
-  );
-
-  const activePath = useMemo(
-    () => activeNavbarList().map((list) => list.href),
-    [activeNavbarList],
-  );
+  const [activeLink, setActiveLink] = useState<string | null>(null);
 
   useEffect(() => {
-    const id = activePath.findIndex((path) => path.split("?")[0] === pathname);
-    setActiveLink(id);
-  }, [pathname, activePath]);
+    setActiveLink(pathname);
+  }, [pathname]);
 
   return (
-    <ul {...stylex.props(styles.ul, style)}>
-      {activeNavbarList().map(({ href, text }, id) => (
-        <li
-          key={id}
-          {...stylex.props(styles.li)}
-        >
+    <section {...stylex.props(styles.section, style)}>
+      <Link
+        href={"/"}
+        {...stylex.props(styles.link, activeLink === "/" && styles.active)}
+      >
+        {"Post"}
+      </Link>
+      <Link
+        href={"/about"}
+        {...stylex.props(styles.link, activeLink === "/about" && styles.active)}
+      >
+        {"About"}
+      </Link>
+      <Link
+        href={"/guestbook"}
+        {...stylex.props(
+          styles.link,
+          activeLink === "/guestbook" && styles.active,
+        )}
+      >
+        {"방명록"}
+      </Link>
+      {cookies.isLogin ? (
+        <>
           <Link
-            href={href}
-            {...stylex.props(styles.link, id === activeLink && styles.active)}
+            href={"/write"}
+            {...stylex.props(
+              styles.link,
+              activeLink === "/write" && styles.active,
+            )}
           >
-            {text}
+            {"Write"}
           </Link>
-        </li>
-      ))}
-      <LogoutButton style={styles.link} />
-    </ul>
+          <LogoutButton style={styles.link} />
+        </>
+      ) : (
+        <Link
+          href={`/login?redirect=${pathname}`}
+          {...stylex.props(
+            styles.link,
+            activeLink === "/login" && styles.active,
+          )}
+        >
+          {"Admin"}
+        </Link>
+      )}
+    </section>
   );
 }
 
@@ -54,7 +73,7 @@ const MEDIA_TABLET =
 const MEDIA_MOBILE = "@media (max-width: 700px)" as const;
 
 const styles = stylex.create({
-  ul: {
+  section: {
     display: "flex",
     gap: {
       default: "1.5rem",
@@ -63,14 +82,6 @@ const styles = stylex.create({
     },
     justifyContent: "center",
     alignItems: "center",
-  },
-  li: {
-    display: "flex",
-    listStyleType: "none",
-    whiteSpace: "nowrap",
-    width: {
-      [MEDIA_MOBILE]: "100%",
-    },
   },
   link: {
     minWidth: "fit-content",
