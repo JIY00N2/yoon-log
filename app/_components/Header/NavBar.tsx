@@ -2,7 +2,6 @@
 
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 import { colors } from "@/app/globalTokens.stylex";
 import { usePathname } from "next/navigation";
 import { useCookies } from "react-cookie";
@@ -11,23 +10,18 @@ import LogoutButton from "./LogoutButton";
 export default function NavBar({ style }: { style?: StyleXStyles }) {
   const pathname = usePathname();
   const [cookies] = useCookies(["isLogin"]);
-  const [activeLink, setActiveLink] = useState<string | null>(null);
-
-  useEffect(() => {
-    setActiveLink(pathname);
-  }, [pathname]);
 
   return (
     <section {...stylex.props(styles.section, style)}>
       <Link
         href={"/"}
-        {...stylex.props(styles.link, activeLink === "/" && styles.active)}
+        {...stylex.props(styles.link, pathname === "/" && styles.active)}
       >
         {"Post"}
       </Link>
       <Link
         href={"/about"}
-        {...stylex.props(styles.link, activeLink === "/about" && styles.active)}
+        {...stylex.props(styles.link, pathname === "/about" && styles.active)}
       >
         {"About"}
       </Link>
@@ -35,7 +29,7 @@ export default function NavBar({ style }: { style?: StyleXStyles }) {
         href={"/guestbook"}
         {...stylex.props(
           styles.link,
-          activeLink === "/guestbook" && styles.active,
+          pathname === "/guestbook" && styles.active,
         )}
       >
         {"방명록"}
@@ -46,7 +40,7 @@ export default function NavBar({ style }: { style?: StyleXStyles }) {
             href={"/write"}
             {...stylex.props(
               styles.link,
-              activeLink === "/write" && styles.active,
+              pathname === "/write" && styles.active,
             )}
           >
             {"Write"}
@@ -56,10 +50,7 @@ export default function NavBar({ style }: { style?: StyleXStyles }) {
       ) : (
         <Link
           href={`/login?redirect=${pathname}`}
-          {...stylex.props(
-            styles.link,
-            activeLink === "/login" && styles.active,
-          )}
+          {...stylex.props(styles.link, pathname === "/login" && styles.active)}
         >
           {"Admin"}
         </Link>
