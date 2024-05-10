@@ -1,5 +1,6 @@
 
 # YoonLog 개인 블로그
+관리자가 글을 직접 CRUD 할 수 있는 동적 기술 블로그
 
 [YoonLog](https://yoon-log.vercel.app/)
 
