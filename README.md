@@ -1,5 +1,5 @@
-
 # YoonLog 개인 블로그
+
 관리자가 글을 직접 CRUD 할 수 있는 동적 기술 블로그
 
 [YoonLog](https://yoon-log.vercel.app/)
@@ -22,19 +22,20 @@
 6. 다크 모드
 
 ## 3. 제작 기간 & 참여 인원
+
 1. 제작 기간: 2024.01.18 ~
 2. 참여 인원: 1명
 
 ## 4. env
+
 ```
 MONGODB_URI=
 PASSWORD=
 GOOGLE_SITE_VERIFICATION=
+NAVER_SITE_VERIFICATION=
 SALT_ROUNDS=
 JWT_SECRET=
 SUPABASE_BUCKET=
 SUPABASE_URL=
 SUPABASE_KEY=
 ```
-
-

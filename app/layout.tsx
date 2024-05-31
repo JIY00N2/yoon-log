@@ -45,6 +45,10 @@ export default function RootLayout({
           name="google-site-verification"
           content={process.env.GOOGLE_SITE_VERIFICATION!}
         />
+        <meta
+          name="naver-site-verification"
+          content={process.env.NAVER_SITE_VERIFICATION!}
+        />
         <ThemeProvider>
           <body {...stylex.props(styles.body)}>
             <script
