@@ -1,16 +1,14 @@
-import Link from "next/link";
 import Image from "next/image";
 import stylex from "@stylexjs/stylex";
 import formattedDate from "./_utils/formattedDate";
 import { PostsService } from "./_lib/posts/service";
 import TabSummary from "./_components/TabSummary";
-import { cookies } from "next/headers";
+import PostLink from "./PostLink";
 
 export const revalidate = 30;
 
 export default async function HomePage() {
   const posts = await PostsService.getPosts();
-  const isLogin = cookies().get("isLogin")?.value === "true";
 
   return (
     <>
@@ -25,13 +23,9 @@ export default async function HomePage() {
               key={post._id.toString()}
               {...stylex.props(styles.post)}
             >
-              <Link
-                href={!isLogin && post.isPrivate ? "/" : `/posts/${post.slug}`}
-                rel="preload"
-                {...stylex.props(
-                  styles.link,
-                  !isLogin && post.isPrivate && styles.secret,
-                )}
+              <PostLink
+                isPrivate={post.isPrivate}
+                slug={post.slug}
               >
                 <div {...stylex.props(styles.thumbnail)}>
                   {post.thumbnailUrl && (
@@ -62,7 +56,7 @@ export default async function HomePage() {
                     </time>
                   </div>
                 </div>
-              </Link>
+              </PostLink>
             </article>
           ))
         ) : (
@@ -99,16 +93,6 @@ const styles = stylex.create({
       ":hover": "scale(1.025)",
     },
     paddingBottom: "1rem",
-  },
-  link: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    height: "100%",
-    gap: "0.7rem",
-  },
-  secret: {
-    cursor: "not-allowed",
   },
   thumbnail: {
     display: "flex",
