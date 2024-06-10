@@ -9,6 +9,7 @@ export class PostsService {
     thumbnailUrl,
     content,
     slug,
+    isPrivate,
   }: PostType) {
     await connectDB();
     const post = await Post.create({
@@ -17,6 +18,7 @@ export class PostsService {
       thumbnailUrl,
       content,
       slug,
+      isPrivate,
     });
     return post;
   }
@@ -32,7 +34,7 @@ export class PostsService {
   }
   static async updatePost(
     prevSlug: string,
-    { title, subTitle, thumbnailUrl, content }: Partial<PostType>,
+    { title, subTitle, thumbnailUrl, content, isPrivate }: Partial<PostType>,
   ) {
     await connectDB();
     const prevPost = await PostsService.getPost(prevSlug);
@@ -42,12 +44,14 @@ export class PostsService {
       subTitle: subTitle || prevPost?.subTitle,
       thumbnailUrl: thumbnailUrl || prevPost?.thumbnailUrl,
       content: content || prevPost?.content,
+      isPrivate,
     };
     const newPost = await Post.findOneAndUpdate(filter, update, {
       new: true,
     })
       .lean()
       .exec();
+    console.log(newPost);
     return newPost;
   }
   static async deletePost(slug: string) {

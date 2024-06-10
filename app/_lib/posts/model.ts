@@ -23,6 +23,10 @@ const postSchema = new Schema(
       required: true,
       unique: true,
     },
+    isPrivate: {
+      type: Boolean,
+      required: true,
+    },
   },
   { timestamps: true },
 );

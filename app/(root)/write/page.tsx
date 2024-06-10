@@ -19,6 +19,7 @@ async function handlePostSubmit(
   const thumbnailUrl = formData.get("thumbnailUrl")?.toString();
   const content = formData.get("content")?.toString();
   const slug = formData.get("slug")?.toString();
+  const isPrivate = Boolean(formData.get("isPrivate"));
   if (!title || !subTitle || !thumbnailUrl || !content || !slug) {
     return {
       success: false,
@@ -34,6 +35,7 @@ async function handlePostSubmit(
       thumbnailUrl,
       content,
       slug: generateFilteredSlug(slug),
+      isPrivate,
     });
     revalidatePath("/");
     return {
@@ -62,6 +64,7 @@ export default async function WritePage() {
         subTitle={""}
         thumbnailUrl={""}
         slug={""}
+        isPrivate={false}
       />
     </ContentProvider>
   );

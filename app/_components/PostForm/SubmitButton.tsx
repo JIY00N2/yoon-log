@@ -19,24 +19,17 @@ export default function SubmitButton({ name }: { name: string }) {
   };
 
   return (
-    <div {...stylex.props(styles.container)}>
-      <button
-        type="submit"
-        disabled={pending || isImageUploading}
-        {...stylex.props(styles.button)}
-      >
-        {getLabelName()}
-      </button>
-    </div>
+    <button
+      type="submit"
+      disabled={pending || isImageUploading}
+      {...stylex.props(styles.button)}
+    >
+      {getLabelName()}
+    </button>
   );
 }
 
 const styles = stylex.create({
-  container: {
-    display: "flex",
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
   button: {
     padding: "0.5rem 1rem 0.5rem 1rem",
     borderRadius: "0.5rem",

@@ -4,11 +4,13 @@ import stylex from "@stylexjs/stylex";
 import formattedDate from "./_utils/formattedDate";
 import { PostsService } from "./_lib/posts/service";
 import TabSummary from "./_components/TabSummary";
+import { cookies } from "next/headers";
 
 export const revalidate = 30;
 
 export default async function HomePage() {
   const posts = await PostsService.getPosts();
+  const isLogin = cookies().get("isLogin")?.value === "true";
 
   return (
     <>
@@ -24,9 +26,12 @@ export default async function HomePage() {
               {...stylex.props(styles.post)}
             >
               <Link
-                href={`/posts/${post.slug}`}
+                href={!isLogin && post.isPrivate ? "/" : `/posts/${post.slug}`}
                 rel="preload"
-                {...stylex.props(styles.link)}
+                {...stylex.props(
+                  styles.link,
+                  !isLogin && post.isPrivate && styles.secret,
+                )}
               >
                 <div {...stylex.props(styles.thumbnail)}>
                   {post.thumbnailUrl && (
@@ -41,7 +46,12 @@ export default async function HomePage() {
                 </div>
                 <div {...stylex.props(styles.text)}>
                   <div {...stylex.props(styles.h)}>
-                    <h2 {...stylex.props(styles.h2)}>{post.title}</h2>
+                    <div {...stylex.props(styles.h2Container)}>
+                      {post.isPrivate && (
+                        <div {...stylex.props(styles.private)}>작성중</div>
+                      )}
+                      <h2 {...stylex.props(styles.h2)}>{post.title}</h2>
+                    </div>
                     <h3 {...stylex.props(styles.h3)}>{post.subTitle}</h3>
                   </div>
                   <div {...stylex.props(styles.infos)}>
@@ -97,6 +107,9 @@ const styles = stylex.create({
     height: "100%",
     gap: "0.7rem",
   },
+  secret: {
+    cursor: "not-allowed",
+  },
   thumbnail: {
     display: "flex",
     aspectRatio: "2",
@@ -124,6 +137,18 @@ const styles = stylex.create({
     flexDirection: "column",
     gap: "0.5rem",
     height: "100%",
+  },
+  h2Container: {
+    display: "flex",
+    gap: "10px",
+  },
+  private: {
+    backgroundColor: "lightPink",
+    padding: "2px 5px",
+    borderRadius: "5px",
+    whiteSpace: "nowrap",
+    textAlign: "center",
+    fontWeight: 500,
   },
   h2: {
     width: "100%",

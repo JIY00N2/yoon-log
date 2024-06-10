@@ -4,4 +4,5 @@ export type PostType = {
   thumbnailUrl: string;
   content: string;
   slug: string;
+  isPrivate: boolean;
 };

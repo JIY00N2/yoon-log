@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import SlugInput from "./SlugInput";
 import useToast from "@/app/_context/ToastContext/useToast";
 import { Error, Success } from "../Toast";
+import PrivateCheckBoxInput from "./PrivateCheckBoxInput";
 
 type Props = {
   handleSubmit: (
@@ -34,6 +35,7 @@ type Props = {
   thumbnailUrl: string;
   submitBtnName: string;
   slug: string;
+  isPrivate: boolean;
 };
 
 export default function PostForm({
@@ -43,6 +45,7 @@ export default function PostForm({
   thumbnailUrl,
   submitBtnName,
   slug,
+  isPrivate,
 }: Props) {
   const router = useRouter();
   const [formState, formAction] = useFormState(handleSubmit, {
@@ -90,7 +93,10 @@ export default function PostForm({
         />
         <ImageInput />
         <ContentTextarea style={styles.defaultInput} />
-        <SubmitButton name={submitBtnName} />
+        <div {...stylex.props(styles.container)}>
+          <PrivateCheckBoxInput isPrivate={isPrivate} />
+          <SubmitButton name={submitBtnName} />
+        </div>
       </form>
     </>
   );
@@ -118,5 +124,11 @@ const styles = stylex.create({
   },
   slugLabel: {
     color: "var(--font)",
+  },
+  container: {
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    gap: "30px",
   },
 });

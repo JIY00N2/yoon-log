@@ -22,6 +22,7 @@ export default async function PostEditPage({
     const subTitle = formData.get("subTitle")?.toString();
     const thumbnailUrl = formData.get("thumbnailUrl")?.toString();
     const content = formData.get("content")?.toString();
+    const isPrivate = Boolean(formData.get("isPrivate"));
     if (!title || !subTitle || !content) {
       return {
         success: false,
@@ -35,6 +36,7 @@ export default async function PostEditPage({
       subTitle,
       thumbnailUrl,
       content,
+      isPrivate,
     });
     revalidatePath("/");
     revalidatePath(`/posts/${params.slug}`);
@@ -67,6 +69,7 @@ export default async function PostEditPage({
             subTitle={post.subTitle}
             thumbnailUrl={post.thumbnailUrl}
             slug={post.slug}
+            isPrivate={post.isPrivate}
           />
         </ContentProvider>
       )}
