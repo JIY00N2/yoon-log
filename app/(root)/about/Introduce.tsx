@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Introduce() {
   return (
@@ -32,8 +33,18 @@ export default function Introduce() {
         <div {...stylex.props(styles.info)}>
           <span {...stylex.props(styles.strong)}>☎️ Contact</span>
           <p>Email: angella990825@gmail.com</p>
-          <p>Github: https://github.com/JIY00N2</p>
-          <p>Blog: https://yoon-log.vercel.app</p>
+          <p>
+            {"Github: "}
+            <Link href={"https://github.com/JIY00N2"}>
+              https://github.com/JIY00N2
+            </Link>
+          </p>
+          <p>
+            {"Blog: "}
+            <Link href={"https://yoon-log.vercel.app"}>
+              https://yoon-log.vercel.app
+            </Link>
+          </p>
         </div>
       </section>
     </div>
