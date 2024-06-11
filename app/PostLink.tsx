@@ -13,11 +13,15 @@ type PostLinkProps = PropsWithChildren<{
 export default function PostLink({ children, isPrivate, slug }: PostLinkProps) {
   const [{ isLogin }] = useCookies(["isLogin"]);
 
+  if (!isLogin && isPrivate) {
+    return <div {...stylex.props(styles.secret)}>{children}</div>;
+  }
+
   return (
     <Link
-      href={!isLogin && isPrivate ? "/" : `/posts/${slug}`}
+      href={`/posts/${slug}`}
       rel="preload"
-      {...stylex.props(styles.link, !isLogin && isPrivate && styles.secret)}
+      {...stylex.props(styles.link)}
     >
       {children}
     </Link>
