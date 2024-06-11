@@ -4,6 +4,7 @@ import Link from "next/link";
 import { PropsWithChildren } from "react";
 import stylex from "@stylexjs/stylex";
 import { useCookies } from "react-cookie";
+import ClientBoundary from "./_components/ClientBoundary";
 
 type PostLinkProps = PropsWithChildren<{
   isPrivate: boolean;
@@ -18,13 +19,19 @@ export default function PostLink({ children, isPrivate, slug }: PostLinkProps) {
   }
 
   return (
-    <Link
-      href={`/posts/${slug}`}
-      rel="preload"
-      {...stylex.props(styles.link)}
+    <ClientBoundary
+      fallback={
+        <div {...stylex.props(styles.link, styles.secret)}>{children}</div>
+      }
     >
-      {children}
-    </Link>
+      <Link
+        href={`/posts/${slug}`}
+        rel="preload"
+        {...stylex.props(styles.link)}
+      >
+        {children}
+      </Link>
+    </ClientBoundary>
   );
 }
 
