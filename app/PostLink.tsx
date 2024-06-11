@@ -14,7 +14,7 @@ export default function PostLink({ children, isPrivate, slug }: PostLinkProps) {
   const [{ isLogin }] = useCookies(["isLogin"]);
 
   if (!isLogin && isPrivate) {
-    return <div {...stylex.props(styles.secret)}>{children}</div>;
+    return <div {...stylex.props(styles.link, styles.secret)}>{children}</div>;
   }
 
   return (
