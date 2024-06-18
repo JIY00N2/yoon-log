@@ -7,6 +7,13 @@ import Image from "next/image";
 
 const projects = [
   {
+    title: "JY DS",
+    githubHref: "https://github.com/JIY00N2/jiyoon-ds-web",
+    siteHref: "https://jiyoon-ds-web.vercel.app/",
+    subTitle: "나만의 디자인 시스템 문서",
+    imageSrc: "/images/jy-ds.jpg",
+  },
+  {
     title: "개인 기술 블로그",
     githubHref: "https://github.com/JIY00N2/yoon-log",
     siteHref: "https://yoon-log.vercel.app",
