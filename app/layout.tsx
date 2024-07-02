@@ -49,24 +49,24 @@ export default function RootLayout({
           name="naver-site-verification"
           content={process.env.NAVER_SITE_VERIFICATION!}
         />
-        <ThemeProvider>
-          <body {...stylex.props(styles.body)}>
-            <script
-              dangerouslySetInnerHTML={{ __html: themeInitializerScript }}
-            />
-            <ToastProvider defaultDuration={1000}>
-              <main {...stylex.props(styles.main)}>
-                <div {...stylex.props(styles.mainInner)}>
-                  <ScrollToHash offset={70} />
-                  {children}
-                </div>
-              </main>
-              <Header />
-              <Footer />
-            </ToastProvider>
-          </body>
-        </ThemeProvider>
       </head>
+      <ThemeProvider>
+        <body {...stylex.props(styles.body)}>
+          <script
+            dangerouslySetInnerHTML={{ __html: themeInitializerScript }}
+          />
+          <ToastProvider defaultDuration={1000}>
+            <main {...stylex.props(styles.main)}>
+              <div {...stylex.props(styles.mainInner)}>
+                <ScrollToHash offset={70} />
+                {children}
+              </div>
+            </main>
+            <Header />
+            <Footer />
+          </ToastProvider>
+        </body>
+      </ThemeProvider>
     </html>
   );
 }
