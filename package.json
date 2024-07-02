@@ -10,7 +10,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@radix-ui/react-popover": "^1.0.7",
     "@stylexjs/stylex": "^0.5.1",
     "@supabase/supabase-js": "^2.39.3",
     "@svgr/webpack": "^8.1.0",
