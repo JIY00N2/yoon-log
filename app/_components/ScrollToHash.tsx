@@ -39,7 +39,7 @@ export default function ScrollToHash({ offset }: { offset: number }) {
     return () => {
       window.removeEventListener("hashchange", handleHashChange);
       window.removeEventListener("popstate", handlePopState);
-      window.addEventListener("mdload", handleLoad);
+      window.removeEventListener("mdload", handleLoad);
     };
   }, [router, offset]);
 
