@@ -38,6 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
+      suppressHydrationWarning
       {...stylex.props(styles.html)}
     >
       <head>
