@@ -31,12 +31,15 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   const toggleDarkMode = useCallback(() => {
-    const newDarkModeState = !isDarkMode;
-    setIsDarkMode(newDarkModeState);
-    const newTheme = newDarkModeState ? "dark" : "light";
-    localStorage.setItem(key, newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-  }, [isDarkMode]);
+    setIsDarkMode((isDark) => {
+      localStorage.setItem("theme", isDark ? "light" : "dark");
+      document.documentElement.setAttribute(
+        "data-theme",
+        isDark ? "light" : "dark",
+      );
+      return !isDark;
+    });
+  }, []);
 
   const theme = useMemo(
     () => ({
