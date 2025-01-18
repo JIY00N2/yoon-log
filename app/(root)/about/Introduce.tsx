@@ -6,7 +6,7 @@ export default function Introduce() {
   return (
     <div {...stylex.props(styles.layout)}>
       <section {...stylex.props(styles.profile)}>
-        <Image
+        {/* <Image
           src="/images/profile.jpeg"
           alt="profile"
           layout="fill"
@@ -14,7 +14,7 @@ export default function Introduce() {
           style={{ borderRadius: "10px" }}
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOMaL1RDwAFKAI2AzSFRQAAAABJRU5ErkJggg=="
-        />
+        /> */}
       </section>
       <section {...stylex.props(styles.infos)}>
         <p {...stylex.props(styles.strong)}>
@@ -74,6 +74,8 @@ const styles = stylex.create({
     maxHeight: "250px",
     maxWidth: "250px",
     position: "relative",
+    backgroundColor: "lightGray",
+    borderRadius: "10px",
   },
   strong: {
     fontSize: "1.1rem",
