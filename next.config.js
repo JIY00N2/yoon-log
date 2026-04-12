@@ -15,7 +15,7 @@ module.exports = stylexPlugin({
       remotePatterns: [
         {
           protocol: "https",
-          hostname: "oxpdlbqcseajmjnxawbb.supabase.co",
+          hostname: "utbqzfrezvpoiwwzoddx.supabase.co",
         },
       ],
     },
